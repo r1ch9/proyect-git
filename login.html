@@ -17,6 +17,10 @@
         html,
         body {
             height: 100%;
+            font-family: Arial Narrow;
+            font-size: 100%;
+            background-size: 100%;
+            background-position-y: center;
         }
         
         body {
@@ -26,29 +30,37 @@
             align-items: center;
             padding-top: 40px;
             padding-bottom: 40px;
-            background-color: #f5f5f5;
+            ;
         }
         
         .form-signin,
         .signin {
             width: 100%;
             max-width: 330px;
-            padding: 15px;
+            padding: 5px;
             margin: auto;
         }
         
         .divlogin {
-            padding: 10px;
-            box-shadow: 2px 2px 2px 2px #888888;
-            width: 100%;
-            max-width: 330px;
             padding: 15px;
+            box-shadow: 2px 2px 2px 2px #888888;
             margin: auto;
+            background-color: #f5f5f5;
+        }
+        
+        h2,
+        label {
+            color: #5c5858;
+        }
+        
+        #mensajeUser {
+            text-align: left;
+            color: red;
         }
     </style>
 </head>
 
-<body class="text-center">
+<body class="text-center" background="img/cover_back.png">
     <div class="divlogin">
         <form action="" class="form-signin">
 
@@ -56,19 +68,20 @@
                 <img class="signin" src="img/login.png" width="auto">
                 <h2>Inicie sesion:</h2>
 
-                <input type="usr" id="inputUsr" class="form-control  my-2" placeholder="Usuario">
-                <label for="usrName" class="sr-only">Usuario: </label>
+                <input type="usr" class="form-control  my-2" placeholder="Usuario">
+                <label for="usrName" class="sr-only" id="inputUsr">Usuario: </label>
+                <div>
+                    <p id="mensajeUser">El campo "Usuario" no puede estar vacío.</p>
+                </div>
 
-                <input type="pwd" id="inputpwd" class="form-control  my-2" placeholder="Contraseña">
+                <input type="password" id="inputpwd" class="form-control  my-2" placeholder="Contraseña">
                 <label for="password" class="sr-only">Contraseña: </label>
 
                 <div class="checkbox mb-3">
-                    <label>
-                <input type="checkbox" value="remember-me"> Recuerdame
-              </label>
+                    <label><input type="checkbox" value="remember-me" class="asdasd"> Recuerdame</label>
                 </div>
 
-                <button class="btn btn-lg btn-secondary btn-block" type="submit">Ingresar</button>
+                <button class="btn btn-lg btn-secondary btn-block" type="button" onclick="checkInput();">Ingresar</button>
             </div>
         </form>
     </div>
