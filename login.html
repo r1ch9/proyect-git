@@ -53,7 +53,10 @@
             color: #5c5858;
         }
         
-        #mensajeUser {
+        #mensajeUser,
+        #mensajeUserP,
+        #mensajeUserMa,
+        #mensajeUserMe {
             text-align: left;
             color: red;
         }
@@ -68,20 +71,23 @@
                 <img class="signin" src="img/login.png" width="auto">
                 <h2>Inicie sesion:</h2>
 
-                <input type="usr" class="form-control  my-2" placeholder="Usuario">
-                <label for="usrName" class="sr-only" id="inputUsr">Usuario: </label>
-                <div>
-                    <p id="mensajeUser">El campo "Usuario" no puede estar vacío.</p>
+                <input type="usr" class="form-control  my-2" placeholder="Usuario" id="userName">
+                <label for="usrName" class="sr-only">Usuario: </label>
+                <div id="mensajeUser">
+                    <p id="mensajeUser"></p>
                 </div>
 
                 <input type="password" id="inputpwd" class="form-control  my-2" placeholder="Contraseña">
                 <label for="password" class="sr-only">Contraseña: </label>
-
-                <div class="checkbox mb-3">
-                    <label><input type="checkbox" value="remember-me" class="asdasd"> Recuerdame</label>
+                <div id="imprimiraca">
+                    <p id="mensajeUser"></p>
                 </div>
 
-                <button class="btn btn-lg btn-secondary btn-block" type="button" onclick="checkInput();">Ingresar</button>
+                <div class="checkbox mb-3">
+                    <label><input id="checkRemember" type="checkbox" value="remember-me" class="remember"> Recuerdame</label>
+                </div>
+
+                <button class="btn btn-lg btn-secondary btn-block" type="button" onclick="checkInput()">Ingresar</button>
             </div>
         </form>
     </div>
