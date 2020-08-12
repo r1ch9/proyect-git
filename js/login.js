@@ -2,16 +2,17 @@
 //que el documento se encuentra cargado, es decir, se encuentran todos los
 //elementos HTML presentes.
 function checkInput() {
-    let campoUsuario = document.getElementById("inputUsr").value;
+    let campoUsuario = document.getElementsById('usrName').value;
     if (campoUsuario == '') {
         alertUser;
     } else {
 
     }
+    alert(campoUsuario);
     checkPassword();
 }
 document.addEventListener("DOMContentLoaded", function(e) {
-    /*document.getElementById('mensajeUser').style.visibility = 'hidden';*/
+    document.getElementById('mensajeUser').style.visibility = 'hidden';
 });
 
 
