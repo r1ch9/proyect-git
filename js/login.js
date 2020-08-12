@@ -2,13 +2,14 @@
 //que el documento se encuentra cargado, es decir, se encuentran todos los
 //elementos HTML presentes.
 function checkInput() {
-    let campoUsuario = document.getElementsById('usrName').value;
+    let campoUsuario = document.getElementsById('inputUsr');
+    var textCampoUsuario = (campoUsuario.innerText || campoUsuario.textContet)
     if (campoUsuario == '') {
         alertUser;
     } else {
 
     }
-    alert(campoUsuario);
+    alert(textCampoUsuario);
     checkPassword();
 }
 document.addEventListener("DOMContentLoaded", function(e) {
