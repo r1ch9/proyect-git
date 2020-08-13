@@ -14,13 +14,15 @@ function checkInput() {
     rememberCheck = document.getElementById("checkRemember").checked;
     checkUser();
     checkPassword();
-    if (corrPass && corrUser) {
-        window.location.href = "https://r1ch9.github.io/proyect-git/";
-    }
     if (rememberCheck) {
         localStorage.setItem(elusuariolocal, document.getElementById("userName").value);
+        sessionStorage.removeItem(elusuariosession);
     } else {
         sessionStorage.setItem(elusuariosession, document.getElementById("userName").value);
+        localStorage.removeItem(elusuariolocal);
+    }
+    if (corrPass && corrUser) {
+        window.location.href = "https://r1ch9.github.io/proyect-git/";
     }
 }
 
@@ -66,5 +68,5 @@ function checkUser() {
 }
 
 document.addEventListener("DOMContentLoaded", function(e) {
-    document.getElementById('mensajeUser').style.visibility = 'hidden';
+    //document.getElementById('mensajeUser').style.visibility = 'hidden';
 });
