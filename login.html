@@ -71,13 +71,13 @@
                 <img class="signin" src="img/login.png" width="auto">
                 <h2>Inicie sesion:</h2>
 
-                <input type="usr" class="form-control  my-2" placeholder="Usuario" id="userName">
+                <input type="usr" class="form-control  my-2" placeholder="Usuario" id="userName" onblur="checkUser()">
                 <label for="usrName" class="sr-only">Usuario: </label>
                 <div id="mensajeUser">
                     <p id="mensajeUser"></p>
                 </div>
 
-                <input type="password" id="inputpwd" class="form-control  my-2" placeholder="Contraseña">
+                <input type="password" id="inputpwd" class="form-control  my-2" placeholder="Contraseña" onblur="checkPassword()">
                 <label for="password" class="sr-only">Contraseña: </label>
                 <div id="imprimiraca">
                     <p id="mensajeUser"></p>
