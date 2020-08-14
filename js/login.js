@@ -9,6 +9,7 @@ var user;
 var rememberCheck;
 var elusuariolocal;
 var elusuariosession;
+var password_input;
 
 function checkInput() {
     rememberCheck = document.getElementById("checkRemember").checked;
@@ -28,6 +29,7 @@ function checkInput() {
 
 function checkPassword() {
     password = document.getElementById("inputpwd").value;
+
     if (password == '') {
         imprPass = ' <p id = "mensajeUserP" > La contraseña no puede estar vacía.</p>'
         document.getElementById('imprimiraca').innerHTML = imprPass;
@@ -51,6 +53,21 @@ function checkPassword() {
             }
         }
     }
+
+}
+
+function CapsLock() {
+    password_input = document.getElementById("inputpwd");
+
+    password_input.addEventListener("keyup", function(event) {
+        imprPass = '<p id="mensajeUserP" >"¡Cuidado, Bloq. Mayus está activado!"</p>';
+        if (event.getModifierState("CapsLock")) {
+            document.getElementById('imprimiraca').innerHTML = imprPass;
+            document.getElementById('imprimiraca').style.visibility = 'visible';
+        } else {
+            document.getElementById('imprimiraca').style.visibility = 'hidden';
+        }
+    });
 }
 
 function checkUser() {
@@ -67,6 +84,14 @@ function checkUser() {
     }
 }
 
+
+
+
+
 document.addEventListener("DOMContentLoaded", function(e) {
-    //document.getElementById('mensajeUser').style.visibility = 'hidden';
+    document.getElementById('mensajeUser').style.visibility = 'hidden';
+    document.getElementById('imprimiraca').style.visibility = 'hidden';
+    imprPass = '<p id="mensajeUserP" >"creamos es espacio del parrafo"</p>';
+    document.getElementById('mensajeUser').innerHTML = imprPass;
+    document.getElementById('imprimiraca').innerHTML = imprPass;
 });
