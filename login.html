@@ -89,10 +89,12 @@
                     <label><input id="checkRemember" type="checkbox" value="remember-me" class="remember"> Recuerdame</label>
                 </div>
 
-                <button class="btn btn-lg btn-secondary btn-block" type="button" onclick="checkInput()">Ingresar</button>
+                <button class="btn btn-secondary btn-block" type="button" onclick="checkInput()">Ingresar</button>
                 <button class="btn btn-outline-dark btn-block" type="button">Registrarse</button>
-                <button class="btn btn-outline-dark btn-block" type="button">Olvidaste la contraseña?</button>
-                <button class="btn btn-block" type="button" onclick="ingresoComoInvitado()">Ingresar como invitado</button>
+                <div class="btn-group btn-block">
+                    <button class="btn btn-outline-dark" type="button">Olvide la contraseña</button>
+                    <button class="btn btn-outline-dark" type="button" onclick="ingresoComoInvitado()">Ingresar como invitado</button>
+                </div>
             </div>
         </form>
     </div>
