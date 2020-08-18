@@ -13,6 +13,7 @@
     <!-- Bootstrap core CSS -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
     <link href="css/styles.css" rel="stylesheet">
+    <script src="https://apis.google.com/js/platform.js" async defer></script>
     <style>
         html,
         body {
@@ -71,8 +72,9 @@
                 <img class="signin" src="img/login.png" width="auto">
                 <h2>Inicie sesion:</h2>
                 </br>
+                <i class="fa fa-user icon"></i>
                 <input type="usr" class="form-control  my-2" placeholder="Usuario" id="userName" onblur="checkUser()">
-                <label for="usrName" class="sr-only">Usuario: </label>
+                <label for="usrName" class="sr-only fa fa-user icon">Usuario: </label>
                 <div id="mensajeUser">
                     <p id="mensajeUser"></p>
                 </div>
@@ -88,6 +90,9 @@
                 </div>
 
                 <button class="btn btn-lg btn-secondary btn-block" type="button" onclick="checkInput()">Ingresar</button>
+                <button class="btn btn-outline-dark btn-block" type="button">Registrarse</button>
+                <button class="btn btn-outline-dark btn-block" type="button">Olvidaste la contraseña?</button>
+                <button class="btn btn-block" type="button" onclick="ingresoComoInvitado()">Ingresar como invitado</button>
             </div>
         </form>
     </div>

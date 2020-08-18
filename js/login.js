@@ -60,7 +60,7 @@ function CapsLock() {
     password_input = document.getElementById("inputpwd");
 
     password_input.addEventListener("keyup", function(event) {
-        imprPass = '<p id="mensajeUserP" >"¡Cuidado, Bloq. Mayus está activado!"</p>';
+        imprPass = '<p id="mensajeUserP" >¡Cuidado, Bloq. Mayus está activado!</p>';
         if (event.getModifierState("CapsLock")) {
             document.getElementById('imprimiraca').innerHTML = imprPass;
             document.getElementById('imprimiraca').style.visibility = 'visible';
@@ -84,7 +84,11 @@ function checkUser() {
     }
 }
 
-
+function ingresoComoInvitado() {
+    user = "invitado";
+    sessionStorage.setItem(elusuariosession, user);
+    window.location.href = "https://r1ch9.github.io/proyect-git/";
+}
 
 
 
