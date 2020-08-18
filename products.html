@@ -13,6 +13,35 @@
     <link href="css/font-awesome.min.css" rel="stylesheet">
     <link href="css/bootstrap.min.css" rel="stylesheet">
     <link href="css/styles.css" rel="stylesheet">
+    <style>
+        .contenedor {
+            position: relative;
+            display: inline-block;
+            text-align: center;
+        }
+        
+        .texto-encima {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+        }
+        
+        .centrado {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+        
+        h2 {
+            color: black;
+            -webkit-text-stroke: 0.5px white;
+        }
+        
+        p {
+            color: black;
+        }
+    </style>
 </head>
 
 <body>
@@ -25,9 +54,54 @@
             <a class="py-2 d-none d-md-inline-block" href="cart.html">Mi carrito</a>
         </div>
     </nav>
-    <div class="container p-5">
-        <div id="impresion"></div>
+
+    <div class="row">
+        <div class="list-group" id="cat-list-container">
+        </div>
     </div>
+    <main role="main" class="pb-5">
+        <div class="text-center p-4">
+            <div class="contenedor">
+                <img src="img/cover_back.png" width="100%">
+                <div class="texto-encima">
+                </div>
+                <div class="centrado">
+                    <h2>PRODUCTOS</h2>
+                    <p class="lead">Verás aquí los productos de esta categoría.</p>
+                </div>
+            </div>
+        </div>
+        <div class="container">
+            <div class="row justify-content-end">
+                <div class="col-md-6"></div>
+                <div class="col-md-6 col-sm-12 mb-1 container">
+                    <div class="row container p-0 m-0">
+                        <div class="col">
+                            <p class="font-weight-normal text-right my-2">Precio:</p>
+                        </div>
+                        <div class="col">
+                            <input class="form-control" type="number" placeholder="min." id="rangeFilterCountMin">
+                        </div>
+                        <div class="col">
+                            <input class="form-control" type="number" placeholder="máx." id="rangeFilterCountMax">
+                        </div>
+                        <div class="col-3 p-0">
+                            <div class="btn-group" role="group">
+                                <button class="btn btn-light btn-block" id="rangeFilterCount">Filtrar</button>
+                                <button class="btn btn-link btn-sm" id="clearRangeFilter">Limpiar</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="list-group" id="impresion">
+                </div>
+            </div>
+        </div>
+
+
+    </main>
     <footer class="text-muted bg-light">
         <div class="container">
             <p class="float-right">
