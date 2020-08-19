@@ -78,6 +78,15 @@ function sortCategories(criteria, array) {
     return result;
 }
 
+function search() {
+    const key = event.key;
+    let keyCode = event.keyCode;
+    if (keyCode >= 65 && keyCode <= 90) {
+        alert("letras");
+    }
+    alert(key);
+}
+
 document.addEventListener("DOMContentLoaded", function(e) {
     getJSONData(PRODUCTS_URL).then(function(resultObj) {
         if (resultObj.status === "ok") {
@@ -130,5 +139,9 @@ document.addEventListener("DOMContentLoaded", function(e) {
 
     document.getElementById("sortByCount").addEventListener("click", function() {
         sortAndShowCategories(ORDER_BY_PROD_SOLD);
+    });
+
+    document.getElementById("busquedaProducts").addEventListener("keydown", function() {
+        search();
     });
 });
