@@ -1,6 +1,13 @@
 //Función que se ejecuta una vez que se haya lanzado el evento de
 //que el documento se encuentra cargado, es decir, se encuentran todos los
 //elementos HTML presentes.
+const ORDER_ASC_BY_NAME = "min. - máx.";
+const ORDER_DESC_BY_NAME = "máx. - min.";
+const ORDER_BY_PROD_SOLD = "Vendidos:";
+var currentCategoriesArray = [];
+var currentSortCriteria = undefined;
+var minCount = undefined;
+var maxCount = undefined;
 var minPrice, maxPrice;
 
 function imprimirListado(array) {
@@ -33,12 +40,51 @@ function imprimirListado(array) {
     }
 }
 
+function sortAndShowCategories(sortCriteria, array) {
+    currentSortCriteria = sortCriteria;
+
+    if (array != undefined) {
+        currentCategoriesArray = array;
+    }
+
+    currentCategoriesArray = sortCategories(currentSortCriteria, currentCategoriesArray);
+
+    //Muestro las categorías ordenadas
+    imprimirListado(currentCategoriesArray);
+}
+
+function sortCategories(criteria, array) {
+    let result = [];
+    if (criteria === ORDER_ASC_BY_NAME) {
+        result = array.sort(function(a, b) {
+            if (a.cost < b.cost) { return -1; }
+            if (a.cost > b.cost) { return 1; }
+            return 0;
+        });
+    } else if (criteria === ORDER_DESC_BY_NAME) {
+        result = array.sort(function(a, b) {
+            if (a.cost > b.cost) { return -1; }
+            if (a.cost < b.cost) { return 1; }
+            return 0;
+        });
+    } else if (criteria === ORDER_BY_PROD_SOLD) {
+        result = array.sort(function(a, b) {
+            if (a.soldCount > b.soldCount) { return -1; }
+            if (a.soldCount < b.soldCount) { return 1; }
+            return 0;
+        });
+    }
+
+    return result;
+}
+
 document.addEventListener("DOMContentLoaded", function(e) {
     getJSONData(PRODUCTS_URL).then(function(resultObj) {
         if (resultObj.status === "ok") {
             productsArray = resultObj.data;
             //Muestro las categorías ordenadas
             imprimirListado(productsArray);
+            sortAndShowCategories(ORDER_ASC_BY_NAME, productsArray);
         }
     });
 
@@ -72,5 +118,17 @@ document.addEventListener("DOMContentLoaded", function(e) {
         }
 
         imprimirListado(productsArray);
+    });
+
+    document.getElementById("sortAsc").addEventListener("click", function() {
+        sortAndShowCategories(ORDER_ASC_BY_NAME);
+    });
+
+    document.getElementById("sortDesc").addEventListener("click", function() {
+        sortAndShowCategories(ORDER_DESC_BY_NAME);
+    });
+
+    document.getElementById("sortByCount").addEventListener("click", function() {
+        sortAndShowCategories(ORDER_BY_PROD_SOLD);
     });
 });

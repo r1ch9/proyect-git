@@ -46,8 +46,7 @@ var getJSONData = function(url) {
 //elementos HTML presentes.
 
 document.addEventListener("DOMContentLoaded", function(e) {
-    if (window.location == "https://r1ch9.github.io/proyect-git/login.html") {
-
+    /*if (window.location == "https://r1ch9.github.io/proyect-git/login.html") {
     } else {
         if (sessionStorage.getItem(elusuarioinvitado) == null) {
             if (sessionStorage.getItem(elusuariosession) == null) {
@@ -57,5 +56,5 @@ document.addEventListener("DOMContentLoaded", function(e) {
             }
         }
 
-    }
+    }*/
 });
