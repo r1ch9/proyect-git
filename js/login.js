@@ -72,14 +72,12 @@ function CapsLock() {
     });
 }
 
-function onSignIn(googleUser) {
+function onSignIn() {
     // Useful data for your client-side scripts:
     var profile = googleUser.getBasicProfile();
     console.log("ID: " + profile.getId()); // Don't send this directly to your server!
-    localStorage.setItem(elusuariosession, (profile.getName()));
     document.getElementById("userName").value = (profile.getName());
-    document.getElementById("inputpwd").value = "asdfghj";
-    checkInput();
+    document.getElementById("inputpwd").value = "aaaaaa";
     console.log('Given Name: ' + profile.getGivenName());
     console.log('Family Name: ' + profile.getFamilyName());
     console.log("Image URL: " + profile.getImageUrl());
@@ -88,6 +86,7 @@ function onSignIn(googleUser) {
     // The ID token you need to pass to your backend:
     var id_token = googleUser.getAuthResponse().id_token;
     console.log("ID Token: " + id_token);
+    checkInput();
 }
 
 function checkUser() {
