@@ -45,7 +45,19 @@ var getJSONData = function(url) {
 //que el documento se encuentra cargado, es decir, se encuentran todos los
 //elementos HTML presentes.
 
+function signOut() {
+    var auth2 = gapi.auth2.getAuthInstance();
+    auth2.signOut().then(function() {
+        console.log('User signed out.');
+    });
+}
+
 document.addEventListener("DOMContentLoaded", function(e) {
+    let htmlContentToAppendOnNav = `<a class="py-2 d-none d-md-inline-block" href="`
+    signOut()
+    `">`
+    user `</a>`;
+    document.getElementById("usuarionav").innerHTML = htmlContentToAppendOnNav;
     if (window.location == "https://r1ch9.github.io/proyect-git/login.html") {} else {
         if (sessionStorage.getItem(elusuarioinvitado) == null) {
             if (sessionStorage.getItem(elusuariosession) == null) {
@@ -56,4 +68,5 @@ document.addEventListener("DOMContentLoaded", function(e) {
         }
 
     }
+
 });
