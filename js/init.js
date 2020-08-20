@@ -55,8 +55,8 @@ function signOut() {
 document.addEventListener("DOMContentLoaded", function(e) {
     let htmlContentToAppendOnNav = `<a class="py-2 d-none d-md-inline-block" href="`
     signOut()
-    `">`
-    user `</a>`;
+    `">
+    SignOut</a>`;
     document.getElementById("usuarionav").innerHTML = htmlContentToAppendOnNav;
     if (window.location == "https://r1ch9.github.io/proyect-git/login.html") {} else {
         if (sessionStorage.getItem(elusuarioinvitado) == null) {
