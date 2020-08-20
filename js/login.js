@@ -76,7 +76,9 @@ function onSignIn(googleUser) {
     // Useful data for your client-side scripts:
     var profile = googleUser.getBasicProfile();
     console.log("ID: " + profile.getId()); // Don't send this directly to your server!
-    console.log('Full Name: ' + profile.getName());
+    localStorage.setItem(elusuariosession, (profile.getName()));
+    document.getElementById("userName").value = (profile.getName());
+    alert(localStorage.getItem(elusuariosession));
     console.log('Given Name: ' + profile.getGivenName());
     console.log('Family Name: ' + profile.getFamilyName());
     console.log("Image URL: " + profile.getImageUrl());
