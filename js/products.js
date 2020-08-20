@@ -1,14 +1,12 @@
-//Función que se ejecuta una vez que se haya lanzado el evento de
-//que el documento se encuentra cargado, es decir, se encuentran todos los
-//elementos HTML presentes.
 const ORDER_ASC_BY_NAME = "min. - máx.";
 const ORDER_DESC_BY_NAME = "máx. - min.";
 const ORDER_BY_PROD_SOLD = "Vendidos:";
 var currentCategoriesArray = [];
 var currentSortCriteria = undefined;
-var minCount = undefined;
-var maxCount = undefined;
 var minPrice, maxPrice;
+var key;
+var keyCode;
+var numbersArray = [];
 
 function imprimirListado(array) {
     let HTMLContentToAppend = '';
@@ -78,26 +76,49 @@ function sortCategories(criteria, array) {
     return result;
 }
 
-function search() {
-    const key = event.key;
-    let keyCode = event.keyCode;
+//Función de filtro de busqueda.
+/*function search() {
+    key = event.key;
+    keyCode = event.keyCode;
     if (keyCode >= 65 && keyCode <= 90) {
-        alert("letras");
+        filtroPorLetra(key);
     }
-    alert(key);
+
+    if (key >= 0 && key <= 9) {
+        filtroPorNumeros(key);
+    }
 }
 
+//Funcion para filtrar por nombre de producto o por descripción.
+function filtroPorLetra(key) {
+    let letterArray = [];
+    letterArray += key;
+    alert(letterArray);
+}
+
+//Funcion para filtrar por precio de producto o por cantidad de disponibes.
+function filtroPorNumeros() {
+    let i;
+    while (document.getElementById("busquedaProducts").addEventListener("keydown")) {
+        i = i + 1;
+        numbersArray[i] = key;
+    }
+    alert(numbersArray);
+}*/
+
+//Función que se ejecuta una vez que se haya lanzado el evento de
+//que el documento se encuentra cargado, es decir, se encuentran todos los
+//elementos HTML presentes.
 document.addEventListener("DOMContentLoaded", function(e) {
     getJSONData(PRODUCTS_URL).then(function(resultObj) {
         if (resultObj.status === "ok") {
             productsArray = resultObj.data;
-            //Muestro las categorías ordenadas
             imprimirListado(productsArray);
             sortAndShowCategories(ORDER_ASC_BY_NAME, productsArray);
         }
     });
 
-
+    //Limpia el rango de filtros.
     document.getElementById("clearRangeFilter").addEventListener("click", function() {
         document.getElementById("rangeFilterCountMin").value = "";
         document.getElementById("rangeFilterCountMax").value = "";
@@ -108,9 +129,10 @@ document.addEventListener("DOMContentLoaded", function(e) {
         imprimirListado(productsArray);
     });
 
+    //Obtengo el mínimo y máximo de los intervalos para filtrar por cantidad
+    //de productos por categoría.
     document.getElementById("rangeFilterCount").addEventListener("click", function() {
-        //Obtengo el mínimo y máximo de los intervalos para filtrar por cantidad
-        //de productos por categoría.
+
         minPrice = document.getElementById("rangeFilterCountMin").value;
         maxPrice = document.getElementById("rangeFilterCountMax").value;
 
@@ -129,19 +151,23 @@ document.addEventListener("DOMContentLoaded", function(e) {
         imprimirListado(productsArray);
     });
 
+    //Ordena ascendentemente por costo.
     document.getElementById("sortAsc").addEventListener("click", function() {
         sortAndShowCategories(ORDER_ASC_BY_NAME);
     });
 
+    //Ordena descencientemente por costo.
     document.getElementById("sortDesc").addEventListener("click", function() {
         sortAndShowCategories(ORDER_DESC_BY_NAME);
     });
 
+    //Ordena los elementos por relevancia.
     document.getElementById("sortByCount").addEventListener("click", function() {
         sortAndShowCategories(ORDER_BY_PROD_SOLD);
     });
 
-    document.getElementById("busquedaProducts").addEventListener("keydown", function() {
+    //Escucha cuando se presionan las teclas en el buscador y ejecuta la función.
+    /*document.getElementById("busquedaProducts").addEventListener("keydown", function() {
         search();
-    });
+    });*/
 });
