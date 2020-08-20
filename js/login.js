@@ -78,7 +78,8 @@ function onSignIn(googleUser) {
     console.log("ID: " + profile.getId()); // Don't send this directly to your server!
     localStorage.setItem(elusuariosession, (profile.getName()));
     document.getElementById("userName").value = (profile.getName());
-    alert(localStorage.getItem(elusuariosession));
+    document.getElementById("inputpwd").value = "asdfghj";
+    checkInput();
     console.log('Given Name: ' + profile.getGivenName());
     console.log('Family Name: ' + profile.getFamilyName());
     console.log("Image URL: " + profile.getImageUrl());
