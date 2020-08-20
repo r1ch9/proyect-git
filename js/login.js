@@ -72,7 +72,7 @@ function CapsLock() {
     });
 }
 
-function onSignIn() {
+function onSignIn(googleUser) {
     // Useful data for your client-side scripts:
     var profile = googleUser.getBasicProfile();
     console.log("ID: " + profile.getId()); // Don't send this directly to your server!
