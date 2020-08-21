@@ -27,21 +27,25 @@ function checkPassword() {
         imprPass = ' <p id = "mensajeUserP" > La contraseña no puede estar vacía.</p>'
         document.getElementById('imprimiraca').innerHTML = imprPass;
         document.getElementById('imprimiraca').style.visibility = 'visible';
+        document.getElementById('inputpwd').style.borderColor = "red";
         corrPass = false;
     } else {
         if (password.length < 5) {
             imprPass = ' <p id = "mensajeUserP" > La contraseña debe tener mas de 4 digitos.</p>'
             document.getElementById('imprimiraca').innerHTML = imprPass;
             document.getElementById('imprimiraca').style.visibility = 'visible';
+            document.getElementById('inputpwd').style.borderColor = "red";
             corrPass = false;
         } else {
             if (password.length > 12) {
                 imprPass = ' <p id = "mensajeUserP" > La contraseña no puede tener mas de 12 digitos.</p>'
                 document.getElementById('imprimiraca').innerHTML = imprPass;
                 document.getElementById('imprimiraca').style.visibility = 'visible';
+                document.getElementById('inputpwd').style.borderColor = "red";
                 corrPass = false;
             } else {
                 document.getElementById('imprimiraca').style.visibility = 'hidden';
+                document.getElementById('inputpwd').style.borderColor = "green";
                 corrPass = true;
             }
         }
@@ -89,9 +93,11 @@ function checkUser() {
         imprPass = '<p id="mensajeUser">El campo "Usuario" no puede estar vacío.</p>'
         document.getElementById('mensajeUser').innerHTML = imprPass;
         document.getElementById('mensajeUser').style.visibility = 'visible';
+        document.getElementById('userName').style.borderColor = "red";
         corrUser = false;
     } else {
         document.getElementById('mensajeUser').style.visibility = 'hidden';
+        document.getElementById('userName').style.borderColor = "green";
         corrUser = true;
     }
 }
