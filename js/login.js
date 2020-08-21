@@ -28,6 +28,7 @@ function checkPassword() {
         document.getElementById('imprimiraca').innerHTML = imprPass;
         document.getElementById('imprimiraca').style.visibility = 'visible';
         document.getElementById('inputpwd').style.borderColor = "red";
+        document.getElementById("inputpwd").style.background = "#DC2E2E40";
         corrPass = false;
     } else {
         if (password.length < 5) {
@@ -35,6 +36,7 @@ function checkPassword() {
             document.getElementById('imprimiraca').innerHTML = imprPass;
             document.getElementById('imprimiraca').style.visibility = 'visible';
             document.getElementById('inputpwd').style.borderColor = "red";
+            document.getElementById("inputpwd").style.background = "#DC2E2E40";
             corrPass = false;
         } else {
             if (password.length > 12) {
@@ -42,10 +44,13 @@ function checkPassword() {
                 document.getElementById('imprimiraca').innerHTML = imprPass;
                 document.getElementById('imprimiraca').style.visibility = 'visible';
                 document.getElementById('inputpwd').style.borderColor = "red";
+                document.getElementById("inputpwd").style.background = "#DC2E2E40";
                 corrPass = false;
             } else {
                 document.getElementById('imprimiraca').style.visibility = 'hidden';
                 document.getElementById('inputpwd').style.borderColor = "green";
+                document.getElementById('inputpwd').style.background = "#52DC2E40";
+                document.getElementById('inputpwd').style.text = "green";
                 corrPass = true;
             }
         }
@@ -94,10 +99,13 @@ function checkUser() {
         document.getElementById('mensajeUser').innerHTML = imprPass;
         document.getElementById('mensajeUser').style.visibility = 'visible';
         document.getElementById('userName').style.borderColor = "red";
+        document.getElementById('userName').style.background = "#DC2E2E40";
         corrUser = false;
     } else {
         document.getElementById('mensajeUser').style.visibility = 'hidden';
         document.getElementById('userName').style.borderColor = "green";
+        document.getElementById('userName').style.background = "#52DC2E40";
+        document.getElementById('userName').style.text = "green";
         corrUser = true;
     }
 }
