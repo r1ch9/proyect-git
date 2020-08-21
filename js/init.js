@@ -59,7 +59,7 @@ var getJSONData = function(url) {
 //que el documento se encuentra cargado, es decir, se encuentran todos los
 //elementos HTML presentes.
 
-function signOut() {
+function signOut(googleUser) {
     var auth2 = gapi.auth2.getAuthInstance();
     auth2.signOut().then(function() {
         console.log('User signed out.');
