@@ -7,6 +7,17 @@ const PRODUCT_INFO_COMMENTS_URL = "https://japdevdep.github.io/ecommerce-api/pro
 const CART_INFO_URL = "https://japdevdep.github.io/ecommerce-api/cart/987.json";
 const CART_BUY_URL = "https://japdevdep.github.io/ecommerce-api/cart/buy.json";
 var googleUser;
+var corrPass = false;
+var corrUser = false;
+var imprPass = '';
+var password;
+var user;
+var rememberCheck;
+var elusuariolocal;
+var elusuariosession;
+var password_input;
+var elusuarioinvitado;
+var link_login = "https://r1ch9.github.io/proyect-git/login.html";
 
 var showSpinner = function() {
     document.getElementById("spinner-wrapper").style.display = "block";
@@ -50,14 +61,16 @@ function signOut() {
     auth2.signOut().then(function() {
         console.log('User signed out.');
     });
+    sessionStorage.removeItem(elusuarioinvitado);
+    sessionStorage.removeItem(elusuariosession);
+    localStorage.removeItem(elusuariolocal);
 }
 
 document.addEventListener("DOMContentLoaded", function(e) {
-    let htmlContentToAppendOnNav = `<a class="py-2 d-none d-md-inline-block" href="`
-    signOut()
-    `">
-    SignOut</a>`;
-    document.getElementById("usuarionav").innerHTML = htmlContentToAppendOnNav;
+    const htmlContentToAppendOnNav = `<a class="py-2 d-none d-md-inline-block" onclick="signOut();" href="login.html">`
+    sessionStorage.getItem(elusuariosession)
+    `</a>`;
+    document.getElementById("nav_user").innerHTML = htmlContentToAppendOnNav;
     if (window.location == "https://r1ch9.github.io/proyect-git/login.html") {} else {
         if (sessionStorage.getItem(elusuarioinvitado) == null) {
             if (sessionStorage.getItem(elusuariosession) == null) {

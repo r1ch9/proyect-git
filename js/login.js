@@ -1,16 +1,7 @@
 //Función que se ejecuta una vez que se haya lanzado el evento de
 //que el documento se encuentra cargado, es decir, se encuentran todos los
 //elementos HTML presentes.
-var corrPass = false;
-var corrUser = false;
-var imprPass = '';
-var password;
-var user;
-var rememberCheck;
-var elusuariolocal;
-var elusuariosession;
-var password_input;
-var elusuarioinvitado;
+
 
 function checkInput() {
     rememberCheck = document.getElementById("checkRemember").checked;
@@ -72,7 +63,7 @@ function CapsLock() {
     });
 }
 
-function onSignIn(googleUser) {
+function onSignIn() {
     // Useful data for your client-side scripts:
     var profile = googleUser.getBasicProfile();
     console.log("ID: " + profile.getId()); // Don't send this directly to your server!
