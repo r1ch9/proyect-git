@@ -17,10 +17,6 @@ var elusuariolocal;
 var elusuariosession;
 var password_input;
 var elusuarioinvitado;
-var link_login = "https://r1ch9.github.io/proyect-git/login.html";
-var element_to_login = `<a class = "py-2 d-none d-md-inline-block" onclick = "signOut();" href = "https://r1ch9.github.io/proyect-git/login.html">`
-sessionStorage.getItem(elusuariosession)
-`</a>`;
 
 var showSpinner = function() {
     document.getElementById("spinner-wrapper").style.display = "block";
@@ -70,7 +66,6 @@ function signOut(googleUser) {
 }
 
 document.addEventListener("DOMContentLoaded", function(e) {
-    document.getElementById("nav_user").innerHTML = element_to_login;
 
     if (window.location == "https://r1ch9.github.io/proyect-git/login.html") {} else {
         if (sessionStorage.getItem(elusuarioinvitado) == null) {
