@@ -7,7 +7,6 @@ var minPrice, maxPrice;
 var key;
 var keyCode;
 var numbersArray = [];
-var busquedaProducts = "";
 
 function imprimirListado(array) {
     let HTMLContentToAppend = '';
@@ -79,30 +78,53 @@ function sortCategories(criteria, array) {
 
 //Función de filtro de busqueda.
 function search() {
-    busquedaProducts = document.getElementById("busquedaProducts").value;
-    let text = String(busquedaProducts);
-    if (text.length > 5) {
-        alert(text);
-    }
+    const busquedaProducts = document.querySelector('#busquedaProducts');
+    let texto = busquedaProducts.value.toLowerCase();
+    document.getElementById('impresion').innerHTML = ``;
 
+    for (let producto of productsArray) {
+        let name = producto.name.toLowerCase();
+        let descripcion = producto.description.toLowerCase();
+
+        if (name.indexOf(texto) !== -1) {
+            document.getElementById('impresion').innerHTML += `<a href="product-info.html" class="list-group-item list-group-item-action">
+                <div class="row" id="` + producto.name + `">
+                    <div class="col-3">
+                        <img src="` + producto.imgSrc + `" alt="` + producto.description + `" class="img-thumbnail">
+                    </div>
+                    <div class="col">
+                        <div class="d-flex w-100 justify-content-between">
+                            <h4 class="mb-1">` + producto.name + `</h4>
+                            <small class="text-muted">Costo: ` + producto.currency + ` ` + producto.cost + `<br/>Vendidos: ` + producto.soldCount + `</small>
+                        </div>
+                        <div> ` + producto.description + `</div>
+                    </div>
+                </div>
+            </a> `
+        } else {
+            if (descripcion.indexOf(texto) !== -1) {
+                document.getElementById('impresion').innerHTML += `<a href="product-info.html" class="list-group-item list-group-item-action">
+                    <div class="row" id="` + producto.name + `">
+                        <div class="col-3">
+                            <img src="` + producto.imgSrc + `" alt="` + producto.description + `" class="img-thumbnail">
+                        </div>
+                        <div class="col">
+                            <div class="d-flex w-100 justify-content-between">
+                                <h4 class="mb-1">` + producto.name + `</h4>
+                                <small class="text-muted">Costo: ` + producto.currency + ` ` + producto.cost + `<br/>Vendidos: ` + producto.soldCount + `</small>
+                            </div>
+                            <div> ` + producto.description + `</div>
+                        </div>
+                    </div>
+                </a> `
+            }
+        }
+    }
+    if (document.getElementById('impresion').innerHTML === '') {
+        document.getElementById('impresion').innerHTML += `<div class="list-group-item alert-danger mw-100" id="alertNotFound" role="alert">¡No hay elementos que coincidan con la busqueda!</div>`;
+    }
 }
 
-//Funcion para filtrar por nombre de producto o por descripción.
-/*function filtroPorLetra(key) {
-    let letterArray = [];
-    letterArray += key;
-    alert(letterArray);
-}*/
-
-//Funcion para filtrar por precio de producto o por cantidad de disponibes.
-/*function filtroPorNumeros() {
-    let i;
-    while (document.getElementById("busquedaProducts").addEventListener("keydown")) {
-        i = i + 1;
-        numbersArray[i] = key;
-    }
-    alert(numbersArray);
-}*/
 
 //Función que se ejecuta una vez que se haya lanzado el evento de
 //que el documento se encuentra cargado, es decir, se encuentran todos los
@@ -165,7 +187,7 @@ document.addEventListener("DOMContentLoaded", function(e) {
     });
 
     //Escucha cuando se presionan las teclas en el buscador y ejecuta la función.
-    document.getElementById("busquedaProducts").addEventListener("keydown", function() {
+    document.getElementById("busquedaProducts").addEventListener("keyup", function() {
         search();
     });
 });

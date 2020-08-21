@@ -100,6 +100,7 @@ function checkUser() {
         document.getElementById('mensajeUser').style.visibility = 'visible';
         document.getElementById('userName').style.borderColor = "red";
         document.getElementById('userName').style.background = "#DC2E2E40";
+        document.getElementById('userName').style.text = "red";
         corrUser = false;
     } else {
         document.getElementById('mensajeUser').style.visibility = 'hidden';
