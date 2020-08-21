@@ -7,6 +7,7 @@ var minPrice, maxPrice;
 var key;
 var keyCode;
 var numbersArray = [];
+var busquedaProducts = "";
 
 function imprimirListado(array) {
     let HTMLContentToAppend = '';
@@ -78,33 +79,30 @@ function sortCategories(criteria, array) {
 
 //Función de filtro de busqueda.
 function search() {
-    key = event.key;
-    keyCode = event.keyCode;
-    if (keyCode >= 65 && keyCode <= 90) {
-        filtroPorLetra(key);
+    busquedaProducts = document.getElementById("busquedaProducts").value;
+    let text = String(busquedaProducts);
+    if (text.length > 5) {
+        alert(text);
     }
 
-    if (key >= 0 && key <= 9) {
-        filtroPorNumeros(key);
-    }
 }
 
 //Funcion para filtrar por nombre de producto o por descripción.
-function filtroPorLetra(key) {
+/*function filtroPorLetra(key) {
     let letterArray = [];
     letterArray += key;
     alert(letterArray);
-}
+}*/
 
 //Funcion para filtrar por precio de producto o por cantidad de disponibes.
-function filtroPorNumeros() {
+/*function filtroPorNumeros() {
     let i;
     while (document.getElementById("busquedaProducts").addEventListener("keydown")) {
         i = i + 1;
         numbersArray[i] = key;
     }
     alert(numbersArray);
-}
+}*/
 
 //Función que se ejecuta una vez que se haya lanzado el evento de
 //que el documento se encuentra cargado, es decir, se encuentran todos los
