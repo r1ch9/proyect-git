@@ -71,7 +71,6 @@ function signOut() {
 
 document.addEventListener("DOMContentLoaded", function(e) {
     document.getElementById("nav_user").innerHTML = element_to_login;
-    document.getElementById("nav_user").innerHTML = htmlContentToAppendOnNav;
     if (window.location == "https://r1ch9.github.io/proyect-git/login.html") {} else {
         if (sessionStorage.getItem(elusuarioinvitado) == null) {
             if (sessionStorage.getItem(elusuariosession) == null) {
