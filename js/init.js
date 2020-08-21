@@ -18,6 +18,9 @@ var elusuariosession;
 var password_input;
 var elusuarioinvitado;
 var link_login = "https://r1ch9.github.io/proyect-git/login.html";
+var element_to_login = `<a class = "py-2 d-none d-md-inline-block" onclick = "signOut();" href = "https://r1ch9.github.io/proyect-git/login.html">`
+sessionStorage.getItem(elusuariosession)
+`</a>`;
 
 var showSpinner = function() {
     document.getElementById("spinner-wrapper").style.display = "block";
@@ -67,9 +70,7 @@ function signOut() {
 }
 
 document.addEventListener("DOMContentLoaded", function(e) {
-    const htmlContentToAppendOnNav = `<a class="py-2 d-none d-md-inline-block" onclick="signOut();" href="login.html">`
-    sessionStorage.getItem(elusuariosession)
-    `</a>`;
+    document.getElementById("nav_user").innerHTML = element_to_login;
     document.getElementById("nav_user").innerHTML = htmlContentToAppendOnNav;
     if (window.location == "https://r1ch9.github.io/proyect-git/login.html") {} else {
         if (sessionStorage.getItem(elusuarioinvitado) == null) {
