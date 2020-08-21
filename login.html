@@ -14,6 +14,7 @@
     <!-- Bootstrap core CSS -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
     <link href="css/styles.css" rel="stylesheet">
+    <link href="fontawesome-free-5.14.0-web/css/all.css" rel="stylesheet">
     <script src="https://apis.google.com/js/platform.js" async defer></script>
     <style>
         html,
@@ -74,37 +75,51 @@
                 <img class="signin" src="img/login.png" width="auto">
                 <h2>Inicie sesion:</h2>
                 </br>
-                <i class="fa fa-user icon"></i>
-                <input type="usr" class="form-control  my-2" placeholder="Usuario" id="userName" onblur="checkUser()">
-                <label for="usrName" class="sr-only fa fa-user icon">Usuario: </label>
-                <div id="mensajeUser">
-                    <p id="mensajeUser"></p>
-                </div>
-
-                <input type="password" id="inputpwd" onfocus="CapsLock()" class="form-control  my-2" placeholder="Contraseña" onblur="checkPassword()">
-                <label for="password" class="sr-only">Contraseña: </label>
-                <div id="imprimiraca">
-                    <p id="mensajeUser"></p>
-                </div>
-
-                <div class="checkbox mb-3">
-                    <label><input id="checkRemember" type="checkbox" value="remember-me" class="remember"> Recuerdame</label>
-                </div>
-
-                <button class="btn btn-secondary btn-block" type="button" id="ingresarButton" onclick="checkInput()">Ingresar</button>
-
-                <div class="btn-group btn-block">
-                    <button class="btn btn-outline-dark" type="button" onclick="ingresoComoInvitado()">Ingresar como invitado</button>
-                    <div class="g-signin2 btn btn-outline-dark" data-onsuccess="onSignIn"></div>
-                </div>
-
-                <div class="btn-group btn-block">
-                    <button class="btn btn-outline-dark" type="button">Olvide la contraseña</button>
-                    <button class="btn btn-outline-dark" type="button">Deseo registrarme</button>
+                <div class="input-group form-group my-2">
+                    <div class="input-group-prepend my-2">
+                        <span class="input-group-text my-2">
+                            <i class="fa fa-user icon my-2">
+                            </i>
+                        </span>
+                    </div>
+                    <input type="usr" class="form-control  my-2" placeholder="Usuario" id="userName" onblur="checkUser()">
+                    <label for="usrName" class="sr-only fa fa-user icon">Usuario: </label>
                 </div>
             </div>
-        </form>
+
+
+
+
+
+            <div id="mensajeUser">
+                <p id="mensajeUser"></p>
+            </div>
+
+            <input type="password" id="inputpwd" onfocus="CapsLock()" class="form-control  my-2" placeholder="Contraseña" onblur="checkPassword()">
+            <label for="password" class="sr-only">Contraseña: </label>
+            <div id="imprimiraca">
+                <p id="mensajeUser"></p>
+            </div>
+
+            <div class="checkbox mb-3">
+                <label><input id="checkRemember" type="checkbox" value="remember-me" class="remember"> Recuerdame</label>
+            </div>
+
+            <button class="btn btn-secondary btn-block" type="button" id="ingresarButton" onclick="checkInput()">Ingresar</button>
+
+            <div class="btn-group btn-block">
+                <button class="btn btn-outline-dark" type="button" onclick="ingresoComoInvitado()">Ingresar como invitado</button>
+                <div class="g-signin2 btn btn-outline-dark" data-onsuccess="onSignIn"></div>
+            </div>
+
+            <div class="btn-group btn-block">
+                <button class="btn btn-outline-dark" type="button">Olvide la contraseña</button>
+                <button class="btn btn-outline-dark" type="button">Deseo registrarme</button>
+            </div>
     </div>
+    </form>
+    </div>
+
 
     <!--<div class="container p-5">
     <div class="alert alert-danger" role="alert" style="position: relative; width:auto; top: 0;">
