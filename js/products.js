@@ -77,7 +77,7 @@ function sortCategories(criteria, array) {
 }
 
 //Función de filtro de busqueda.
-/*function search() {
+function search() {
     key = event.key;
     keyCode = event.keyCode;
     if (keyCode >= 65 && keyCode <= 90) {
@@ -104,7 +104,7 @@ function filtroPorNumeros() {
         numbersArray[i] = key;
     }
     alert(numbersArray);
-}*/
+}
 
 //Función que se ejecuta una vez que se haya lanzado el evento de
 //que el documento se encuentra cargado, es decir, se encuentran todos los
@@ -167,7 +167,7 @@ document.addEventListener("DOMContentLoaded", function(e) {
     });
 
     //Escucha cuando se presionan las teclas en el buscador y ejecuta la función.
-    /*document.getElementById("busquedaProducts").addEventListener("keydown", function() {
+    document.getElementById("busquedaProducts").addEventListener("keydown", function() {
         search();
-    });*/
+    });
 });
