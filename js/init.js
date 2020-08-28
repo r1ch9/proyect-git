@@ -83,7 +83,7 @@ document.addEventListener("DOMContentLoaded", function(e) {
         if (localStorage.getItem(elusuariolocal) != null) {
             alert("local");
         } else {
-            if (sessionStorage.getItem(elusuarioinvitado) != null) {
+            if (sessionStorage.getItem(elusuarioinvitado).value == "invitado") {
                 alert("invitado");
             }
         }
