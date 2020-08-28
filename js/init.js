@@ -77,14 +77,14 @@ document.addEventListener("DOMContentLoaded", function(e) {
         }
     }
 
-    if (sessionStorage.getItem(elusuarioinvitado) != null) {
-        alert("invitado");
+    if (sessionStorage.getItem(elusuariosession) != null) {
+        alert("session");
     } else {
-        if (sessionStorage.getItem(elusuariosession) != null) {
-            alert("session");
+        if (localStorage.getItem(elusuariolocal) != null) {
+            alert("local");
         } else {
-            if (localStorage.getItem(elusuariolocal) != null) {
-                alert("local");
+            if (sessionStorage.getItem(elusuarioinvitado) != null) {
+                alert("invitado");
             }
         }
     }
