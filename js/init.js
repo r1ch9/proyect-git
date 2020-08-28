@@ -72,18 +72,20 @@ document.addEventListener("DOMContentLoaded", function(e) {
             if (sessionStorage.getItem(elusuariosession) == null) {
                 if (localStorage.getItem(elusuariolocal) == null) {
                     window.location.href = "https://r1ch9.github.io/proyect-git/login.html";
-                } else {
-                    usuario = "local";
                 }
-            } else {
-                usuario = "sesion";
             }
-        } else {
-            usuario = "invitado";
         }
     }
 
-    if (usuario != null) {
-        alert(usuario);
+    if (sessionStorage.getItem(elusuarioinvitado) != null) {
+        alert("invitado");
+    } else {
+        if (sessionStorage.getItem(elusuariosession) != null) {
+            alert("session");
+        } else {
+            if (localStorage.getItem(elusuariolocal) != null) {
+                alert("local");
+            }
+        }
     }
 });
