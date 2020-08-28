@@ -77,7 +77,7 @@ document.addEventListener("DOMContentLoaded", function(e) {
         }
     }
 
-    if (sessionStorage.getItem(elusuarioinvitado).value == "invitado") {
+    if (user == "invitado") {
         alert("invitado");
     } else {
         if (localStorage.getItem(elusuariolocal) != null) {
