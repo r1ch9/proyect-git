@@ -83,7 +83,7 @@ document.addEventListener("DOMContentLoaded", function(e) {
                 "!";
             }
         } else {
-            document.getElementById("usrLogged").textContent = "Usuario Invitado";
+            document.getElementById("UsrLogged").textContent = "Usuario Invitado";
         }
     }
 
