@@ -66,21 +66,24 @@ function signOut(googleUser) {
 }
 
 document.addEventListener("DOMContentLoaded", function(e) {
-
+    let usuario = null;
     if (window.location == "https://r1ch9.github.io/proyect-git/login.html") {} else {
         if (sessionStorage.getItem(elusuarioinvitado) == null) {
             if (sessionStorage.getItem(elusuariosession) == null) {
                 if (localStorage.getItem(elusuariolocal) == null) {
                     window.location.href = "https://r1ch9.github.io/proyect-git/login.html";
                 } else {
-                    document.getElementById("UsrLogged").textContent = "Bienvenido " + localStorage.getItem(elusuariolocal) + "!";
+                    usuario = "local";
                 }
             } else {
-                document.getElementById("UsrLogged").textContent = "Bienvenido " + sessionStorage.getItem(elusuariosession) + "!";
+                usuario = "sesion";
             }
         } else {
-            document.getElementById("UsrLogged").textContent = "Usuario Invitado";
+            usuario = "invitado";
         }
     }
 
+    if (usuario != null) {
+        alert(usuario);
+    }
 });
