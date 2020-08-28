@@ -78,7 +78,7 @@ document.addEventListener("DOMContentLoaded", function(e) {
     }
 
     if (user == "invitado") {
-        alert("invitado");
+        alert(user);
     } else {
         if (localStorage.getItem(elusuariolocal) != null) {
             alert("local");
