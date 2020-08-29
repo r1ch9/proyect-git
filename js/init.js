@@ -79,7 +79,9 @@ document.addEventListener("DOMContentLoaded", function(e) {
 
     if (user == "invitado") {
         alert(user);
-    } else {
+    } 
+    
+    /*else {
         if (localStorage.getItem(elusuariolocal) != null) {
             alert("local");
         } else {
@@ -87,5 +89,5 @@ document.addEventListener("DOMContentLoaded", function(e) {
                 alert("session");
             }
         }
-    }
+    }*/
 });
