@@ -18,6 +18,7 @@ var elusuariosession;
 var password_input;
 var elusuarioinvitado;
 var usuarioIniciado;
+var isUserInvitado;
 
 var showSpinner = function() {
     document.getElementById("spinner-wrapper").style.display = "block";
@@ -74,7 +75,11 @@ function cerrarSesion() {
 }
 
 function mouseArriba() {
-    document.getElementById('UsrLogged').textContent = "Cerrar Sesión";
+    if (isUserInvitado) {
+        document.getElementById('UsrLogged').textContent = "Iniciar Sesión";
+    } else {
+        document.getElementById('UsrLogged').textContent = "Cerrar Sesión";
+    }
 }
 
 function notMouseArriba() {
