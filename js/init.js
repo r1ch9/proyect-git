@@ -94,6 +94,7 @@ document.addEventListener("DOMContentLoaded", function(e) {
     }
 
     if (localStorage.getItem(elusuariolocal) != null) {
+        usuarioIniciado = localStorage.getItem(elusuariolocal);
         document.getElementById('UsrLogged').textContent = localStorage.getItem(elusuariolocal);
     } else {
         if (sessionStorage.getItem(elusuariosession) != null) {
