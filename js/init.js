@@ -75,7 +75,7 @@ function cerrarSesion() {
 }
 
 function mouseArriba() {
-    if (isUserInvitado) {
+    if (isUserInvitado == true) {
         document.getElementById('UsrLogged').innerText = "Iniciar Sesión";
     } else {
         document.getElementById('UsrLogged').innerText = "Cerrar Sesión";
@@ -100,7 +100,7 @@ document.addEventListener("DOMContentLoaded", function(e) {
 
     if (localStorage.getItem(elusuariolocal) != null) {
         usuarioIniciado = localStorage.getItem(elusuariolocal);
-        document.getElementById('UsrLogged').textContent = localStorage.getItem(elusuariolocal);
+        document.getElementById('UsrLogged').textContent = usuarioIniciado;
     } else {
         if (sessionStorage.getItem(elusuariosession) != null) {
             usuarioIniciado = sessionStorage.getItem(elusuariosession);
