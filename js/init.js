@@ -76,9 +76,9 @@ function cerrarSesion() {
 
 function mouseArriba() {
     if (isUserInvitado) {
-        document.getElementById('UsrLogged').textContent = "Iniciar Sesión";
+        document.getElementById('UsrLogged').innerText = "Iniciar Sesión";
     } else {
-        document.getElementById('UsrLogged').textContent = "Cerrar Sesión";
+        document.getElementById('UsrLogged').innerText = "Cerrar Sesión";
     }
 }
 
