@@ -77,17 +77,11 @@ document.addEventListener("DOMContentLoaded", function(e) {
         }
     }
 
-    if (sessionStorage.getItem(elusuarioinvitado) == "invitado") {
-        alert(user);
-    } 
-    
-    /*else {
-        if (localStorage.getItem(elusuariolocal) != null) {
-            alert("local");
-        } else {
-            if (sessionStorage.getItem(elusuariosession) != null) {
-                alert("session");
-            }
+    if (localStorage.getItem(elusuariolocal) != null) {
+        alert(localStorage.getItem(elusuariolocal));
+    } else {
+        if (sessionStorage.getItem(elusuariosession) != null) {
+            alert(sessionStorage.getItem(elusuariosession));
         }
-    }*/
+    }
 });
