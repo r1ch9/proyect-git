@@ -77,7 +77,7 @@ document.addEventListener("DOMContentLoaded", function(e) {
         }
     }
 
-    if (user == "invitado") {
+    if (sessionStorage.getItem(elusuarioinvitado) == "invitado") {
         alert(user);
     } 
     
