@@ -78,10 +78,10 @@ document.addEventListener("DOMContentLoaded", function(e) {
     }
 
     if (localStorage.getItem(elusuariolocal) != null) {
-        alert(localStorage.getItem(elusuariolocal));
+        document.getElementById('UsrLogged').textContent = localStorage.getItem(elusuariolocal);
     } else {
         if (sessionStorage.getItem(elusuariosession) != null) {
-            alert(sessionStorage.getItem(elusuariosession));
+            document.getElementById('UsrLogged').textContent = sessionStorage.getItem(elusuariosession);
         }
     }
 });
