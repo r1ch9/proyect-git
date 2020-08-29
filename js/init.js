@@ -17,6 +17,7 @@ var elusuariolocal;
 var elusuariosession;
 var password_input;
 var elusuarioinvitado;
+var usuarioIniciado;
 
 var showSpinner = function() {
     document.getElementById("spinner-wrapper").style.display = "block";
@@ -65,6 +66,21 @@ function signOut(googleUser) {
     localStorage.removeItem(elusuariolocal);
 }
 
+function cerrarSesion() {
+    sessionStorage.removeItem(elusuarioinvitado);
+    sessionStorage.removeItem(elusuariosession);
+    localStorage.removeItem(elusuariolocal);
+    window.location.href = "https://r1ch9.github.io/proyect-git/login.html";
+}
+
+function mouseArriba() {
+    document.getElementById('UsrLogged').textContent = "Cerrar Sesión";
+}
+
+function notMouseArriba() {
+    document.getElementById('UsrLogged').textContent = usuarioIniciado;
+}
+
 document.addEventListener("DOMContentLoaded", function(e) {
     let usuario = null;
     if (window.location == "https://r1ch9.github.io/proyect-git/login.html") {} else {
@@ -81,7 +97,8 @@ document.addEventListener("DOMContentLoaded", function(e) {
         document.getElementById('UsrLogged').textContent = localStorage.getItem(elusuariolocal);
     } else {
         if (sessionStorage.getItem(elusuariosession) != null) {
-            document.getElementById('UsrLogged').textContent = sessionStorage.getItem(elusuariosession);
+            usuarioIniciado = sessionStorage.getItem(elusuariosession);
+            document.getElementById('UsrLogged').textContent = usuarioIniciado;
         }
     }
 });
