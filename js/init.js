@@ -74,6 +74,10 @@ function cerrarSesion() {
     window.location.href = "https://r1ch9.github.io/proyect-git/login.html";
 }
 
+function cambiarTema() {
+    alert("En desarrollo...");
+}
+
 function mouseArriba() {
     if (isUserInvitado == true) {
         document.getElementById('UsrLogged').innerText = "Iniciar Sesión";
