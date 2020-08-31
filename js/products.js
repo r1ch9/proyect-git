@@ -12,27 +12,31 @@ function imprimirListado(array) {
     let HTMLContentToAppend = '';
     for (let i = 0; i < array.length; i++) {
         let category = array[i];
-        if (((minPrice == undefined) || (minPrice != undefined && parseInt(category.cost) >= minPrice)) &&
-            ((maxPrice == undefined) || (maxPrice != undefined && parseInt(category.cost) <= maxPrice))) {
 
-            HTMLContentToAppend += `
-        <a href="product-info.html" class="list-group-item list-group-item-action">
-            <div class="row" id="` + category.name + `">
-                <div class="col-3">
-                    <img src="` + category.imgSrc + `" alt="` + category.description + `" class="img-thumbnail">
-                </div>
-                <div class="col">
-                    <div class="d-flex w-100 justify-content-between">
-                        <h4 class="mb-1">` + category.name + `</h4>
-                        <small class="text-muted">Costo: ` + category.currency + ` ` + category.cost + `<br/>Vendidos: ` + category.soldCount + `</small>
+        if ((minPrice > 15200) || (maxPrice < 12500)) {
+            HTMLContentToAppend = `<div class="list-group-item alert-danger mw-100" id="alertNotFound" role="alert">¡No hay elementos que coincidan con la busqueda!</div>`;
+        } else {
+            if (((minPrice == undefined) || (minPrice != undefined && parseInt(category.cost) >= minPrice)) &&
+                ((maxPrice == undefined) || (maxPrice != undefined && parseInt(category.cost) <= maxPrice))) {
+
+                HTMLContentToAppend += `
+                <a href="product-info.html" class="list-group-item list-group-item-action">
+                    <div class="row" id="` + category.name + `">
+                        <div class="col-3">
+                            <img src="` + category.imgSrc + `" alt="` + category.description + `" class="img-thumbnail">
+                        </div>
+                        <div class="col">
+                            <div class="d-flex w-100 justify-content-between">
+                                <h4 class="mb-1">` + category.name + `</h4>
+                                <small class="text-muted">Costo: ` + category.currency + ` ` + category.cost + `<br/>Vendidos: ` + category.soldCount + `</small>
+                            </div>
+                        <div> ` + category.description + `</div>
                     </div>
-                    <div> ` + category.description + `</div>
                 </div>
-            </div>
-        </a>
-        `
+                </a>
+            `
+            }
         }
-
 
         document.getElementById("impresion").innerHTML = HTMLContentToAppend;
     }
