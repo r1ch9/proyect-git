@@ -13,6 +13,35 @@
     <link href="css/font-awesome.min.css" rel="stylesheet">
     <link href="css/bootstrap.min.css" rel="stylesheet">
     <link href="css/styles.css" rel="stylesheet">
+    <style>
+        .contenedor {
+            position: relative;
+            display: inline-block;
+            text-align: center;
+        }
+        
+        .texto-encima {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+        }
+        
+        .centrado {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+        
+        h2 {
+            color: black;
+            -webkit-text-stroke: 0.5px white;
+        }
+        
+        p {
+            color: black;
+        }
+    </style>
 </head>
 
 <body>
@@ -32,8 +61,22 @@
             </div>
         </div>
     </nav>
-    <div id="imprimirAca">
-    </div>
+    <main role="main">
+        <div class="text-center p-4">
+            <div class="contenedor">
+                <img src="img/cover_back.png" width="100%">
+                <div class="texto-encima">
+                </div>
+                <div class="centrado">
+                    <h2>Descripción del Producto</h2>
+                    <p class="lead">Encontrarás aquí toda la información del producto seleccionado.</p>
+                </div>
+            </div>
+        </div>
+        <div id="imprimirAca">
+        </div>
+    </main>
+
     <footer class="text-muted">
         <div class="container">
             <p class="float-right">
