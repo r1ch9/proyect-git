@@ -7,6 +7,12 @@ const ORDER_BY_PROD_SOLD = "";
 var currentCategoriesArray = [];
 var currentSortCriteria = undefined;
 var comArray;
+let arrayDeFechas = [];
+var arrayDeCadenas = [];
+let horaFecha = [];
+let dia = [];
+let meses = [];
+let anio = [];
 
 function imprimirInformacion(array) {
     document.getElementById('categoryName').innerHTML = array.name;
@@ -15,12 +21,13 @@ function imprimirInformacion(array) {
     document.getElementById('productCount').innerHTML = array.soldCount;
     document.getElementById('productCriteria').innerHTML = "El producto pertenece a la categoría " + array.category;
     showImages(array.images);
+    document.getElementById('imgPrincipal').innerHTML = `<img class="img-fluid img-thumbnail" src="` + array.images[0] + `" alt="">`
 }
 
 function showImages(array) {
     let htmlContentToAppend = "";
 
-    for (let i = 0; i < (array.length - 1); i++) {
+    for (let i = 1; i < (array.length); i++) {
         imageSrc = array[i];
 
         htmlContentToAppend += `
@@ -42,8 +49,12 @@ function showComments(array) {
         com = array[i];
         htmlContentToAppend += `
         <div class="container-fluid">
-            <div class="container">
-                <h6> <strong> ` + com.user + `</strong> ` + com.dateTime + ` ` + com.score + `</h1>
+            <div class="container border border-secondary">
+                <div class="row" style="background-color:black">
+                    <h6 class="col text-left" style="color: white"> <strong> ` + com.user + `</strong> ` + com.dateTime + `</h6>
+                    <h6 class="col text-right" style="color:white"> <span class="fa fa-star checked"></span>` + com.score + `/5</h6>
+                </div>
+                <hr class="my-2">
                 <p class="small">` + com.description + `</p>
                 <hr class="my-2">
             </div>              
@@ -51,39 +62,6 @@ function showComments(array) {
         `
     }
     document.getElementById('Comments').innerHTML = htmlContentToAppend;
-}
-
-function dateSubstract(array, separador) {
-    let arrayDeFechas = [];
-    var arrayDeCadenas = [];
-    var arrayFinal = [];
-    let espacio = " ";
-    for (let i = 0; i < array.length; i++) {
-        arrayDeFechas[i] = array[i].dateTime;
-        arrayDeCadenas[i] = arrayDeFechas[i].split("-");
-        arrayFinal[i] = arrayDeCadenas[i].split(espacio);
-    }
-
-    for (let j = 0; j < arrayDeFechas.length; j++) {
-        console.log('La cadena original es: "' + arrayDeFechas[j] + '"');
-        console.log('La cadena sin guines es: "' + arrayDeCadenas[j] + '"');
-        console.log('La cadena definitiva es: "' + arrayFinal[k] + '"');
-    }
-
-
-}
-
-function sortAndShowCategories(sortCriteria) {
-    currentSortCriteria = sortCriteria;
-
-    if (comArray != undefined) {
-        currentCategoriesArray = comArray;
-    }
-
-    currentCategoriesArray = sortCategories(currentSortCriteria, currentCategoriesArray);
-
-    //Muestro las categorías ordenadas
-    showComments(currentCategoriesArray);
 }
 
 function ordenarPorCalificacion(array) {
@@ -97,22 +75,28 @@ function ordenarPorCalificacion(array) {
     showComments(result);
 }
 
-function sortCategories(criteria, array) {
+function sortCategoriesDEC(array) {
     let result = [];
-    if (criteria === ORDER_ASC_BY_NAME) {
-        result = array.sort(function(a, b) {
-            if (a.cost < b.cost) { return -1; }
-            if (a.cost > b.cost) { return 1; }
-            return 0;
-        });
-    } else if (criteria === ORDER_DESC_BY_NAME) {
-        result = array.sort(function(a, b) {
-            if (a.cost > b.cost) { return -1; }
-            if (a.cost < b.cost) { return 1; }
-            return 0;
-        });
-    }
-    return result;
+
+    result = array.sort(function(a, b) {
+        if (a.dateTime < b.dateTime) { return -1; }
+        if (a.dateTime > b.dateTime) { return 1; }
+        return 0;
+    });
+
+    showComments(result);
+}
+
+function sortCategoriesASC(array) {
+    let result = [];
+
+    result = array.sort(function(a, b) {
+        if (a.dateTime > b.dateTime) { return -1; }
+        if (a.dateTime < b.dateTime) { return 1; }
+        return 0;
+    });
+
+    showComments(result);
 }
 
 
@@ -124,19 +108,21 @@ document.addEventListener("DOMContentLoaded", function(e) {
                 if (resultComments.status === "ok") {
                     comArray = resultComments.data;
                     showComments(resultComments.data);
+                    dateSubstract(comArray, "-");
                 }
             });
         }
+
     });
 
     //Ordena comentarios, mas recientes primero.
     document.getElementById("sortAsc").addEventListener("click", function() {
-        dateSubstract(comArray, "-");
+        sortCategoriesASC(comArray);
     });
 
     //Ordena comentarios, mas antiguos primero.
     document.getElementById("sortDesc").addEventListener("click", function() {
-        sortAndShowCategories(ORDER_DESC_BY_NAME);
+        sortCategoriesDEC(comArray);
     });
 
     //Ordena los elementos por calificacion.
