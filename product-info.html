@@ -33,7 +33,7 @@
             transform: translate(-50%, -50%);
         }
         
-        h2 {
+        #titulocat {
             color: black;
             -webkit-text-stroke: 0.5px white;
         }
@@ -68,36 +68,83 @@
                 <div class="texto-encima">
                 </div>
                 <div class="centrado">
-                    <h2>Descripción del Producto</h2>
+                    <h2 id="titulocat">Descripción del Producto</h2>
                     <p class="lead">Encontrarás aquí toda la información del producto seleccionado.</p>
                 </div>
             </div>
         </div>
-        <div id="imprimirAca">
-        </div>
-    </main>
+        <div class="container mt-5">
+            <div class="row">
+                <h3 id="categoryName" class="col text-left"></h3>
+                <h3 id="soldCount" class="col text-right"></h3>
+            </div>
 
-    <footer class="text-muted">
-        <div class="container">
-            <p class="float-right">
-                <a href="#">Volver arriba</a>
-            </p>
-            <p>Este sitio forma parte de Desarrollo Web - JAP - 2020</p>
-            <p>Clickea <a target="_blank" href="Letra.pdf">aquí</a> para descargar la letra del obligatorio.</p>
+            <hr class="my-3">
+            <dl>
+                <dt>Imágenes ilustrativas</dt>
+                <dd>
+                    <div class="row text-center text-lg-left pt-2" id="productImagesGallery">
+                    </div>
+                </dd>
+                <dt>Descripción</dt>
+                <dd>
+                    <p id="categoryDescription"></p>
+                </dd>
+
+                <dt>Cantidad en stock</dt>
+                <dd>
+                    <p id="productCount"></p>
+                </dd>
+
+                <dt>Categoría en la que está incluida el producto</dt>
+                <dd>
+                    <p id="productCriteria"></p>
+                </dd>
+            </dl>
+            <div class="container">
+                <div class="row">
+                    <div class="col text-left" style="padding-top:15px;">
+                        <h5>Ultimos Comentarios:</h5>
+                    </div>
+                    <div class="col text-right">
+                        <div class="btn-group btn-group-toggle mb-4" style="padding-top:15px;" data-toggle="buttons">
+                            <label class="btn btn-light active" id="sortAsc">
+                                <input type="radio" name="options" autocomplete="off" checked>Mas recientes.
+                            </label>
+                            <label class="btn btn-light" id="sortDesc">
+                                <input type="radio" name="options" autocomplete="off">Mas antiguos.
+                            </label>
+                            <label class="btn btn-light" id="sortByCount">
+                                <input type="radio" name="options" autocomplete="off"><i class="fas fa-sort-amount-down mr-1"></i>Calificación.
+                            </label>
+                        </div>
+                    </div>
+                </div>
+                <div class="row text-center text-lg-left pt-2" id="Comments"></div>
+            </div>
         </div>
-    </footer>
-    <div id="spinner-wrapper">
-        <div class="lds-ring">
-            <div></div>
-            <div></div>
-            <div></div>
-            <div></div>
+
+        <footer class="text-muted">
+            <div class="container">
+                <p class="float-right">
+                    <a href="#">Volver arriba</a>
+                </p>
+                <p>Este sitio forma parte de Desarrollo Web - JAP - 2020</p>
+                <p>Clickea <a target="_blank" href="Letra.pdf">aquí</a> para descargar la letra del obligatorio.</p>
+            </div>
+        </footer>
+        <div id="spinner-wrapper">
+            <div class="lds-ring">
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+            </div>
         </div>
-    </div>
-    <script src="js/jquery-3.4.1.min.js"></script>
-    <script src="js/bootstrap.bundle.min.js"></script>
-    <script src="js/init.js"></script>
-    <script src="js/product-info.js"></script>
+        <script src="js/jquery-3.4.1.min.js"></script>
+        <script src="js/bootstrap.bundle.min.js"></script>
+        <script src="js/init.js"></script>
+        <script src="js/product-info.js"></script>
 </body>
 
 </html>
