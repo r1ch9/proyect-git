@@ -26,9 +26,16 @@ function imprimirInformacion(array) {
     document.getElementById('imgPrincipal').innerHTML = `<img class="img-fluid img-thumbnail" src="` + array.images[0] + `" alt="">`
 }
 
-var onloadCallback = function() {
-    alert("grecaptcha is ready!");
-};
+function verificacion() {
+    var response = grecaptcha.getResponse();
+
+    if (response.length == 0) {
+        alert("Captcha no verificado")
+    } else {
+        alert("Captcha verificado");
+    }
+}
+
 
 function showImages(array) {
 
