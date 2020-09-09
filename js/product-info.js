@@ -31,8 +31,11 @@ function verificacion(a) {
 
     if (response.length == 0) {
         alert("Captcha no verificado");
+        return false;
+        event.preventDefault();
     } else {
         alert("Captcha verificado");
+        return true;
     }
 }
 
