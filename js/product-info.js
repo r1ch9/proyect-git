@@ -26,6 +26,12 @@ function imprimirInformacion(array) {
     document.getElementById('imgPrincipal').innerHTML = `<img class="img-fluid img-thumbnail" src="` + array.images[0] + `" alt="">`
 }
 
+var verificacion = function(response) {
+    if (response != null) {
+        document.getElementById('botonComentario').disabled = false;
+    }
+};
+
 function verificacion(a) {
     var response = grecaptcha.getResponse();
 
