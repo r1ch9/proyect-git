@@ -14,6 +14,7 @@
     <link href="css/styles.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+    <script src="https://www.google.com/recaptcha/api.js?onload=onloadCallback&render=explicit" async defer></script>
     <style>
         .contenedor {
             position: relative;
@@ -155,7 +156,9 @@
                                     <span class="fa fa-star" id="estrella5"></span>
                                 </div>
                             </div>
-                            <div class="g-recaptcha" data-sitekey="6Lf2JsoZAAAAAMfxh4ZYFI4UtVTSuNPDbFpmhlvn"></div>
+                            <div style="display: block; margin-left: auto; margin-right: auto; width: 65%;">
+                                <div class="g-recaptcha" data-sitekey="6Lf2JsoZAAAAAMfxh4ZYFI4UtVTSuNPDbFpmhlvn"></div>
+                            </div>
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
