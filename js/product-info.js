@@ -26,11 +26,11 @@ function imprimirInformacion(array) {
     document.getElementById('imgPrincipal').innerHTML = `<img class="img-fluid img-thumbnail" src="` + array.images[0] + `" alt="">`
 }
 
-function verificacion() {
+function verificacion(a) {
     var response = grecaptcha.getResponse();
 
     if (response.length == 0) {
-        alert("Captcha no verificado")
+        alert("Captcha no verificado");
     } else {
         alert("Captcha verificado");
     }

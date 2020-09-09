@@ -141,7 +141,7 @@
                         <span aria-hidden="true">&times;</span>
                       </button>
                         </div>
-                        <form action="#" method="POST" onsubmit="verificacion();">
+                        <form action="#" method="POST" onsubmit="return verificacion(this);">
                             <div class="modal-body">
                                 <div class="row">
                                     <div class="col-md-6 text-left">
@@ -170,7 +170,7 @@
                             </div>
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
-                                <button type="submit" onclick="addComment();" class="btn btn-secondary" data-dismiss="modal">Comentar</button>
+                                <button type="submit" id="botonComentario" onclick="addComment();" class="btn btn-secondary" data-dismiss="modal">Comentar</button>
                             </div>
                         </form>
                     </div>
