@@ -26,23 +26,17 @@ function imprimirInformacion(array) {
     document.getElementById('imgPrincipal').innerHTML = `<img class="img-fluid img-thumbnail" src="` + array.images[0] + `" alt="">`
 }
 
-var verificacion = function(response) {
-    if (response != null) {
-        document.getElementById('botonComentario').disabled = false;
-    }
-};
-
-function miFuncion(a) {
+function submitUserForm() {
     var response = grecaptcha.getResponse();
-
     if (response.length == 0) {
-        alert("Captcha no verificado");
+        document.getElementById('g-recaptcha-error').innerHTML = '<span style="color:red;">Este campo es requerido.</span>';
         return false;
-        event.preventDefault();
-    } else {
-        alert("Captcha verificado");
-        return true;
     }
+    return true;
+}
+
+function verifyCaptcha() {
+    document.getElementById('g-recaptcha-error').innerHTML = '';
 }
 
 
