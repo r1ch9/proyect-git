@@ -16,6 +16,7 @@ let anio = [];
 let htmlContentToAppend = "";
 let ContentToAppend = "";
 
+//funcion inicial
 function imprimirInformacion(array) {
     document.getElementById('categoryName').innerHTML = array.name;
     document.getElementById('soldCount').innerHTML = array.currency + ` ` + array.cost;
@@ -26,6 +27,7 @@ function imprimirInformacion(array) {
     document.getElementById('imgPrincipal').innerHTML = `<img class="img-fluid img-thumbnail" src="` + array.images[0] + `" alt="">`
 }
 
+//respuestas captcha
 function submitUserForm() {
     var response = grecaptcha.getResponse();
     console.log(response.length);
@@ -43,6 +45,7 @@ function verifyCaptcha() {
 }
 
 
+//Mostrar imagenes
 function showImages(array) {
 
     for (let i = 1; i < (array.length); i++) {
@@ -60,6 +63,7 @@ function showImages(array) {
     }
 }
 
+//Imprimir comentarios en pantalla
 function showComments(array) {
 
     for (let i = 0; i < array.length; i++) {
@@ -81,6 +85,7 @@ function showComments(array) {
     document.getElementById('Comments').innerHTML = htmlContentToAppend;
 }
 
+//ordenar comentarios por calificacion
 function ordenarPorCalificacion(array) {
     let result = [];
     result = array.sort(function(a, b) {
@@ -93,6 +98,7 @@ function ordenarPorCalificacion(array) {
     showComments(result);
 }
 
+//ordenar comentario descendentemente
 function sortCategoriesDEC(array) {
     let result = [];
 
@@ -106,6 +112,7 @@ function sortCategoriesDEC(array) {
     showComments(result);
 }
 
+//ordenar comentarios ascendentemente
 function sortCategoriesASC(array) {
     let result = [];
 
@@ -119,7 +126,7 @@ function sortCategoriesASC(array) {
     showComments(result);
 }
 
-
+//funcion especifica para asignar la cantidad de estrellas al comentario, ademas de crear una animacion sencilla.
 function asignarEstrellas() {
 
     if (estrellas == 1) {
@@ -163,10 +170,11 @@ function asignarEstrellas() {
     }
 }
 
+//Funcion añadir comentarios, esta funcion obtiene y convierte hora actuales, crea el comentario y lo añade al json.
 function addComment() {
     var hoy = new Date();
     let textoComentario = document.getElementById('commentTextInput').value;
-    var Fechames, Fechadia, diahora, diaminutos;
+    var Fechames, Fechadia, diahora, diaminutos, diasecond;
     var data = new Object();
 
     if ((hoy.getMonth() + 1) < 10) {
@@ -193,7 +201,13 @@ function addComment() {
         diahora = hoy.getHours();
     }
 
-    let fecha = hoy.getFullYear() + '-' + Fechames + '-' + Fechadia + ' ' + diahora + ':' + diaminutos + ':' + hoy.getSeconds();
+    if (hoy.getSeconds() < 10) {
+        diasecond = '0' + hoy.getSeconds();
+    } else {
+        diasecond = hoy.getSeconds();
+    }
+
+    let fecha = hoy.getFullYear() + '-' + Fechames + '-' + Fechadia + ' ' + diahora + ':' + diaminutos + ':' + diasecond;
 
     if (usuarioIniciado != undefined) {
         htmlContentToAppend += `
@@ -235,6 +249,8 @@ document.addEventListener("DOMContentLoaded", function(e) {
         }
 
     });
+
+    //asignaciones de estrellas para agregar un nuevo comentario.
     document.getElementById('estrella1').addEventListener("click", function() {
         estrellas = 1;
         asignarEstrellas();
