@@ -141,7 +141,7 @@
                         <span aria-hidden="true">&times;</span>
                       </button>
                         </div>
-                        <form action="#" method="POST">
+                        <form action="#" onsubmit="return miFuncion(this)" method="POST">
                             <div class="modal-body">
                                 <div class="row">
                                     <div class="col-md-6 text-left">
@@ -165,7 +165,7 @@
                                     </div>
                                 </div>
                                 <div style="display: block; margin-left: auto; margin-right: auto; width: 65%;">
-                                    <div class="g-recaptcha" data-sitekey="6Lf2JsoZAAAAAMfxh4ZYFI4UtVTSuNPDbFpmhlvn"></div>
+                                    <div class="g-recaptcha" data-sitekey="6Lf2JsoZAAAAAMfxh4ZYFI4UtVTSuNPDbFpmhlvn" data-callback="enabledSubmit"></div>
                                 </div>
                             </div>
                             <div class="modal-footer">

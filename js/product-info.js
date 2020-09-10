@@ -32,7 +32,7 @@ var verificacion = function(response) {
     }
 };
 
-function verificacion(a) {
+function miFuncion(a) {
     var response = grecaptcha.getResponse();
 
     if (response.length == 0) {
