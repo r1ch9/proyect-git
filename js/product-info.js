@@ -28,6 +28,7 @@ function imprimirInformacion(array) {
 
 function submitUserForm() {
     var response = grecaptcha.getResponse();
+    console.log(response.length);
     if (response.length == 0) {
         document.getElementById('g-recaptcha-error').innerHTML = '<span style="color:red;">Este campo es requerido.</span>';
         return false;
@@ -36,6 +37,8 @@ function submitUserForm() {
 }
 
 function verifyCaptcha() {
+    console.log("verified");
+    document.getElementById('botonComentario').disabled = false;
     document.getElementById('g-recaptcha-error').innerHTML = '';
 }
 
