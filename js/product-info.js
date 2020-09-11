@@ -23,8 +23,6 @@ function imprimirInformacion(array) {
     document.getElementById('categoryDescription').innerHTML = array.description;
     document.getElementById('productCount').innerHTML = array.soldCount;
     document.getElementById('productCriteria').innerHTML = "El producto pertenece a la categoría " + array.category;
-    showImages(array.images);
-    document.getElementById('imgPrincipal').innerHTML = `<img class="img-fluid img-thumbnail" src="` + array.images[0] + `" alt="">`
 }
 
 //respuestas captcha
