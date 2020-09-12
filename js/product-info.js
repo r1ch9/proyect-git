@@ -15,6 +15,7 @@ let meses = [];
 let anio = [];
 let htmlContentToAppend = "";
 let ContentToAppend = "";
+let textoComentario = "";
 
 //funcion inicial
 function imprimirInformacion(array) {
@@ -171,87 +172,101 @@ function asignarEstrellas() {
         }
     } else {
         document.getElementById('alertEstrellas').style.visibility = "visible";
-        document.getElementById('alertEstrellas').style.borderColor = "red";
-        document.getElementById('alertEstrellas').style.background = "#DC2E2E40";
+    }
+}
+
+function textareaVerification() {
+    if (textoComentario == null) {
+        document.getElementById('alertTextarea').style.visibility = "visible";
+    } else {
+        document.getElementById('alertTextarea').style.visibility = "hidden";
     }
 }
 
 //Funcion añadir comentarios, esta funcion obtiene y convierte hora actuales, crea el comentario y lo añade al json.
 function addComment() {
     var hoy = new Date();
-    let textoComentario = document.getElementById('commentTextInput').value;
+    textoComentario = document.getElementById('commentTextInput').value;
+    textareaVerification();
     var Fechames, Fechadia, diahora, diaminutos, diasecond;
     var data = new Object();
-    if (textoComentario != null) {
-        document.getElementById('alertTextarea').style.visibility = 'hidden';
-        if ((hoy.getMonth() + 1) < 10) {
-            Fechames = '0' + (hoy.getMonth() + 1);
-        } else {
-            Fechames = (hoy.getMonth() + 1);
-        }
-
-        if (hoy.getDate() < 10) {
-            Fechadia = '0' + hoy.getDate();
-        } else {
-            Fechadia = hoy.getDate();
-        }
-
-        if (hoy.getMinutes() < 10) {
-            diaminutos = '0' + hoy.getMinutes();
-        } else {
-            diaminutos = hoy.getMinutes();
-        }
-
-        if (hoy.getHours() < 10) {
-            diahora = '0' + hoy.getHours();
-        } else {
-            diahora = hoy.getHours();
-        }
-
-        if (hoy.getSeconds() < 10) {
-            diasecond = '0' + hoy.getSeconds();
-        } else {
-            diasecond = hoy.getSeconds();
-        }
-
-        let fecha = hoy.getFullYear() + '-' + Fechames + '-' + Fechadia + ' ' + diahora + ':' + diaminutos + ':' + diasecond;
-
-        if (usuarioIniciado != undefined) {
-            htmlContentToAppend += `
-            <div class="container-fluid">
-                <div class="container border border-secondary">
-                    <div class="row" style="background-color:grey">
-                        <h6 class="col text-left" style="color: white"> <strong> ` + usuarioIniciado + ` </strong> ` + fecha + ` </h6>
-                        <h6 class="col text-right" style="color:white"> <span class="fa fa-star checked"></span>` + estrellas + `/5</h6>
-                    </div>
-                    <hr class="my-2">
-                    <p class="small">` + textoComentario + `</p>
-                    <hr class="my-2">
-                </div>              
-            </div>
-            `
-            data.score = estrellas;
-            data.description = textoComentario;
-            data.user = usuarioIniciado;
-            data.dateTime = fecha;
-            comArray.push(data);
-            document.getElementById('Comments').innerHTML = htmlContentToAppend;
-            textoComentario = null;
-            document.getElementById('commentTextInput').value = "";
-            estrellas = null;
-        } else {
-            alert("Debe iniciar sesion primero.");
-            window.location.href = "login.html";
-        }
+    if (textoComentario == null) {
+        textareaVerification();
     } else {
-        document.getElementById('alertTextarea').style.visibility = "visible";
-        document.getElementById('alertTextarea').style.borderColor = "red";
-        document.getElementById('alertTextarea').style.background = "#DC2E2E40";
+        if (estrellas == null) {
+            if ((hoy.getMonth() + 1) < 10) {
+                Fechames = '0' + (hoy.getMonth() + 1);
+            } else {
+                Fechames = (hoy.getMonth() + 1);
+            }
+
+            if (hoy.getDate() < 10) {
+                Fechadia = '0' + hoy.getDate();
+            } else {
+                Fechadia = hoy.getDate();
+            }
+
+            if (hoy.getMinutes() < 10) {
+                diaminutos = '0' + hoy.getMinutes();
+            } else {
+                diaminutos = hoy.getMinutes();
+            }
+
+            if (hoy.getHours() < 10) {
+                diahora = '0' + hoy.getHours();
+            } else {
+                diahora = hoy.getHours();
+            }
+
+            if (hoy.getSeconds() < 10) {
+                diasecond = '0' + hoy.getSeconds();
+            } else {
+                diasecond = hoy.getSeconds();
+            }
+
+            let fecha = hoy.getFullYear() + '-' + Fechames + '-' + Fechadia + ' ' + diahora + ':' + diaminutos + ':' + diasecond;
+
+            if (usuarioIniciado != undefined) {
+                htmlContentToAppend += `
+                    <div class="container-fluid">
+                        <div class="container border border-secondary">
+                            <div class="row" style="background-color:grey">
+                                <h6 class="col text-left" style="color: white"> <strong> ` + usuarioIniciado + ` </strong> ` + fecha + ` </h6>
+                                <h6 class="col text-right" style="color:white"> <span class="fa fa-star checked"></span>` + estrellas + `/5</h6>
+                            </div>
+                            <hr class="my-2">
+                            <p class="small">` + textoComentario + `</p>
+                            <hr class="my-2">
+                        </div>              
+                    </div>
+                    `
+                data.score = estrellas;
+                data.description = textoComentario;
+                data.user = usuarioIniciado;
+                data.dateTime = fecha;
+                comArray.push(data);
+                document.getElementById('Comments').innerHTML = htmlContentToAppend;
+                textoComentario = null;
+                document.getElementById('commentTextInput').value = "";
+                estrellas = null;
+                document.getElementById('estrella1').className = "fa fa-star";
+                document.getElementById('estrella2').className = "fa fa-star";
+                document.getElementById('estrella3').className = "fa fa-star";
+                document.getElementById('estrella4').className = "fa fa-star";
+                document.getElementById('estrella5').className = "fa fa-star";
+            } else {
+                alert("Debe iniciar sesion primero.");
+                window.location.href = "login.html";
+            }
+        }
     }
 
 }
 
 document.addEventListener("DOMContentLoaded", function(e) {
+    document.getElementById('alertTextarea').style.visibility = "hidden";
+    document.getElementById('alertEstrellas').style.visibility = "hidden";
+
     getJSONData(PRODUCT_INFO_URL).then(function(resultObj) {
         if (resultObj.status === "ok") {
             imprimirInformacion(resultObj.data);
@@ -264,8 +279,6 @@ document.addEventListener("DOMContentLoaded", function(e) {
         }
 
     });
-    document.getElementById('alertTextarea').style.visibility = "hidden";
-    document.getElementById('alertEstrellas').style.visibility = "hidden";
 
     //asignaciones de estrellas para agregar un nuevo comentario.
     document.getElementById('estrella1').addEventListener("click", function() {
@@ -304,4 +317,7 @@ document.addEventListener("DOMContentLoaded", function(e) {
         ordenarPorCalificacion(comArray);
     });
 
+    document.getElementById('commentTextInput').addEventListener("mouseOut", function() {
+
+    });
 });
