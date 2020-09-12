@@ -175,59 +175,68 @@ function asignarEstrellas() {
     }
 }
 
+//check textarea and stars
 function textareaVerification() {
-    if (textoComentario == null) {
+    textoComentario = document.getElementById('commentTextInput').value;
+    if (textoComentario == "" && estrellas == undefined) {
+        document.getElementById('alertEstrellas').style.visibility = "visible";
         document.getElementById('alertTextarea').style.visibility = "visible";
     } else {
-        document.getElementById('alertTextarea').style.visibility = "hidden";
+        if (textoComentario == "") {
+            document.getElementById('alertTextarea').style.visibility = "visible";
+        } else {
+            if (estrellas != undefined) {
+                document.getElementById('alertTextarea').style.visibility = "hidden";
+                document.getElementById('alertEstrellas').style.visibility = "hidden";
+                addComment();
+            } else {
+                document.getElementById('alertEstrellas').style.visibility = "visible";
+            }
+        }
     }
+
 }
 
 //Funcion añadir comentarios, esta funcion obtiene y convierte hora actuales, crea el comentario y lo añade al json.
 function addComment() {
     var hoy = new Date();
-    textoComentario = document.getElementById('commentTextInput').value;
-    textareaVerification();
     var Fechames, Fechadia, diahora, diaminutos, diasecond;
     var data = new Object();
-    if (textoComentario == null) {
-        textareaVerification();
+
+    if ((hoy.getMonth() + 1) < 10) {
+        Fechames = '0' + (hoy.getMonth() + 1);
     } else {
-        if (estrellas == null) {
-            if ((hoy.getMonth() + 1) < 10) {
-                Fechames = '0' + (hoy.getMonth() + 1);
-            } else {
-                Fechames = (hoy.getMonth() + 1);
-            }
+        Fechames = (hoy.getMonth() + 1);
+    }
 
-            if (hoy.getDate() < 10) {
-                Fechadia = '0' + hoy.getDate();
-            } else {
-                Fechadia = hoy.getDate();
-            }
+    if (hoy.getDate() < 10) {
+        Fechadia = '0' + hoy.getDate();
+    } else {
+        Fechadia = hoy.getDate();
+    }
 
-            if (hoy.getMinutes() < 10) {
-                diaminutos = '0' + hoy.getMinutes();
-            } else {
-                diaminutos = hoy.getMinutes();
-            }
+    if (hoy.getMinutes() < 10) {
+        diaminutos = '0' + hoy.getMinutes();
+    } else {
+        diaminutos = hoy.getMinutes();
+    }
 
-            if (hoy.getHours() < 10) {
-                diahora = '0' + hoy.getHours();
-            } else {
-                diahora = hoy.getHours();
-            }
+    if (hoy.getHours() < 10) {
+        diahora = '0' + hoy.getHours();
+    } else {
+        diahora = hoy.getHours();
+    }
 
-            if (hoy.getSeconds() < 10) {
-                diasecond = '0' + hoy.getSeconds();
-            } else {
-                diasecond = hoy.getSeconds();
-            }
+    if (hoy.getSeconds() < 10) {
+        diasecond = '0' + hoy.getSeconds();
+    } else {
+        diasecond = hoy.getSeconds();
+    }
 
-            let fecha = hoy.getFullYear() + '-' + Fechames + '-' + Fechadia + ' ' + diahora + ':' + diaminutos + ':' + diasecond;
+    let fecha = hoy.getFullYear() + '-' + Fechames + '-' + Fechadia + ' ' + diahora + ':' + diaminutos + ':' + diasecond;
 
-            if (usuarioIniciado != undefined) {
-                htmlContentToAppend += `
+    if (usuarioIniciado != undefined) {
+        htmlContentToAppend += `
                     <div class="container-fluid">
                         <div class="container border border-secondary">
                             <div class="row" style="background-color:grey">
@@ -240,32 +249,31 @@ function addComment() {
                         </div>              
                     </div>
                     `
-                data.score = estrellas;
-                data.description = textoComentario;
-                data.user = usuarioIniciado;
-                data.dateTime = fecha;
-                comArray.push(data);
-                document.getElementById('Comments').innerHTML = htmlContentToAppend;
-                textoComentario = null;
-                document.getElementById('commentTextInput').value = "";
-                estrellas = null;
-                document.getElementById('estrella1').className = "fa fa-star";
-                document.getElementById('estrella2').className = "fa fa-star";
-                document.getElementById('estrella3').className = "fa fa-star";
-                document.getElementById('estrella4').className = "fa fa-star";
-                document.getElementById('estrella5').className = "fa fa-star";
-            } else {
-                alert("Debe iniciar sesion primero.");
-                window.location.href = "login.html";
-            }
-        }
+        data.score = estrellas;
+        data.description = textoComentario;
+        data.user = usuarioIniciado;
+        data.dateTime = fecha;
+        comArray.push(data);
+        document.getElementById('Comments').innerHTML = htmlContentToAppend;
+        textoComentario = null;
+        document.getElementById('commentTextInput').value = "";
+        estrellas = null;
+        $(".modal").modal("hide");
+        document.getElementById('estrella1').className = "fa fa-star";
+        document.getElementById('estrella2').className = "fa fa-star";
+        document.getElementById('estrella3').className = "fa fa-star";
+        document.getElementById('estrella4').className = "fa fa-star";
+        document.getElementById('estrella5').className = "fa fa-star";
+    } else {
+        alert("Debe iniciar sesion primero.");
+        window.location.href = "login.html";
     }
-
 }
 
 document.addEventListener("DOMContentLoaded", function(e) {
     document.getElementById('alertTextarea').style.visibility = "hidden";
     document.getElementById('alertEstrellas').style.visibility = "hidden";
+    document.getElementById('botonComentario').disabled = false;
 
     getJSONData(PRODUCT_INFO_URL).then(function(resultObj) {
         if (resultObj.status === "ok") {
