@@ -273,7 +273,6 @@ function addComment() {
 document.addEventListener("DOMContentLoaded", function(e) {
     document.getElementById('alertTextarea').style.visibility = "hidden";
     document.getElementById('alertEstrellas').style.visibility = "hidden";
-    document.getElementById('botonComentario').disabled = false;
 
     getJSONData(PRODUCT_INFO_URL).then(function(resultObj) {
         if (resultObj.status === "ok") {
