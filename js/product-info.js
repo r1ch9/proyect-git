@@ -70,7 +70,7 @@ function showComments(array) {
         htmlContentToAppend += `
         <div class="container-fluid">
             <div class="container border border-secondary">
-                <div class="row" style="background-color:black">
+                <div class="row" style="background-color:grey">
                     <h6 class="col text-left" style="color: white"> <strong> ` + com.user + `</strong> ` + com.dateTime + `</h6>
                     <h6 class="col text-right" style="color:white"> <span class="fa fa-star checked"></span>` + com.score + `/5</h6>
                 </div>
@@ -129,7 +129,7 @@ function sortCategoriesASC(array) {
 function asignarEstrellas() {
 
     if (estrellas != undefined) {
-        document.getElementById('alertEstrellas').style.visibility = hidden;
+        document.getElementById('alertEstrellas').style.visibility = 'hidden';
         if (estrellas == 1) {
             document.getElementById('estrella1').className = "fa fa-star checked";
             document.getElementById('estrella2').className = "fa fa-star";
@@ -183,7 +183,7 @@ function addComment() {
     var Fechames, Fechadia, diahora, diaminutos, diasecond;
     var data = new Object();
     if (textoComentario != null) {
-        document.getElementById('alertTextarea').style.visibility = hidden;
+        document.getElementById('alertTextarea').style.visibility = 'hidden';
         if ((hoy.getMonth() + 1) < 10) {
             Fechames = '0' + (hoy.getMonth() + 1);
         } else {
@@ -220,7 +220,7 @@ function addComment() {
             htmlContentToAppend += `
             <div class="container-fluid">
                 <div class="container border border-secondary">
-                    <div class="row" style="background-color:black">
+                    <div class="row" style="background-color:grey">
                         <h6 class="col text-left" style="color: white"> <strong> ` + usuarioIniciado + ` </strong> ` + fecha + ` </h6>
                         <h6 class="col text-right" style="color:white"> <span class="fa fa-star checked"></span>` + estrellas + `/5</h6>
                     </div>
@@ -236,8 +236,11 @@ function addComment() {
             data.dateTime = fecha;
             comArray.push(data);
             document.getElementById('Comments').innerHTML = htmlContentToAppend;
+            document.getElementById('commentTextInput').value = "";
+            estrellas = null;
         } else {
             alert("Debe iniciar sesion primero.");
+            window.location.href = "login.html";
         }
     } else {
         document.getElementById('alertTextarea').style.visibility = "visible";

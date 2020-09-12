@@ -52,6 +52,12 @@
         p {
             color: black;
         }
+        
+        textarea {
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+        }
     </style>
 </head>
 
@@ -84,17 +90,12 @@
                 </div>
             </div>
         </div>
+
         <div class="container mt-5">
-            <div class="row">
-                <!--<h3 id="categoryName" class="col text-left"></h3>-->
-                <!--<h3 id="soldCount" class="col text-right"></h3>-->
-            </div>
-
             <hr class="my-3">
-
-            <div class="border container">
+            <div class="container">
                 <div class="row">
-                    <div class="border col-8 w-60">
+                    <div class="col-8 w-60">
                         <div id="carouselExampleIndicators" class="carousel slide carousel-fade" data-ride="carousel">
                             <ol class="carousel-indicators">
                                 <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
@@ -131,36 +132,46 @@
                         </div>
                     </div>
                     <div class="border col-4">
-
-                        <h3 id="categoryName" style="padding: 2px" class="col text-left"></h3>
-                        <p id="productCount"></p>
-
-
-
+                        <br class="my-2">
+                        <h3 id="categoryName" style="text-align: center" class="col text-left"></h3>
+                        <p id="productCount" style="text-align: center"></p>
+                        <div class="">
+                            <br/>
+                            <br/>
+                            <br/>
+                            <br/>
+                            <br/>
+                            <br/>
+                            <br/>
+                            <br/>
+                            <br/>
+                        </div>
                         <h3 id="soldCount" style="text-align: center;" class=""></h3>
 
                         <button class="btn btn-secondary btn-block">Agregar al carrito</button>
-
                     </div>
                 </div>
             </div>
 
-            <dl>
-                <dt>Descripción</dt>
-                <dd>
-                    <p id="categoryDescription"></p>
-                </dd>
+            <br/>
+            <br/>
+            <br/>
 
-                <dt>Cantidad en stock</dt>
-                <dd>
-                    <p id="productCount"></p>
-                </dd>
+            <div class="container border">
+                <br class="my-3">
+                <dl>
+                    <dt>Descripción</dt>
+                    <dd>
+                        <p id="categoryDescription"></p>
+                    </dd>
 
-                <dt>Categoría en la que está incluida el producto</dt>
-                <dd>
-                    <p id="productCriteria"></p>
-                </dd>
-            </dl>
+                    <dt>Categoría en la que está incluida el producto</dt>
+                    <dd>
+                        <p id="productCriteria"></p>
+                    </dd>
+                </dl>
+                <br class="my-3">
+            </div>
 
             <hr>
 
@@ -203,27 +214,28 @@
                         </div>
                         <form action="#" onsubmit="return submitUserForm();" method="POST">
                             <div class="modal-body">
-                                <div class="row">
-                                    <div class="col-md-6 text-left">
-                                        <p>Comente su experiencia con el producto:</p>
-                                        <textarea cols="35" onfocus="addComment()" rows="5" style="resize: both;" id="commentTextInput" placeholder="Contenido de comentario aqui"></textarea>
-                                        <p id="alertTextarea">Este campo es obligatorio</p>
-                                    </div>
-                                    <div class="col text-right">
-                                        <p>Ingrese la calificacion:</p>
-                                        <p id="alertEstrellas">Este campo es obligatorio</p>
-                                        <br/>
-                                        <br/>
-                                        <br/>
-                                        <div style="padding-right: 15%" onfocus="asignarEstrellas()">
-                                            <span class="fa fa-star" id="estrella1"></span>
-                                            <span class="fa fa-star" id="estrella2"></span>
-                                            <span class="fa fa-star" id="estrella3"></span>
-                                            <span class="fa fa-star" id="estrella4"></span>
-                                            <span class="fa fa-star" id="estrella5"></span>
-                                        </div>
-                                    </div>
+
+                                <div class="justify-content-center">
+                                    <p style="text-align: center;">Comente su experiencia con el producto:</p>
+                                    <textarea class="d-flex justify-content-center" cols="35" onfocus="addComment()" rows="5" style="resize: both;" id="commentTextInput" placeholder="Contenido de comentario aqui"></textarea>
+                                    <p id="alertTextarea">Este campo es obligatorio</p>
                                 </div>
+
+                                <div class="justify-content-center">
+                                    <p style="text-align: center">Ingrese la calificacion:</p>
+                                    <div class="d-flex justify-content-center" onfocus="asignarEstrellas()">
+                                        <span class="fa fa-star" id="estrella1"></span>
+                                        <span class="fa fa-star" id="estrella2"></span>
+                                        <span class="fa fa-star" id="estrella3"></span>
+                                        <span class="fa fa-star" id="estrella4"></span>
+                                        <span class="fa fa-star" id="estrella5"></span>
+                                    </div>
+                                    <p id="alertEstrellas"></p>
+                                </div>
+
+                                <br/>
+                                <br/>
+
                                 <div style="display: block; margin-left: auto; margin-right: auto; width: 65%;">
                                     <div class="g-recaptcha" data-sitekey="6Lf2JsoZAAAAAMfxh4ZYFI4UtVTSuNPDbFpmhlvn" data-callback="verifyCaptcha"></div>
                                     <div id="g-recaptcha-error"></div>
