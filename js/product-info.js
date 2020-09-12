@@ -21,7 +21,7 @@ function imprimirInformacion(array) {
     document.getElementById('categoryName').innerHTML = array.name;
     document.getElementById('soldCount').innerHTML = array.currency + ` ` + array.cost;
     document.getElementById('categoryDescription').innerHTML = array.description;
-    document.getElementById('productCount').innerHTML = array.soldCount;
+    document.getElementById('productCount').innerHTML = array.soldCount + " unidades disponibles";
     document.getElementById('productCriteria').innerHTML = "El producto pertenece a la categoría " + array.category;
 }
 
@@ -128,44 +128,51 @@ function sortCategoriesASC(array) {
 //funcion especifica para asignar la cantidad de estrellas al comentario, ademas de crear una animacion sencilla.
 function asignarEstrellas() {
 
-    if (estrellas == 1) {
-        document.getElementById('estrella1').className = "fa fa-star checked";
-        document.getElementById('estrella2').className = "fa fa-star";
-        document.getElementById('estrella3').className = "fa fa-star";
-        document.getElementById('estrella4').className = "fa fa-star";
-        document.getElementById('estrella5').className = "fa fa-star";
-    } else {
-        if (estrellas == 2) {
+    if (estrellas != undefined) {
+        document.getElementById('alertEstrellas').style.visibility = hidden;
+        if (estrellas == 1) {
             document.getElementById('estrella1').className = "fa fa-star checked";
-            document.getElementById('estrella2').className = "fa fa-star checked";
+            document.getElementById('estrella2').className = "fa fa-star";
             document.getElementById('estrella3').className = "fa fa-star";
             document.getElementById('estrella4').className = "fa fa-star";
             document.getElementById('estrella5').className = "fa fa-star";
         } else {
-            if (estrellas == 3) {
-                document.getElementById('estrella1').className += " checked";
-                document.getElementById('estrella2').className += " checked";
-                document.getElementById('estrella3').className += " checked";
+            if (estrellas == 2) {
+                document.getElementById('estrella1').className = "fa fa-star checked";
+                document.getElementById('estrella2').className = "fa fa-star checked";
+                document.getElementById('estrella3').className = "fa fa-star";
                 document.getElementById('estrella4').className = "fa fa-star";
                 document.getElementById('estrella5').className = "fa fa-star";
             } else {
-                if (estrellas == 4) {
+                if (estrellas == 3) {
                     document.getElementById('estrella1').className += " checked";
                     document.getElementById('estrella2').className += " checked";
                     document.getElementById('estrella3').className += " checked";
-                    document.getElementById('estrella4').className += " checked";
+                    document.getElementById('estrella4').className = "fa fa-star";
                     document.getElementById('estrella5').className = "fa fa-star";
                 } else {
-                    if (estrellas == 5) {
+                    if (estrellas == 4) {
                         document.getElementById('estrella1').className += " checked";
                         document.getElementById('estrella2').className += " checked";
                         document.getElementById('estrella3').className += " checked";
                         document.getElementById('estrella4').className += " checked";
-                        document.getElementById('estrella5').className += " checked";
+                        document.getElementById('estrella5').className = "fa fa-star";
+                    } else {
+                        if (estrellas == 5) {
+                            document.getElementById('estrella1').className += " checked";
+                            document.getElementById('estrella2').className += " checked";
+                            document.getElementById('estrella3').className += " checked";
+                            document.getElementById('estrella4').className += " checked";
+                            document.getElementById('estrella5').className += " checked";
+                        }
                     }
                 }
             }
         }
+    } else {
+        document.getElementById('alertEstrellas').style.visibility = "visible";
+        document.getElementById('alertEstrellas').style.borderColor = "red";
+        document.getElementById('alertEstrellas').style.background = "#DC2E2E40";
     }
 }
 
@@ -175,63 +182,68 @@ function addComment() {
     let textoComentario = document.getElementById('commentTextInput').value;
     var Fechames, Fechadia, diahora, diaminutos, diasecond;
     var data = new Object();
+    if (textoComentario != null) {
+        document.getElementById('alertTextarea').style.visibility = hidden;
+        if ((hoy.getMonth() + 1) < 10) {
+            Fechames = '0' + (hoy.getMonth() + 1);
+        } else {
+            Fechames = (hoy.getMonth() + 1);
+        }
 
-    if ((hoy.getMonth() + 1) < 10) {
-        Fechames = '0' + (hoy.getMonth() + 1);
+        if (hoy.getDate() < 10) {
+            Fechadia = '0' + hoy.getDate();
+        } else {
+            Fechadia = hoy.getDate();
+        }
+
+        if (hoy.getMinutes() < 10) {
+            diaminutos = '0' + hoy.getMinutes();
+        } else {
+            diaminutos = hoy.getMinutes();
+        }
+
+        if (hoy.getHours() < 10) {
+            diahora = '0' + hoy.getHours();
+        } else {
+            diahora = hoy.getHours();
+        }
+
+        if (hoy.getSeconds() < 10) {
+            diasecond = '0' + hoy.getSeconds();
+        } else {
+            diasecond = hoy.getSeconds();
+        }
+
+        let fecha = hoy.getFullYear() + '-' + Fechames + '-' + Fechadia + ' ' + diahora + ':' + diaminutos + ':' + diasecond;
+
+        if (usuarioIniciado != undefined) {
+            htmlContentToAppend += `
+            <div class="container-fluid">
+                <div class="container border border-secondary">
+                    <div class="row" style="background-color:black">
+                        <h6 class="col text-left" style="color: white"> <strong> ` + usuarioIniciado + ` </strong> ` + fecha + ` </h6>
+                        <h6 class="col text-right" style="color:white"> <span class="fa fa-star checked"></span>` + estrellas + `/5</h6>
+                    </div>
+                    <hr class="my-2">
+                    <p class="small">` + textoComentario + `</p>
+                    <hr class="my-2">
+                </div>              
+            </div>
+            `
+            data.score = estrellas;
+            data.description = textoComentario;
+            data.user = usuarioIniciado;
+            data.dateTime = fecha;
+            comArray.push(data);
+            document.getElementById('Comments').innerHTML = htmlContentToAppend;
+        } else {
+            alert("Debe iniciar sesion primero.");
+        }
     } else {
-        Fechames = (hoy.getMonth() + 1);
+        document.getElementById('alertTextarea').style.visibility = "visible";
+        document.getElementById('alertTextarea').style.borderColor = "red";
+        document.getElementById('alertTextarea').style.background = "#DC2E2E40";
     }
-
-    if (hoy.getDate() < 10) {
-        Fechadia = '0' + hoy.getDate();
-    } else {
-        Fechadia = hoy.getDate();
-    }
-
-    if (hoy.getMinutes() < 10) {
-        diaminutos = '0' + hoy.getMinutes();
-    } else {
-        diaminutos = hoy.getMinutes();
-    }
-
-    if (hoy.getHours() < 10) {
-        diahora = '0' + hoy.getHours();
-    } else {
-        diahora = hoy.getHours();
-    }
-
-    if (hoy.getSeconds() < 10) {
-        diasecond = '0' + hoy.getSeconds();
-    } else {
-        diasecond = hoy.getSeconds();
-    }
-
-    let fecha = hoy.getFullYear() + '-' + Fechames + '-' + Fechadia + ' ' + diahora + ':' + diaminutos + ':' + diasecond;
-
-    if (usuarioIniciado != undefined) {
-        htmlContentToAppend += `
-        <div class="container-fluid">
-            <div class="container border border-secondary">
-                <div class="row" style="background-color:black">
-                    <h6 class="col text-left" style="color: white"> <strong> ` + usuarioIniciado + ` </strong> ` + fecha + ` </h6>
-                    <h6 class="col text-right" style="color:white"> <span class="fa fa-star checked"></span>` + estrellas + `/5</h6>
-                </div>
-                <hr class="my-2">
-                <p class="small">` + textoComentario + `</p>
-                <hr class="my-2">
-            </div>              
-        </div>
-        `
-        data.score = estrellas;
-        data.description = textoComentario;
-        data.user = usuarioIniciado;
-        data.dateTime = fecha;
-        comArray.push(data);
-        document.getElementById('Comments').innerHTML = htmlContentToAppend;
-    } else {
-        alert("Debe iniciar sesion primero.");
-    }
-
 
 }
 
@@ -248,6 +260,8 @@ document.addEventListener("DOMContentLoaded", function(e) {
         }
 
     });
+    document.getElementById('alertTextarea').style.visibility = "hidden";
+    document.getElementById('alertEstrellas').style.visibility = "hidden";
 
     //asignaciones de estrellas para agregar un nuevo comentario.
     document.getElementById('estrella1').addEventListener("click", function() {

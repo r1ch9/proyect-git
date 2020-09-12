@@ -22,6 +22,15 @@
             text-align: center;
         }
         
+        .piso {
+            position: relative;
+        }
+        
+        .piso-contenido {
+            position: absolute;
+            bottom: 0;
+        }
+        
         .texto-encima {
             position: absolute;
             top: 10px;
@@ -77,15 +86,15 @@
         </div>
         <div class="container mt-5">
             <div class="row">
-                <h3 id="categoryName" class="col text-left"></h3>
-                <h3 id="soldCount" class="col text-right"></h3>
+                <!--<h3 id="categoryName" class="col text-left"></h3>-->
+                <!--<h3 id="soldCount" class="col text-right"></h3>-->
             </div>
 
             <hr class="my-3">
-            <dl>
-                <dt>Imágenes ilustrativas</dt>
-                <dd>
-                    <div class="container w-75">
+
+            <div class="border container">
+                <div class="row">
+                    <div class="border col-8 w-60">
                         <div id="carouselExampleIndicators" class="carousel slide carousel-fade" data-ride="carousel">
                             <ol class="carousel-indicators">
                                 <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
@@ -120,9 +129,23 @@
                                 <span class="sr-only">Next</span>
                             </a>
                         </div>
+                    </div>
+                    <div class="border col-4">
+
+                        <h3 id="categoryName" style="padding: 2px" class="col text-left"></h3>
+                        <p id="productCount"></p>
+
+
+
+                        <h3 id="soldCount" style="text-align: center;" class=""></h3>
+
+                        <button class="btn btn-secondary btn-block">Agregar al carrito</button>
 
                     </div>
-                </dd>
+                </div>
+            </div>
+
+            <dl>
                 <dt>Descripción</dt>
                 <dd>
                     <p id="categoryDescription"></p>
@@ -139,6 +162,8 @@
                 </dd>
             </dl>
 
+            <hr>
+
             <div class="container">
                 <div class="row">
                     <div class="col text-left" style="padding-top:15px;">
@@ -153,7 +178,7 @@
                                 <input type="radio" name="options" autocomplete="off">Mas antiguos.
                             </label>
                             <label class="btn btn-light" id="sortByCount">
-                                <input type="radio" name="options" autocomplete="off"><i class="fas fa-sort-amount-down mr-1"></i>Calificación.
+                                <input type="radio" nam="options" autocomplete="off"><i class="fas fa-sort-amount-down mr-1"></i>Calificación.
                             </label>
                         </div>
                     </div>
@@ -181,22 +206,22 @@
                                 <div class="row">
                                     <div class="col-md-6 text-left">
                                         <p>Comente su experiencia con el producto:</p>
-                                        <textarea cols="35" rows="5" style="resize: both;" id="commentTextInput" placeholder="Contenido de comentario aqui"></textarea>
-
+                                        <textarea cols="35" onfocus="addComment()" rows="5" style="resize: both;" id="commentTextInput" placeholder="Contenido de comentario aqui"></textarea>
+                                        <p id="alertTextarea">Este campo es obligatorio</p>
                                     </div>
                                     <div class="col text-right">
                                         <p>Ingrese la calificacion:</p>
+                                        <p id="alertEstrellas">Este campo es obligatorio</p>
                                         <br/>
                                         <br/>
                                         <br/>
-                                        <div style="padding-right: 15%">
+                                        <div style="padding-right: 15%" onfocus="asignarEstrellas()">
                                             <span class="fa fa-star" id="estrella1"></span>
                                             <span class="fa fa-star" id="estrella2"></span>
                                             <span class="fa fa-star" id="estrella3"></span>
                                             <span class="fa fa-star" id="estrella4"></span>
                                             <span class="fa fa-star" id="estrella5"></span>
                                         </div>
-
                                     </div>
                                 </div>
                                 <div style="display: block; margin-left: auto; margin-right: auto; width: 65%;">
