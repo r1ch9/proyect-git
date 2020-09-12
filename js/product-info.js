@@ -236,6 +236,7 @@ function addComment() {
             data.dateTime = fecha;
             comArray.push(data);
             document.getElementById('Comments').innerHTML = htmlContentToAppend;
+            textoComentario = null;
             document.getElementById('commentTextInput').value = "";
             estrellas = null;
         } else {
