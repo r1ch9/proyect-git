@@ -21,7 +21,7 @@ var usuarioIniciado;
 var isUserInvitado;
 
 function setearInvitado() {
-    isUserInvitado = true;
+    sessionStorage.setItem(elusuarioinvitado, user);
 }
 
 var showSpinner = function() {
