@@ -7,7 +7,6 @@ function checkInput() {
     rememberCheck = document.getElementById("checkRemember").checked;
     checkUser();
     checkPassword();
-    isUserInvitado = false;
     sessionStorage.removeItem(elusuarioinvitado);
     if (rememberCheck) {
         localStorage.setItem(elusuariolocal, document.getElementById("userName").value);
@@ -113,9 +112,8 @@ function checkUser() {
 }
 
 function ingresoComoInvitado() {
-    user = "invitado";
+    user = "true";
     sessionStorage.setItem(elusuarioinvitado, user);
-    isUserInvitado = true;
     window.location.href = "https://r1ch9.github.io/proyect-git/";
 }
 

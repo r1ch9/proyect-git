@@ -20,6 +20,10 @@ var elusuarioinvitado;
 var usuarioIniciado;
 var isUserInvitado;
 
+function setearInvitado() {
+    isUserInvitado = true;
+}
+
 var showSpinner = function() {
     document.getElementById("spinner-wrapper").style.display = "block";
 }
@@ -53,9 +57,7 @@ var getJSONData = function(url) {
         });
 }
 
-//Función que se ejecuta una vez que se haya lanzado el evento de
-//que el documento se encuentra cargado, es decir, se encuentran todos los
-//elementos HTML presentes.
+
 
 function signOut(googleUser) {
     var auth2 = gapi.auth2.getAuthInstance();
@@ -90,8 +92,13 @@ function notMouseArriba() {
     document.getElementById('UsrLogged').textContent = usuarioIniciado;
 }
 
+//Función que se ejecuta una vez que se haya lanzado el evento de
+//que el documento se encuentra cargado, es decir, se encuentran todos los
+//elementos HTML presentes.
 document.addEventListener("DOMContentLoaded", function(e) {
-    if (window.location == "https://r1ch9.github.io/proyect-git/login.html") {} else {
+
+    //Secuencia de redireccionamiento en caso de que no haya un usuario logeado.
+    /*if (window.location == "https://r1ch9.github.io/proyect-git/login.html") {} else {
         if (sessionStorage.getItem(elusuarioinvitado) == null) {
             if (sessionStorage.getItem(elusuariosession) == null) {
                 if (localStorage.getItem(elusuariolocal) == null) {
@@ -99,8 +106,9 @@ document.addEventListener("DOMContentLoaded", function(e) {
                 }
             }
         }
-    }
+    }*/
 
+    //Impresion de nombre de usuario en la navbar en el dropbox usuario.
     if (localStorage.getItem(elusuariolocal) != null) {
         usuarioIniciado = localStorage.getItem(elusuariolocal);
         document.getElementById('UsrLogged').textContent = usuarioIniciado;
@@ -110,4 +118,14 @@ document.addEventListener("DOMContentLoaded", function(e) {
             document.getElementById('UsrLogged').textContent = usuarioIniciado;
         }
     }
+
+    //Boton que deshabilita el acceso al carrito en caso de que el usuario no haya iniciado sesion.
+    if (sessionStorage.getItem(elusuarioinvitado) == undefined) {
+        document.getElementById('carritoBoton').disabled = true;
+    } else {
+        if (sessionStorage.getItem(elusuarioinvitado) != undefined) {
+            document.getElementById('carritoBoton').disabled = false;
+        }
+    }
+
 });
