@@ -16,6 +16,7 @@ let anio = [];
 let htmlContentToAppend = "";
 let ContentToAppend = "";
 let textoComentario = "";
+let resultObjeto;
 
 //funcion inicial
 function imprimirInformacion(array) {
@@ -270,26 +271,33 @@ function addComment() {
     }
 }
 
-function otherElements(array) {
+function otherElements(array, array2) {
     let imagen1 = '';
     let imagen2 = '';
 
-    alert(array);
+    imagen1 = ` <a href="product-info.html" class="list-group-item list-group-item-action">
+                    <div class="row">
+                        <div class="col-5">
+                            <img src="img/prod2.jpg" class="img-thumbnail">
+                        </div> 
+                        <div class="col-7" style="text-align:center">
+                            <h6 class="mb-2" style="text-align:center">` + array[array2.relatedProducts[0]].name + `</h6>
+                            <p>` + array[array2.relatedProducts[0]].currency + ` ` + array[array2.relatedProducts[0]].cost + `</p>
+                        </div> 
+                    </div>
+                </a> `
 
-    imagen1 = `
-    <div class="h-100 row border">
-        <img src="img/prod3.jpg" width= 40%;>
-        <p>ASdsqwe</p>
-    </div>
-    `
-    imagen2 = `
-    <div class="h-100 row border">
-    
-            <img src="img/prod2.jpg" width= 40%;>
-            <p>asdqwe</p>
-  
-    </div>
-    `
+    imagen2 = ` <a href="product-info.html" class="list-group-item list-group-item-action">
+                    <div class="row">
+                        <div class="col-5">
+                            <img src="` + array[array2.relatedProducts[1]].imgSrc + `" class="img-thumbnail">
+                        </div> 
+                        <div class="col-7" style="text-align:center">
+                            <h6 class="mb-2" style="text-align:center">` + array[array2.relatedProducts[1]].name + `</h6>
+                            <p>` + array[array2.relatedProducts[1]].currency + ` ` + array[array2.relatedProducts[1]].cost + `</p>
+                        </div> 
+                    </div>
+                </a> `
 
     document.getElementById('img1').innerHTML = imagen1;
     document.getElementById('img2').innerHTML = imagen2;
@@ -303,7 +311,7 @@ document.addEventListener("DOMContentLoaded", function(e) {
     getJSONData(PRODUCT_INFO_URL).then(function(resultObj) {
         if (resultObj.status === "ok") {
             imprimirInformacion(resultObj.data);
-            otherElements(resultObj.data);
+            resultObjeto = resultObj.data;
             getJSONData(PRODUCT_INFO_COMMENTS_URL).then(function(resultComments) {
                 if (resultComments.status === "ok") {
                     comArray = resultComments.data;
@@ -314,9 +322,10 @@ document.addEventListener("DOMContentLoaded", function(e) {
 
     });
 
-    getJSONData(PRODUCTS_URL).then(function(resultComments) {
-        if (resultComments.status === "ok") {
-            otherElements(resultCat.data);
+    getJSONData(PRODUCTS_URL).then(function(resultCat) {
+        if (resultCat.status === "ok") {
+            otherElements(resultCat.data, resultObjeto);
+            console.log(resultCat.data);
         }
     });
 
