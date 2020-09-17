@@ -270,6 +270,32 @@ function addComment() {
     }
 }
 
+function otherElements(array) {
+    let imagen1 = '';
+    let imagen2 = '';
+
+    alert(array);
+
+    imagen1 = `
+    <div class="h-100 row border">
+        <img src="img/prod3.jpg" width= 40%;>
+        <p>ASdsqwe</p>
+    </div>
+    `
+    imagen2 = `
+    <div class="h-100 row border">
+    
+            <img src="img/prod2.jpg" width= 40%;>
+            <p>asdqwe</p>
+  
+    </div>
+    `
+
+    document.getElementById('img1').innerHTML = imagen1;
+    document.getElementById('img2').innerHTML = imagen2;
+}
+
+
 document.addEventListener("DOMContentLoaded", function(e) {
     document.getElementById('alertTextarea').style.visibility = "hidden";
     document.getElementById('alertEstrellas').style.visibility = "hidden";
@@ -277,6 +303,7 @@ document.addEventListener("DOMContentLoaded", function(e) {
     getJSONData(PRODUCT_INFO_URL).then(function(resultObj) {
         if (resultObj.status === "ok") {
             imprimirInformacion(resultObj.data);
+            otherElements(resultObj.data);
             getJSONData(PRODUCT_INFO_COMMENTS_URL).then(function(resultComments) {
                 if (resultComments.status === "ok") {
                     comArray = resultComments.data;
@@ -285,6 +312,12 @@ document.addEventListener("DOMContentLoaded", function(e) {
             });
         }
 
+    });
+
+    getJSONData(PRODUCTS_URL).then(function(resultComments) {
+        if (resultComments.status === "ok") {
+            otherElements(resultCat.data);
+        }
     });
 
     //asignaciones de estrellas para agregar un nuevo comentario.
@@ -324,7 +357,6 @@ document.addEventListener("DOMContentLoaded", function(e) {
         ordenarPorCalificacion(comArray);
     });
 
-    document.getElementById('commentTextInput').addEventListener("mouseOut", function() {
+    document.getElementById('commentTextInput').addEventListener("mouseOut", function() {});
 
-    });
 });
