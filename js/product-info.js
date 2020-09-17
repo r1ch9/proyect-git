@@ -318,16 +318,16 @@ document.addEventListener("DOMContentLoaded", function(e) {
                     showComments(resultComments.data);
                 }
             });
+            getJSONData(PRODUCTS_URL).then(function(resultCat) {
+                if (resultCat.status === "ok") {
+                    otherElements(resultCat.data, resultObjeto);
+                    console.log(resultCat.data);
+                }
+            });
         }
 
     });
 
-    getJSONData(PRODUCTS_URL).then(function(resultCat) {
-        if (resultCat.status === "ok") {
-            otherElements(resultCat.data, resultObjeto);
-            console.log(resultCat.data);
-        }
-    });
 
     //asignaciones de estrellas para agregar un nuevo comentario.
     document.getElementById('estrella1').addEventListener("click", function() {
