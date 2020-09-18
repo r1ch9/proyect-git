@@ -20,6 +20,16 @@ var elusuarioinvitado;
 var usuarioIniciado;
 var isUserInvitado;
 
+function cambiarFondo(ids) {
+    document.getElementById(ids).style.color = 'grey';
+    document.getElementById(ids).style.backgroundColor = '#343a40';
+}
+
+function volverFondo(ids) {
+    document.getElementById(ids).style.backgroundColor = '#343a40';
+    document.getElementById(ids).style.color = 'white';
+}
+
 function setearInvitado() {
     sessionStorage.setItem(elusuarioinvitado, user);
 }
