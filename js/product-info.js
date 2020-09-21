@@ -28,7 +28,7 @@ function imprimirInformacion(array) {
 }
 
 //respuestas captcha
-function submitUserForm() {
+/*function submitUserForm() {
     var response = grecaptcha.getResponse();
     console.log(response.length);
     if (response.length == 0) {
@@ -37,7 +37,7 @@ function submitUserForm() {
         return false;
     }
     return true;
-}
+}*/
 
 function verifyCaptcha() {
     console.log("verified");
