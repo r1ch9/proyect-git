@@ -27,24 +27,11 @@ function imprimirInformacion(array) {
     document.getElementById('productCriteria').innerHTML = "El producto pertenece a la categoría " + array.category;
 }
 
-//respuestas captcha
-/*function submitUserForm() {
-    var response = grecaptcha.getResponse();
-    console.log(response.length);
-    if (response.length == 0) {
-        document.getElementById('g-recaptcha-error').innerHTML = '<span style="color:red;">Este campo es requerido.</span>';
-        document.getElementById('botonComentario').disabled = true;
-        return false;
-    }
-    return true;
-}*/
-
+//respuesta captcha
 function verifyCaptcha() {
     console.log("verified");
     document.getElementById('botonComentario').disabled = false;
-    document.getElementById('g-recaptcha-error').innerHTML = '';
 }
-
 
 //Mostrar imagenes
 function showImages(array) {
@@ -271,6 +258,7 @@ function addComment() {
     }
 }
 
+//Funcion que añade los productos relacionados.
 function otherElements(array, array2) {
     let imagen1 = '';
     let imagen2 = '';
@@ -303,7 +291,7 @@ function otherElements(array, array2) {
     document.getElementById('img2').innerHTML = imagen2;
 }
 
-
+//Se ejecuta cuando se termine de cargar la pagina.
 document.addEventListener("DOMContentLoaded", function(e) {
     document.getElementById('alertTextarea').style.visibility = "hidden";
     document.getElementById('alertEstrellas').style.visibility = "hidden";
