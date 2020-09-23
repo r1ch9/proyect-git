@@ -91,10 +91,13 @@
             </div>
         </div>
 
+        <!--Div para informacion e imagenes.-->
         <div class="container mt-5">
             <hr class="my-3">
             <div class="container">
                 <div class="row">
+
+                    <!--Carrousel para imagenes del producto.-->
                     <div class="col-lg-8 w-60">
                         <div id="carouselExampleIndicators" class="carousel slide carousel-fade" data-ride="carousel">
                             <ol class="carousel-indicators">
@@ -131,6 +134,8 @@
                             </a>
                         </div>
                     </div>
+
+                    <!--Div para nombre, precio y agregar al carrito.-->
                     <div class="border col-lg-4">
                         <br class="my-2">
                         <h3 id="categoryName" style="text-align: center" class="col"></h3>
@@ -156,8 +161,11 @@
             <br/>
             <br/>
 
+            <!--div para descripciones de producto y productos relacionados-->
             <div class="container border">
                 <div class="row">
+
+                    <!--Descripcion de producto.-->
                     <div class="col-lg-8">
                         <br class="my-3">
                         <dl>
@@ -172,6 +180,8 @@
                         <p id="productCriteria" class="text-muted"></p>
 
                     </div>
+
+                    <!--Productos relacionados.-->
                     <div class="col-lg-4">
                         <br class="mr-1">
                         <dl>
@@ -187,11 +197,16 @@
 
             <hr>
 
+            <!--Impresion de comentarios.-->
             <div class="container">
                 <div class="row">
+
+                    <!--Titulo izquierda-->
                     <div class="col text-left" style="padding-top:15px;">
                         <h5>Ultimos Comentarios:</h5>
                     </div>
+
+                    <!--Filtros de comentarios.-->
                     <div class="col text-right">
                         <div class="btn-group btn-group-toggle mb-4" style="padding-top:15px;" data-toggle="buttons">
                             <label class="btn btn-light active" id="sortAsc">
@@ -205,16 +220,19 @@
                             </label>
                         </div>
                     </div>
+
                 </div>
+                <!-- div para impresion de comentarios.-->
                 <div class="row text-center text-lg-left pt-2" id="Comments"></div>
             </div>
             <hr>
-            <!-- Button trigger modal -->
+
+            <!-- Boton modal para comentarios -->
             <button type="button" class="btn btn-secondary" data-toggle="modal" data-target="#exampleModalCenter">
                 Agregar nuevo comentario
               </button>
 
-            <!-- Modal -->
+            <!-- Modal para comentarios -->
             <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
                 <div class="modal-dialog modal-dialog-centered" role="document">
                     <div class="modal-content">
@@ -227,15 +245,19 @@
                         <form action="#" onsubmit="return submitUserForm();" method="POST">
                             <div class="modal-body">
 
+                                <!--Textarea de comentarios-->
                                 <div class="justify-content-center">
                                     <p style="text-align: center;">Comente su experiencia con el producto:</p>
                                     <textarea class="d-flex justify-content-center" cols="35" rows="5" style="resize: both;" id="commentTextInput" placeholder="Contenido de comentario aqui"></textarea>
                                     <br class="my-2">
+
+                                    <!--Alerta de Textarea-->
                                     <div class="d-flex justify-content-center">
                                         <p id="alertTextarea" style="padding-left: 3%; padding-right: 3%; text-align: center; background-color: #DC2E2E40; color: red;">Este campo es obligatorio.</p>
                                     </div>
                                 </div>
 
+                                <!--Estrellas para comentarios.-->
                                 <div class="justify-content-center">
                                     <p style="text-align: center">Ingrese la calificacion:</p>
                                     <div class="d-flex justify-content-center" onfocus="asignarEstrellas()">
@@ -245,18 +267,23 @@
                                         <span class="fa fa-star" id="estrella4"></span>
                                         <span class="fa fa-star" id="estrella5"></span>
                                     </div>
+
+                                    <!--Alerta de estrellas-->
                                     <br class="my-2">
                                     <div class="d-flex justify-content-center">
                                         <p id="alertEstrellas" style="padding-left: 3%; padding-right: 3%; text-align: center; background-color: #DC2E2E40; color: red;">Este campo es obligatorio.</p>
                                     </div>
                                 </div>
 
+                                <!--ReCaptcha-->
                                 <div style="display: block; margin-left: auto; margin-right: auto; width: 65%;">
                                     <div class="g-recaptcha" data-sitekey="6Lf2JsoZAAAAAMfxh4ZYFI4UtVTSuNPDbFpmhlvn" data-callback="verifyCaptcha"></div>
-                                    <div id="g-recaptcha-error"></div>
+                                    <!--<div id="g-recaptcha-error"></div>-->
                                 </div>
 
                             </div>
+
+                            <!--Botones del modal para comentarios.-->>
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
                                 <button type="button" value="Submit" id="botonComentario" onclick="textareaVerification();" disabled class="btn btn-secondary" disabled>Comentar</button>
@@ -267,6 +294,7 @@
             </div>
         </div>
 
+        <!--Pie de pagina por defecto.-->
         <footer class="text-muted">
             <div class="container">
                 <p class="float-right">
