@@ -55,7 +55,7 @@ function deleteElement(element) {
                         <h6 class="text-muted" style="text-align: right">` + object[i].currency + ` ` + object[i].unitCost + `</h6>
                     </div>
                     <div class="col-2">
-                        <input type="number" style="width: 70%" placeholder="` + object[i].count + `">
+                        <input type="number" style="width: 70%" value="` + object[i].count + `">
                         <span class="close" onclick="deleteElement(` + i + `)">&times;</span>
                     </div>
                 </div>
@@ -67,6 +67,7 @@ function deleteElement(element) {
         }
     }
     j += 1;
+
     document.getElementById('impresion').innerHTML = dataI;
 }
 
