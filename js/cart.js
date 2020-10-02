@@ -4,10 +4,21 @@ let jsonG;
 
 //Impresion de elementos en pantalla
 function impress(json) {
-
     let object = json.articles;
     dataI += `
-            <h2>` + object[0].name + `</h2>
+        <div class="container border">
+            <div class="row">
+                <div class="col-3">
+                    <img src="` + object[0].src + `">
+                </div>
+                <div class="col-6">
+                    <h5>` + object[0].name + `</h5>
+                </div>
+                <div class="col-3">
+                    <p style="text-muted">` + object[0].currency + ` ` + object[0].unitCost + `</p>
+                </div>
+            </div>
+        </div>
         `
     document.getElementById('impresion').innerHTML = dataI;
 
