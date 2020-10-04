@@ -52,6 +52,10 @@
             text-decoration: none;
             cursor: pointer;
         }
+        
+        .active {
+            background-color: #ccc;
+        }
     </style>
     <link href="css/bootstrap.min.css" rel="stylesheet">
     <link href="css/styles.css" rel="stylesheet">
@@ -81,17 +85,83 @@
     <br>
     <div class="container">
         <div class="row">
-            <div class="col-3">
-                <div id="carrito">Carrito de compras</div>
-                <div id="envio">Datos de envío</div>
-                <div id="verificacion">Verificación</div>
+            <div class="col-sm-3">
+                <div class="container border active" id="carrito" style="cursor: pointer;" onclick="windowchange(id)">
+                    <div style="margin-bottom: 10%; margin-top: 10%">Carrito de compras</div>
+                </div>
+                <div class="container border" id="envio" style="cursor: pointer;" onclick="windowchange(id)">
+                    <div style="margin-bottom: 10%; margin-top: 10%">Datos de envío</div>
+                </div>
+                <div class="container border" id="verificacion" style="cursor: pointer;" onclick="windowchange(id)">
+                    <div style="margin-bottom: 10%; margin-top: 10%">Verificación</div>
+                </div>
             </div>
-            <div class="col-6" id="impresion">asd</div>
-            <br>
+            <div class="col-8" id="bloqueCarrito">
+                <div class="container border">
+                    <br>
+                    <div class="row">
+                        <div class="col-3">
+                            <div id="imagen1"></div>
+                        </div>
+                        <div class="col-5">
+                            <div id="tittle1"></div>
+                        </div>
+                        <div class="col-4">
+                            <div class="container">
+                                <div id="parra1"></div>
+                                <div class="container">
+                                    <input type="number" id="0" onchange="asd(id)" min="0" style="width: 100%;">
+                                </div>
+                                <br>
+                                <hr>
+                                <div id="total0" style="text-align: center;">Total = USD 0</div>
+                                <br>
+                            </div>
+                        </div>
+                    </div>
+                </div>
 
-            <div class="col-3"></div>
-            <input type="number" id="selector" onchange="asd()" min="0">
-            <div id="ea">0</div>
+                <div class="container border">
+                    <br>
+                    <div class="row">
+                        <div class="col-3">
+                            <div id="imagen2"></div>
+                        </div>
+                        <div class="col-5">
+                            <div id="tittle2"></div>
+                        </div>
+                        <div class="col-4">
+                            <div class="container">
+                                <div id="parra2"></div>
+                                <div class="container">
+                                    <input type="number" id="1" onchange="asd(id)" min="0" style="width: 100%;">
+                                </div>
+                                <br>
+                                <hr>
+                                <div id="total1" style="text-align: center;">Total = USD 0</div>
+                                <br>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="border">
+                    <div class="container" style="margin-bottom: 3%; margin-top: 3%;">
+                        <div class="row">
+                            <div class="col-8" style="text-align: left;">
+                                <button class="btn btn-secondary">Metodo de envío</button>
+                            </div>
+                            <div class="col-4" style="text-align: center;">
+                                <p id="totalGeneral">Total: </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-8" id="bloqueEnvio" hidden>
+            </div>
+            <div class="col-8" id="bloqueVerificacion" hidden>
+            </div>
+            <br>
         </div>
     </div>
 
