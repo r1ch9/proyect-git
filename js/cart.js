@@ -6,13 +6,13 @@ let jsonG;
 function impress(json) {
     let object = json.articles;
     document.getElementById('imagen1').innerHTML = `<img src="` + object[0].src + `" class="img-thumbnail">`;
-    document.getElementById('tittle1').innerHTML = `<h5 class="">` + object[0].name + `</h5>`;
+    document.getElementById('tittle1').innerHTML = `<h5 style="text-align: center;">` + object[0].name + `</h5>`;
     document.getElementById('parra1').innerHTML = `<p style="text-align: center">` + object[0].currency + ` ` + object[0].unitCost + `</p>`;
     document.getElementById('0').value = object[0].count;
     result(json, 0);
 
     document.getElementById('imagen2').innerHTML = `<img src="` + object[1].src + `" class="img-thumbnail">`;
-    document.getElementById('tittle2').innerHTML = `<h5 class="">` + object[1].name + `</h5>`;
+    document.getElementById('tittle2').innerHTML = `<h5 style="text-align: center;">` + object[1].name + `</h5>`;
     document.getElementById('parra2').innerHTML = `<p style="text-align: center">` + object[1].currency + ` ` + object[1].unitCost + `</p>`;
     document.getElementById('1').value = object[1].count;
     result(json, 1);
