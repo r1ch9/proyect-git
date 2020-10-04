@@ -50,7 +50,7 @@ function windowchange(id) {
             document.getElementById('envio').className = document.getElementById('envio').className.replace(" active", "");
             document.getElementById('bloqueEnvio').hidden = true;
             document.getElementById(id).className += " active";
-            document.getElementById('bloqueVarificacion').hidden = false;
+            document.getElementById('bloqueVerificacion').hidden = false;
         }
     }
 }
