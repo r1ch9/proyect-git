@@ -81,6 +81,14 @@ function asd(number) {
     result(jsonG, number);
 }
 
+let map;
+
+function initMap() {
+    map = new google.maps.Map(document.getElementById("map"), {
+        center: { lat: -34.397, lng: 150.644 },
+        zoom: 8,
+    });
+}
 
 //Función que se ejecuta una vez que se haya lanzado el evento de
 //que el documento se encuentra cargado, es decir, se encuentran todos los
