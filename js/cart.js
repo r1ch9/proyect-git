@@ -1,6 +1,9 @@
 const LINK_CARRITO = "https://japdevdep.github.io/ecommerce-api/cart/654.json";
 dataI = "";
 let jsonG;
+var times, latitud, longitud, altitud, exactitud;
+var x = document.getElementById("demo");
+var direcc, country;
 
 //Impresion de elementos en pantalla
 function impress(json) {
@@ -81,13 +84,41 @@ function asd(number) {
     result(jsonG, number);
 }
 
-let map;
+/*function cargarmap() {
+    navigator.geolocation.getCurrentPosition(showPosition, showError);
+    x.innerHTML = "";
 
-function initMap() {
-    map = new google.maps.Map(document.getElementById("map"), {
-        center: { lat: -34.397, lng: 150.644 },
-        zoom: 8,
-    });
+    function showPosition(position) {
+        lat = position.coords.latitude;
+        lng = position.coords.longitude;
+        var times = position.timestamp;
+        var altitud = position.coords.altitude;
+        var exactitud = position.coords.accuracy;
+        document.getElementById('mapO').innerHTML = `<iframe class="iframe centrado" src="https://maps.google.com/?ll=` + lat + `,` + lng + `&z=14&t=m&output=embed" width="600px" height="300px" frameborder="0" style="border:0" allowfullscreen></iframe><i id="marker" class="fas fa-map-pin centrados"></i>`;
+
+    }
+
+    function showError(error) {
+        switch (error.code) {
+            case error.PERMISSION_DENIED:
+                x.innerHTML = "Denegada la peticion de Geolocalización en el navegador."
+                break;
+            case error.POSITION_UNAVAILABLE:
+                x.innerHTML = "La información de la localización no esta disponible."
+                break;
+            case error.TIMEOUT:
+                x.innerHTML = "El tiempo de petición ha expirado."
+                break;
+            case error.UNKNOWN_ERROR:
+                x.innerHTML = "Ha ocurrido un error desconocido."
+                break;
+        }
+    }
+}*/
+
+function saveAddress() {
+    direcc = document.getElementById('street-address').value;
+    country = document.getElementById('country').value;
 }
 
 //Función que se ejecuta una vez que se haya lanzado el evento de
