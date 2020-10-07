@@ -84,7 +84,7 @@ function asd(number) {
     result(jsonG, number);
 }
 
-/*function cargarmap() {
+function cargarmap() {
     navigator.geolocation.getCurrentPosition(showPosition, showError);
     x.innerHTML = "";
 
@@ -114,7 +114,7 @@ function asd(number) {
                 break;
         }
     }
-}*/
+}
 
 function saveAddress() {
     direcc = document.getElementById('street-address').value;
