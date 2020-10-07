@@ -27,7 +27,7 @@ function totalGral(json) {
     let total0 = (document.getElementById('0').value * json.articles[0].unitCost) / 40;
     let total1 = document.getElementById('1').value * json.articles[1].unitCost;
     let resultado = total0 + total1;
-    document.getElementById('totalGeneral').innerHTML = `Total: USD ` + resultado;
+    document.getElementById('totalGeneral').innerHTML = `subTotal: USD ` + resultado;
 }
 
 function windowchange(id) {
