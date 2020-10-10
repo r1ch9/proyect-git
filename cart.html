@@ -86,6 +86,51 @@
             margin: 0;
             padding: 0;
         }
+        
+        .switch {
+            position: relative;
+            display: inline-block;
+            width: 40px;
+            height: 24px;
+        }
+        
+        .slider {
+            position: absolute;
+            cursor: pointer;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: #ccc;
+            -webkit-transition: .4s;
+            transition: .4s;
+        }
+        
+        .slider:before {
+            position: absolute;
+            content: "";
+            height: 17px;
+            width: 17px;
+            left: 5px;
+            bottom: 4px;
+            background-color: white;
+            -webkit-transition: .4s;
+            transition: .4s;
+        }
+        
+        input:checked+.slider {
+            background-color: #6c757d;
+        }
+        
+        input:focus+.slider {
+            box-shadow: 0 0 1px #6c757d;
+        }
+        
+        input:checked+.slider:before {
+            -webkit-transform: translateX(13px);
+            -ms-transform: translateX(13px);
+            transform: translateX(13px);
+        }
     </style>
     <link href="css/bootstrap.min.css" rel="stylesheet">
     <link href="css/styles.css" rel="stylesheet">
@@ -129,6 +174,18 @@
 
             <!--Bloque carrito-->
             <div class="col-lg-8" id="bloqueCarrito">
+                <div class="container border-left border-right border-top">
+                    <div class="row">
+                        <div class="col" style="padding-top: 5px;">
+                            <div class="float-right">
+                                USD <label class="switch">
+                                    <input id="currencyChange" onchange="ads()" type="checkbox">
+                                    <span class="slider"></span>
+                                </label> UYU
+                            </div>
+                        </div>
+                    </div>
+                </div>
                 <div class="container border">
                     <br>
                     <div class="row">

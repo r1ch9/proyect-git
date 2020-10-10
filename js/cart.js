@@ -21,6 +21,7 @@ function impress(json) {
     result(json, 1);
 
     totalGral(jsonG);
+    changeMoney(jsonG);
 }
 
 function totalGral(json) {
@@ -28,6 +29,7 @@ function totalGral(json) {
     let total1 = document.getElementById('1').value * json.articles[1].unitCost;
     let resultado = total0 + total1;
     document.getElementById('totalGeneral').innerHTML = `subTotal: USD ` + resultado;
+    changeMoney(jsonG);
 }
 
 function windowchange(id) {
@@ -56,6 +58,10 @@ function windowchange(id) {
             document.getElementById('bloqueVerificacion').hidden = false;
         }
     }
+}
+
+function ads() {
+    changeMoney(jsonG);
 }
 
 function result(json, id) {
@@ -119,6 +125,23 @@ function cargarmap() {
 function saveAddress() {
     direcc = document.getElementById('street-address').value;
     country = document.getElementById('country').value;
+}
+
+function changeMoney(jsonG) {
+    let input = document.getElementById('currencyChange').checked;
+    let total0 = (document.getElementById('0').value * jsonG.articles[0].unitCost);
+    let total1 = (document.getElementById('1').value * jsonG.articles[1].unitCost * 40);
+    let resultado = total0 + total1;
+
+    if (input) {
+        document.getElementById('totalGeneral').innerHTML = `subTotal: UYU ` + resultado;
+        document.getElementById('total0').innerHTML = `Total = UYU ` + jsonG.articles[0].unitCost * document.getElementById('0').value;
+        document.getElementById('total1').innerHTML = `Total = UYU ` + (jsonG.articles[1].unitCost * 40) * document.getElementById('1').value;
+    } else {
+        document.getElementById('totalGeneral').innerHTML = `subTotal: USD ` + resultado / 40;
+        document.getElementById('total0').innerHTML = `Total = USD ` + (jsonG.articles[0].unitCost / 40) * document.getElementById('0').value;
+        document.getElementById('total1').innerHTML = `Total = USD ` + jsonG.articles[1].unitCost * document.getElementById('1').value;
+    }
 }
 
 //Función que se ejecuta una vez que se haya lanzado el evento de
