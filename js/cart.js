@@ -36,27 +36,27 @@ function totalGral(json) {
 //Cambio de pestañas
 function windowchange(id) {
     if (id == 'carrito') {
-        document.getElementById(id).className += " active";
+        document.getElementById('carrito').className = document.getElementById('carrito').className.replace(" a", " active");
         document.getElementById('bloqueCarrito').hidden = false;
-        document.getElementById('envio').className = document.getElementById('envio').className.replace(" active", "");
+        document.getElementById('envio').className = document.getElementById('envio').className.replace(" active", " a");
         document.getElementById('bloqueEnvio').hidden = true;
-        document.getElementById('verificacion').className = document.getElementById('verificacion').className.replace(" active", "");
+        document.getElementById('verificacion').className = document.getElementById('verificacion').className.replace(" active", " a");
         document.getElementById('bloqueVerificacion').hidden = true;
     } else {
         if (id == 'envio') {
-            document.getElementById('carrito').className = document.getElementById('carrito').className.replace(" active", "");
+            document.getElementById('carrito').className = document.getElementById('carrito').className.replace(" active", " a");
             document.getElementById('bloqueCarrito').hidden = true;
-            document.getElementById(id).className += " active";
+            document.getElementById('envio').className = document.getElementById('envio').className.replace(" a", " active");
             document.getElementById('bloqueEnvio').hidden = false;
-            document.getElementById('verificacion').className = document.getElementById('verificacion').className.replace(" active", "");
+            document.getElementById('verificacion').className = document.getElementById('verificacion').className.replace(" active", " a");
             document.getElementById('bloqueVerificacion').hidden = true;
         }
         if (id == 'verificacion') {
-            document.getElementById('carrito').className = document.getElementById('carrito').className.replace(" active", "");
+            document.getElementById('carrito').className = document.getElementById('carrito').className.replace(" active", " a");
             document.getElementById('bloqueCarrito').hidden = true;
-            document.getElementById('envio').className = document.getElementById('envio').className.replace(" active", "");
+            document.getElementById('envio').className = document.getElementById('envio').className.replace(" active", " a");
             document.getElementById('bloqueEnvio').hidden = true;
-            document.getElementById(id).className += " active";
+            document.getElementById('verificacion').className = document.getElementById('verificacion').className.replace(" a", " active");
             document.getElementById('bloqueVerificacion').hidden = false;
         }
     }
