@@ -24,6 +24,7 @@ function impress(json) {
     changeMoney(jsonG);
 }
 
+//Funcion que cuenta el total de precio de los productos por la cantidad.
 function totalGral(json) {
     let total0 = (document.getElementById('0').value * json.articles[0].unitCost) / 40;
     let total1 = document.getElementById('1').value * json.articles[1].unitCost;
@@ -32,6 +33,7 @@ function totalGral(json) {
     changeMoney(jsonG);
 }
 
+//Cambio de pestañas
 function windowchange(id) {
     if (id == 'carrito') {
         document.getElementById(id).className += " active";
@@ -60,10 +62,12 @@ function windowchange(id) {
     }
 }
 
+//Funcion para redireccionar.
 function ads() {
     changeMoney(jsonG);
 }
 
+//Funcion para imprimir el total de el precio por producto dependiendo de la cantidad.
 function result(json, id) {
     let costo;
     let resultado;
@@ -86,10 +90,12 @@ function result(json, id) {
     totalGral(jsonG);
 }
 
+//Funcion para redireccionar.
 function asd(number) {
     result(jsonG, number);
 }
 
+//Funciom para cargar mapa.
 function cargarmap() {
     navigator.geolocation.getCurrentPosition(showPosition, showError);
     x.innerHTML = "";
@@ -122,11 +128,13 @@ function cargarmap() {
     }
 }
 
+//Funcion para guardar la direccion.
 function saveAddress() {
     direcc = document.getElementById('street-address').value;
     country = document.getElementById('country').value;
 }
 
+//Funcion para cambiar la moneda.
 function changeMoney(jsonG) {
     let input = document.getElementById('currencyChange').checked;
     let total0 = (document.getElementById('0').value * jsonG.articles[0].unitCost);
@@ -143,6 +151,8 @@ function changeMoney(jsonG) {
         document.getElementById('total1').innerHTML = `Total = USD ` + jsonG.articles[1].unitCost * document.getElementById('1').value;
     }
 }
+
+
 
 //Función que se ejecuta una vez que se haya lanzado el evento de
 //que el documento se encuentra cargado, es decir, se encuentran todos los
