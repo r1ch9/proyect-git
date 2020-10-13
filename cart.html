@@ -141,6 +141,11 @@
             -webkit-appearance: none;
             margin: 0;
         }
+        
+        .seleccionado {
+            border-color: #212529;
+            border-width: 10px;
+        }
     </style>
     <link href="css/bootstrap.min.css" rel="stylesheet">
     <link href="css/styles.css" rel="stylesheet">
@@ -247,7 +252,7 @@
                     <div class="container" style="margin-bottom: 3%; margin-top: 3%;">
                         <div class="row">
                             <div class="col-lg-8" style="text-align: left;">
-                                <button class="btn btn-secondary" onclick="windowchange('envio')">Metodo de envío</button>
+                                <a href="#" onclick="windowchange('envio')">Metodo de envio</a>
                             </div>
                             <div class="col-lg-4" style="text-align: center;">
                                 <p id="totalGeneral">subTotal: </p>
@@ -313,71 +318,48 @@
                     </div>
                     <br>
                     <hr>
-                    <br>
                     <div class="container">
                         <h6 style="text-align: center;">Seleccione opcion de envío</h6>
                         <br>
                         <div class="col-3"></div>
                         <div class="container">
-                            <br>
 
                             <div class="container">
                                 <div class="row">
-                                    <div class="col-1">
-                                        <input type="radio" id="Premium" name="gender" value="Premium">
-                                        <label for="Premium"></label>
+                                    <div class="col-4">
+                                        <div class="container border" id="envioPremium" onclick="sendType(id)" style="cursor: pointer;">
+                                            <p></p>
+                                            <P style="text-align: center;">Envio Premium</P>
+                                            <P style="text-align: center;">15% del subtotal general</P>
+                                            <P style="text-align: center;">Demora de 2 a 5 días</P>
+                                        </div>
                                     </div>
-                                    <div class="col-6 border">
-                                        <label for="Premium">
-                                            <p>  Envio Premium 15% del costo subtotal</p>
-                                            <p>  Demora de 2 a 5 dias</p> 
-                                        </label>
+                                    <div class="col-4">
+                                        <div class="container border" id="envioExpress" onclick="sendType(id)" style="cursor: pointer;">
+                                            <p></p>
+                                            <P style="text-align: center;">Envio Express</P>
+                                            <P style="text-align: center;">7% del subtotal general</P>
+                                            <P style="text-align: center;">Demora de 5 a 8 días</P>
+                                        </div>
                                     </div>
-                                    <div class="col-1"></div>
-                                    <div class="col-4 border">
-                                        <div id="subPremium"></div>
+                                    <div class="col-4">
+                                        <div class="container border" id="envioStandard" onclick="sendType(id)" style="cursor: pointer;">
+                                            <p></p>
+                                            <P style="text-align: center;">Envio Standard</P>
+                                            <P style="text-align: center;">5% del subtotal general</P>
+                                            <P style="text-align: center;">Demora de 12 a 15 días</P>
+                                        </div>
                                     </div>
                                 </div>
                             </div><br>
 
                             <div class="container">
                                 <div class="row">
-                                    <div class="col-1">
-                                        <input type="radio" id="express" name="gender" value="express">
-                                        <label for="express"></label>
-                                    </div>
-                                    <div class="col-6 border">
-                                        <label for="express">
-                                            <p>  Envio Express 7% del costo subtotal</p>
-                                            <p>  Demora de 5 a 8 dias</p> 
-                                        </label>
-                                    </div>
-                                    <div class="col-1"></div>
-                                    <div class="col-4 border">
-                                        <div id="subExpress"></div>
+                                    <div class="float-right">
+                                        <a href="#" onclick="windowchange('verificacion')">Verificacion de datos</a>
                                     </div>
                                 </div>
-                            </div><br>
-
-                            <div class="container">
-                                <div class="row">
-                                    <div class="col-1">
-                                        <input type="radio" id="standard" name="gender" value="standard">
-                                        <label for="standard"></label>
-                                    </div>
-                                    <div class="col-6 border">
-                                        <label for="standard">
-                                            <p>  Envio Standard 5% del costo subtotal</p>
-                                            <p>  Demora de 12 a 15 dias</p> 
-                                        </label>
-                                    </div>
-                                    <div class="col-1"></div>
-                                    <div class="col-4 border">
-                                        <div id="subStandard"></div>
-                                    </div>
-                                </div>
-                            </div><br>
-
+                            </div>
                         </div>
                     </div>
                     <br>
@@ -403,6 +385,52 @@
 
             <!--Bloque verificacion-->
             <div class="col-lg-8" id="bloqueVerificacion" hidden>
+                <div class="container border a">
+                    <h5 style="text-align: center; margin-top: 15px;">Verificacion de datos</h5>
+                    <hr>
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-6">
+                                <div class="container border">
+                                    <h6 style="text-align: center;">Datos de envío</h6>
+
+                                </div>
+                            </div>
+                            <div class="col-6">
+                                <div class="container border">
+                                    <h6 style="text-align: center;">Productos del carrito</h6>
+                                    <div id="prodCarr"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="container"></div>
+                    <button type="button" data-toggle="modal" data-target="#staticBackdrop" class="btn btn-secondary">Formas de pago</button>
+                    <!-- Modal -->
+                    <div class="modal fade" id="staticBackdrop" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="staticBackdropLabel">Modal title</h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <div class="modal-body">
+                                    ...
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                    <button type="button" class="btn btn-primary">Understood</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <br>
+                    <br>
+                </div>
+                <br>
             </div>
             <br>
         </div>

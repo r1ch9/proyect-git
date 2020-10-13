@@ -6,6 +6,7 @@ var times, latitud, longitud, altitud, exactitud;
 var x = document.getElementById("demo");
 var direcc, country;
 let subPremium, subExpress, subStandard;
+let sendMethod;
 
 //Impresion de elementos en pantalla
 function impress(json) {
@@ -38,10 +39,6 @@ function totalGral(json) {
     subExpress = (resultado * 7) / 100;
     subStandard = (resultado * 5) / 100;
 
-    document.getElementById('subPremium').innerHTML = `<p> USD: ` + subPremium + `</p>` + `<p> UYU: ` + subPremium * 40 + `</p>`;
-    document.getElementById('subExpress').innerHTML = `<p> USD: ` + subExpress + `</p>` + `<p> UYU: ` + subExpress * 40 + `</p>`;
-    document.getElementById('subStandard').innerHTML = `<p> USD: ` + subStandard + `</p>` + `<p> UYU: ` + subStandard * 40 + `</p>`;
-
 }
 
 //Cambio de pestañas
@@ -71,6 +68,10 @@ function windowchange(id) {
             document.getElementById('bloqueVerificacion').hidden = false;
         }
     }
+}
+
+function veri() {
+    document.getElementById('prodCarr').innerHTML = "SADQWE";
 }
 
 //Funcion para redireccionar.
@@ -195,6 +196,32 @@ function verificacionDatosVacios() {
 
 }
 
+function sendType(id) {
+    if (id == 'envioPremium') {
+        document.getElementById('envioPremium').className += ' active';
+        document.getElementById('envioExpress').className = document.getElementById('envioExpress').className.replace(' active', '');
+        document.getElementById('envioStandard').className = document.getElementById('envioStandard').className.replace(' active', '');
+        sendMethod = id;
+
+    } else {
+        if (id == 'envioExpress') {
+            document.getElementById('envioPremium').className = document.getElementById('envioPremium').className.replace(' active', '');
+            document.getElementById('envioExpress').className += ' active';
+            document.getElementById('envioStandard').className = document.getElementById('envioStandard').className.replace(' active', '');
+            sendMethod = id;
+
+        } else {
+            if (id == 'envioStandard') {
+                document.getElementById('envioPremium').className = document.getElementById('envioPremium').className.replace(' active', '');
+                document.getElementById('envioExpress').className = document.getElementById('envioExpress').className.replace(' active', '');
+                document.getElementById('envioStandard').className += ' active';
+                sendMethod = id;
+
+            }
+        }
+    }
+}
+
 //Función que se ejecuta una vez que se haya lanzado el evento de
 //que el documento se encuentra cargado, es decir, se encuentran todos los
 //elementos HTML presentes.
@@ -207,6 +234,7 @@ document.addEventListener("DOMContentLoaded", function(e) {
                 if (resultCty.status === "ok") {
                     AllCountry = resultCty.data;
                     impressCountry(AllCountry);
+                    veri();
                 }
             });
         }
