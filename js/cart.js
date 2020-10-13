@@ -1,9 +1,11 @@
 const LINK_CARRITO = "https://japdevdep.github.io/ecommerce-api/cart/654.json";
+const COUNTRY_LIST = "https://raw.githubusercontent.com/r1ch9/proyect-git/master/countries.json";
 dataI = "";
-let jsonG;
+let jsonG, AllCountry;
 var times, latitud, longitud, altitud, exactitud;
 var x = document.getElementById("demo");
 var direcc, country;
+let subPremium, subExpress, subStandard;
 
 //Impresion de elementos en pantalla
 function impress(json) {
@@ -31,6 +33,15 @@ function totalGral(json) {
     let resultado = total0 + total1;
     document.getElementById('totalGeneral').innerHTML = `subTotal: USD ` + resultado;
     changeMoney(jsonG);
+
+    subPremium = (resultado * 15) / 100;
+    subExpress = (resultado * 7) / 100;
+    subStandard = (resultado * 5) / 100;
+
+    document.getElementById('subPremium').innerHTML = `<p> USD: ` + subPremium + `</p>` + `<p> UYU: ` + subPremium * 40 + `</p>`;
+    document.getElementById('subExpress').innerHTML = `<p> USD: ` + subExpress + `</p>` + `<p> UYU: ` + subExpress * 40 + `</p>`;
+    document.getElementById('subStandard').innerHTML = `<p> USD: ` + subStandard + `</p>` + `<p> UYU: ` + subStandard * 40 + `</p>`;
+
 }
 
 //Cambio de pestañas
@@ -152,7 +163,37 @@ function changeMoney(jsonG) {
     }
 }
 
+//Obtener lista con muchos paises y sus codigos de telefono.
+function impressCountry(AllCountry) {
+    let CountryList;
+    CountryList = `<option>Seleccionar Pais</option>`;
 
+    for (i = 0; i < AllCountry.countries.length; i++) {
+        CountryList += `<option value="` + AllCountry.countries[i].name_es + `">` + AllCountry.countries[i].name_es + `</option>`;
+    }
+
+    document.getElementById('pais').innerHTML = `<select name="countries" id="selectCountries" onchange="cambioPais(id)">` + CountryList + `</select>`;
+}
+
+//Asignar codigo de area automaticamente al seleccionar tu pais
+function cambioPais(id) {
+    let select = document.getElementById(id);
+    let option = select.options[select.selectedIndex].value;
+
+    document.getElementById('area-code').value = AllCountry.countries[select.selectedIndex - 1].dial_code;
+}
+
+function verificacionDatosVacios() {
+    document.getElementById('street-adress').value = "";
+    document.getElementById('door-Number').value = "";
+    document.getElementById("cruce").value = "";
+    document.getElementById('selectCountries').value = "";
+    document.getElementById('postal-code').value = "";
+    document.getElementById('area-code').value = "";
+    document.getElementById('phone-number').value = "";
+    document.getElementById('email').value = "";
+
+}
 
 //Función que se ejecuta una vez que se haya lanzado el evento de
 //que el documento se encuentra cargado, es decir, se encuentran todos los
@@ -162,6 +203,12 @@ document.addEventListener("DOMContentLoaded", function(e) {
         if (resultObj.status === "ok") {
             jsonG = resultObj.data;
             impress(resultObj.data);
+            getJSONData(COUNTRY_LIST).then(function(resultCty) {
+                if (resultCty.status === "ok") {
+                    AllCountry = resultCty.data;
+                    impressCountry(AllCountry);
+                }
+            });
         }
     });
 });
