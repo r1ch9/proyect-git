@@ -100,6 +100,10 @@ function windowchange(id) {
     }
 }
 
+function ingresarDatos() {
+    alert('datosIngresados');
+}
+
 function veri() {
     document.getElementById('prodCarr').innerHTML = "POR AHORA LO DEJAMOS EN PAUSA.";
 }

@@ -269,51 +269,54 @@
                     <hr>
                     <div class="container" style="margin-top: 3%;">
                         <div class="row">
-                            <div class="container">
-                                <div class="row">
-                                    <div class="col-4 float-left">
-                                        <p>Direccion: </p>
+                            <form>
+                                <div class="container">
+                                    <div class="row">
+                                        <div class="col-4 float-left">
+                                            <p>Direccion: </p>
+                                        </div>
+                                        <div class=" col float-right">
+                                            <input id="street-address" type="text" autocomplete="street-address"> Puerta: <input id="door-Number" class="numeros" type="number" class="withoutScroll" style="width: 15%;" autocomplete="doorNumber">
+                                        </div>
                                     </div>
-                                    <div class=" col float-right">
-                                        <input id="street-address" type="text" autocomplete="street-address"> Puerta: <input id="door-Number" class="numeros" type="number" class="withoutScroll" style="width: 15%;" autocomplete="doorNumber">
+                                    <div class="row">
+                                        <div class="col-4 float-left">
+                                            <p>Esquina: </p>
+                                        </div>
+                                        <div class=" col float-right"><input id="cruce" type="text" autocomplete="street-address"></div>
+                                    </div>
+                                    <div class="row">
+                                        <div class=" col-4 float-left">
+                                            <p>Pais: </p>
+                                        </div>
+                                        <div class="col">
+                                            <div id="pais"></div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-4 float-left">
+                                            <p>Codigo Postal: </p>
+                                        </div>
+                                        <div class="col float-right"><input id="postal-code" type="text" class="numeros" autocomplete="postal-code"></div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-4 float-left">
+                                            <p>Numero de Telefono: </p>
+                                        </div>
+                                        <div class="col float-right">
+                                            <input id="area-code" type="tel" class="withoutScroll" style="width: 15%;" autocomplete="tel-country-code"> +
+                                            <input id="phone-number" type="tel" autocomplete="tel">
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-4 float-left">
+                                            <p>Correo: </p>
+                                        </div>
+                                        <div class="col float-right"><input id="email" type="email" autocomplete="email"></div>
                                     </div>
                                 </div>
-                                <div class="row">
-                                    <div class="col-4 float-left">
-                                        <p>Esquina: </p>
-                                    </div>
-                                    <div class=" col float-right"><input id="cruce" type="text" autocomplete="street-address"></div>
-                                </div>
-                                <div class="row">
-                                    <div class=" col-4 float-left">
-                                        <p>Pais: </p>
-                                    </div>
-                                    <div class="col">
-                                        <div id="pais"></div>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-4 float-left">
-                                        <p>Codigo Postal: </p>
-                                    </div>
-                                    <div class="col float-right"><input id="postal-code" type="text" class="numeros" autocomplete="postal-code"></div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-4 float-left">
-                                        <p>Numero de Telefono: </p>
-                                    </div>
-                                    <div class="col float-right">
-                                        <input id="area-code" type="tel" class="withoutScroll" style="width: 15%;" autocomplete="tel-country-code"> +
-                                        <input id="phone-number" type="tel" autocomplete="tel">
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-4 float-left">
-                                        <p>Correo: </p>
-                                    </div>
-                                    <div class="col float-right"><input id="email" type="email" autocomplete="email"></div>
-                                </div>
-                            </div>
+                                <button href="#" onclick="ingresarDatos()">INGRESAR</button>
+                            </form>
                         </div>
                     </div>
                     <br>
