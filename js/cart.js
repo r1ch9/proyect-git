@@ -41,6 +41,36 @@ function totalGral(json) {
 
 }
 
+function paymentMethod(id) {
+    console.log(id);
+}
+
+function accColapse(id) {
+    if (id == "collapseEfectivo") {
+        $('#collapseEfectivo').click(function() {
+            $('#collapseBankTransferD').collapse('hide');
+            $('#collapseCreditCardD').collapse('hide');
+            $('#collapseEfectivoD').collapse('show');
+        });
+    } else {
+        if (id == "collapseBankTransfer") {
+            $('#collapseBankTransfer').click(function() {
+                $('#collapseEfectivoD').collapse('hide');
+                $('#collapseBankTransferD').collapse('show');
+                $('#collapseCreditCardD').collapse('hide');
+            });
+        } else {
+            if (id == 'collapseCreditCard') {
+                $('#collapseCreditCard').click(function() {
+                    $('#collapseEfectivoD').collapse('hide');
+                    $('#collapseBankTransferD').collapse('hide');
+                    $('#collapseCreditCardD').collapse('show');
+                });
+            }
+        }
+    }
+}
+
 //Cambio de pestañas
 function windowchange(id) {
     if (id == 'carrito') {
@@ -71,7 +101,7 @@ function windowchange(id) {
 }
 
 function veri() {
-    document.getElementById('prodCarr').innerHTML = "SADQWE";
+    document.getElementById('prodCarr').innerHTML = "POR AHORA LO DEJAMOS EN PAUSA.";
 }
 
 //Funcion para redireccionar.
