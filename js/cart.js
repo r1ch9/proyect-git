@@ -180,6 +180,18 @@ function saveAddress() {
     country = document.getElementById('country').value;
 }
 
+function verifydatos(id) {
+    let elementChanged = document.getElementById(id).value;
+    let idt = id + 'T';
+
+    if (elementChanged == "") {
+        document.getElementById(idt).hidden = false;
+
+    } else {
+        document.getElementById(idt).hidden = true;
+    }
+}
+
 //Funcion para cambiar la moneda.
 function changeMoney(jsonG) {
     let input = document.getElementById('currencyChange').checked;
@@ -207,7 +219,17 @@ function impressCountry(AllCountry) {
         CountryList += `<option value="` + AllCountry.countries[i].name_es + `">` + AllCountry.countries[i].name_es + `</option>`;
     }
 
-    document.getElementById('pais').innerHTML = `<select name="countries" id="selectCountries" onchange="cambioPais(id)">` + CountryList + `</select>`;
+    document.getElementById('pais').innerHTML = `<select name="countries" id="selectCountries" onchange="cambioPais(id)">` + CountryList + `</select>
+    <svg style="padding-left: 5px; color: red" width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-asterisk" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+        <path fill-rule="evenodd" d="M8 0a1 1 0 0 1 1 1v5.268l4.562-2.634a1 1 0 1 1 1 1.732L10 8l4.562 2.634a1 1 0 1 1-1 1.732L9 9.732V15a1 1 0 1 1-2 0V9.732l-4.562 2.634a1 1 0 1 1-1-1.732L6 8 1.438 5.366a1 1 0 0 1 1-1.732L7 6.268V1a1 1 0 0 1 1-1z"/>
+    </svg>
+
+    <div id="selectCountriesT" hidden>
+        <svg style="color: red; padding-left: 5px;" width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-x-circle" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+            <path fill-rule="evenodd" d="M8 15A7 7 0 1 0 8 1a7 7 0 0 0 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
+            <path fill-rule="evenodd" d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z"/>
+        </svg> Este elemento es obligatorio.
+    </div>`;
 }
 
 //Asignar codigo de area automaticamente al seleccionar tu pais
@@ -215,19 +237,13 @@ function cambioPais(id) {
     let select = document.getElementById(id);
     let option = select.options[select.selectedIndex].value;
 
+    if (option == "Seleccionar Pais") {
+        document.getElementById('selectCountriesT').hidden = false;
+    } else {
+        document.getElementById('selectCountriesT').hidden = true;
+    }
+
     document.getElementById('area-code').value = AllCountry.countries[select.selectedIndex - 1].dial_code;
-}
-
-function verificacionDatosVacios() {
-    document.getElementById('street-adress').value = "";
-    document.getElementById('door-Number').value = "";
-    document.getElementById("cruce").value = "";
-    document.getElementById('selectCountries').value = "";
-    document.getElementById('postal-code').value = "";
-    document.getElementById('area-code').value = "";
-    document.getElementById('phone-number').value = "";
-    document.getElementById('email').value = "";
-
 }
 
 function sendType(id) {
