@@ -7,44 +7,122 @@ var x = document.getElementById("demo");
 var direcc, country;
 let subPremium, subExpress, subStandard;
 let sendMethod;
+let total0, total1;
 
 //Impresion de elementos en pantalla
 function impress(json) {
     let object = json.articles;
-    document.getElementById('imagen1').innerHTML = `<img src="` + object[0].src + `" class="img-thumbnail">`;
-    document.getElementById('tittle1').innerHTML = `<h5 style="text-align: center;">` + object[0].name + `</h5>`;
-    document.getElementById('parra1').innerHTML = `<p style="text-align: center">` + object[0].currency + ` ` + object[0].unitCost + `</p>`;
+    let HTMLContentToAppend = ``;
+
+    for (let i = 0; i < object.length; i++) {
+        HTMLContentToAppend += `
+        <div class="container border" id="element` + i + `Container">
+            <div class="container">
+                <br>
+                <div class="row">
+                    <div class="col-3">
+                        <img src="` + object[i].src + `" class="img-thumbnail">
+                    </div>
+                    <div class="col-9">
+                        <div class="row my-2">
+                            <div class="col-11">
+                                <h5 class="">` + object[i].name + ` <small class="text-muted">` + object[i].currency + ` ` + object[i].unitCost + `</small></h5>
+                            </div>
+                            <div class="col-1">
+                                <button type="button" class="badge-secondary" onclick="deleteProduct('element` + i + `Container')">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="container" style="text-align: center">
+                                <input type="number" id="` + i + `" onchange="asd(id)" min="0" style="width: 20%;" >
+                                <div id="total` + i + `" style="padding-top: 5px">Total = USD 0</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <br>
+            </div>
+        </div>
+        <br>`;
+    }
+
+    document.getElementById('pruebaImpress').innerHTML = HTMLContentToAppend;
+
     document.getElementById('0').value = object[0].count;
-    result(json, 0);
-
-    document.getElementById('imagen2').innerHTML = `<img src="` + object[1].src + `" class="img-thumbnail">`;
-    document.getElementById('tittle2').innerHTML = `<h5 style="text-align: center;">` + object[1].name + `</h5>`;
-    document.getElementById('parra2').innerHTML = `<p style="text-align: center">` + object[1].currency + ` ` + object[1].unitCost + `</p>`;
     document.getElementById('1').value = object[1].count;
-    result(json, 1);
+    document.getElementById('total0').innerHTML = `Total = USD ` + json.articles[0].unitCost / 40;
+    document.getElementById('total1').innerHTML = `Total = USD ` + json.articles[1].unitCost;
 
+    subTotal = 0;
     totalGral(jsonG);
-    changeMoney(jsonG);
+}
+
+//Elimina el espacio del producto eliminado.
+function deleteProduct(id) {
+    document.getElementById(id).hidden = true;
+    let article1 = document.getElementById('element0Container');
+    let article2 = document.getElementById('element1Container');
+    let HTMLContentToAppend;
+
+    if (article1.hidden == true) {
+        deleteProductPrice(jsonG, id);
+        if (article2.hidden == true) {
+            HTMLContentToAppend = ` <div class="small alert-danger py-3" style="text-align:center">No hay elementos en el carrito, puedes ver nuestros productos haciendo click <a href="categories.html" class="alert-link">aquí</a></div><br>`;
+            document.getElementById('pruebaImpress').innerHTML = HTMLContentToAppend;
+            subTotal = 0;
+            document.getElementById('totalGeneral').innerHTML = `subTotal= USD 0`;
+        }
+    }
+    if (article2.hidden == true) {
+        deleteProductPrice(jsonG, id);
+    }
+}
+
+//Eliminar precio del primer producto.
+function deleteProductPrice(json, id) {
+    let subTotal1, subTotal2;
+    let p1, p2;
+
+    p1 = document.getElementById('0').value;
+    p2 = document.getElementById('1').value;
+
+    subTotal1 = p1 * (json.articles[0].unitCost / 40);
+    subTotal2 = p2 * (json.articles[1].unitCost);
+
+    if (id == 'element0Container') {
+        document.getElementById('totalGeneral').innerHTML = `subTotal: USD ` + subTotal1;
+    } else {
+        document.getElementById('totalGeneral').innerHTML = `subTotal: USD ` + subTotal2;
+    }
 }
 
 //Funcion que cuenta el total de precio de los productos por la cantidad.
 function totalGral(json) {
-    let total0 = (document.getElementById('0').value * json.articles[0].unitCost) / 40;
-    let total1 = document.getElementById('1').value * json.articles[1].unitCost;
-    let resultado = total0 + total1;
-    document.getElementById('totalGeneral').innerHTML = `subTotal: USD ` + resultado;
-    changeMoney(jsonG);
+    let subTotal1, subTotal2;
+    let p1, p2;
 
-    subPremium = (resultado * 15) / 100;
-    subExpress = (resultado * 7) / 100;
-    subStandard = (resultado * 5) / 100;
+    p1 = document.getElementById('0').value;
+    p2 = document.getElementById('1').value;
 
+    subTotal1 = p1 * (json.articles[0].unitCost / 40);
+    subTotal2 = p2 * (json.articles[1].unitCost);
+    subTotal = subTotal1 + subTotal2;
+
+    document.getElementById('totalGeneral').innerHTML = `subTotal: USD ` + subTotal;
+
+    subPremium = (subTotal * 15) / 100;
+    subExpress = (subTotal * 7) / 100;
+    subStandard = (subTotal * 5) / 100;
 }
 
+//EN DESARROLLO... METODOS DE PAGO, GUARDARLOS PARA PODER IMPRIMIRLOS EN VERIFICACION.
 function paymentMethod(id) {
     console.log(id);
 }
 
+//Colapse que se ejecuta al seleccionar un metodo de pago. 
 function accColapse(id) {
     if (id == "collapseEfectivo") {
         $('#collapseEfectivo').click(function() {
@@ -104,36 +182,26 @@ function ingresarDatos() {
     alert('datosIngresados');
 }
 
+//EN DESARROLLO... IMPRESION DE LOS ELEMENTOS DEL CARRITO EN VERIFICACION
 function veri() {
     document.getElementById('prodCarr').innerHTML = "POR AHORA LO DEJAMOS EN PAUSA.";
 }
 
-//Funcion para redireccionar.
-function ads() {
-    changeMoney(jsonG);
-}
-
 //Funcion para imprimir el total de el precio por producto dependiendo de la cantidad.
 function result(json, id) {
-    let costo;
-    let resultado;
+    let valor = document.getElementById(id).value;
     let object = json.articles;
-    let valor1 = document.getElementById(id).value;
+    let cTotal1, cTotal2;
 
-    if (object[id].currency == 'UYU') {
-        costo = object[id].unitCost / 40;
-    } else {
-        costo = object[id].unitCost;
+    if (id == '0') {
+        cTotal1 = valor * object[0].unitCost / 40;
+        document.getElementById('total0').innerHTML = `Total = USD ` + cTotal1;
     }
 
-    resultado = valor1 * costo;
-
-    if (id == 0) {
-        document.getElementById('total0').innerHTML = `Total = USD ` + resultado;
-    } else {
-        document.getElementById('total1').innerHTML = `Total = USD ` + resultado;
+    if (id == '1') {
+        cTotal2 = valor * object[1].unitCost;
+        document.getElementById('total1').innerHTML = `Total = USD ` + cTotal2;
     }
-    totalGral(jsonG);
 }
 
 //Funcion para redireccionar.
@@ -152,7 +220,7 @@ function cargarmap() {
         var times = position.timestamp;
         var altitud = position.coords.altitude;
         var exactitud = position.coords.accuracy;
-        document.getElementById('mapO').innerHTML = `<iframe class="iframe centrado" src="https://maps.google.com/?ll=` + lat + `,` + lng + `&z=14&t=m&output=embed" width="600px" height="300px" frameborder="0" style="border:0" allowfullscreen></iframe><i id="marker" class="fas fa-map-pin centrados"></i>`;
+        document.getElementById('mapO').innerHTML = ` <iframe class="iframe centrado" src="https://maps.google.com/?ll=` + lat + `,` + lng + `&z=14&t=m&output=embed" width="600px" height="300px" frameborder="0" style="border:0" allowfullscreen></iframe><i id="marker" class="fas fa-map-pin centrados"></i>`;
 
     }
 
@@ -192,21 +260,29 @@ function verifydatos(id) {
     }
 }
 
-//Funcion para cambiar la moneda.
-function changeMoney(jsonG) {
-    let input = document.getElementById('currencyChange').checked;
-    let total0 = (document.getElementById('0').value * jsonG.articles[0].unitCost);
-    let total1 = (document.getElementById('1').value * jsonG.articles[1].unitCost * 40);
-    let resultado = total0 + total1;
+function ads() {
+    changeMoney(jsonG);
+}
 
-    if (input) {
-        document.getElementById('totalGeneral').innerHTML = `subTotal: UYU ` + resultado;
-        document.getElementById('total0').innerHTML = `Total = UYU ` + jsonG.articles[0].unitCost * document.getElementById('0').value;
-        document.getElementById('total1').innerHTML = `Total = UYU ` + (jsonG.articles[1].unitCost * 40) * document.getElementById('1').value;
+//Funcion para cambiar la moneda.
+function changeMoney(json) {
+    let input = document.getElementById('currencyChange').checked;
+    let input1 = document.getElementById('0').value;
+    let input2 = document.getElementById('1').value;
+
+    let subTotal1 = (json.articles[0].unitCost * input1) / 40;
+    let subTotal2 = (json.articles[1].unitCost) * input2;
+    let subTotal = (subTotal1 + subTotal2);
+
+
+    if (input == true) {
+        document.getElementById('totalGeneral').innerHTML = `subTotal: UYU ` + subTotal;
+        document.getElementById('total0').innerHTML = `subTotal = UYU ` + subTotal1;
+        document.getElementById('total1').innerHTML = `subTotal = UYU ` + subTotal2;
     } else {
-        document.getElementById('totalGeneral').innerHTML = `subTotal: USD ` + resultado / 40;
-        document.getElementById('total0').innerHTML = `Total = USD ` + (jsonG.articles[0].unitCost / 40) * document.getElementById('0').value;
-        document.getElementById('total1').innerHTML = `Total = USD ` + jsonG.articles[1].unitCost * document.getElementById('1').value;
+        document.getElementById('totalGeneral').innerHTML = `subTotal: USD ` + subTotal;
+        document.getElementById('total0').innerHTML = `subTotal = USD ` + subTotal1;
+        document.getElementById('total1').innerHTML = `subTotal = USD ` + subTotal2;
     }
 }
 
@@ -246,6 +322,7 @@ function cambioPais(id) {
     document.getElementById('area-code').value = AllCountry.countries[select.selectedIndex - 1].dial_code;
 }
 
+//Cambia el color de la caja de seleccion de metodo de envio si se elije y ademas guarda el envio seleccionado.
 function sendType(id) {
     if (id == 'envioPremium') {
         document.getElementById('envioPremium').className += ' active';
