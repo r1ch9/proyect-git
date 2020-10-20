@@ -290,22 +290,18 @@ function writeSend() {
     document.getElementById('impresionTelefono').innerHTML = `<p>Telefono:<strong> ` + codigoArea + ` ` + objectoEnvio.phone + `</strong></p>`;
 
     if (objectoEnvio.street != null && objectoEnvio.cruce != null && objectoEnvio.doorNumber != null && objectoEnvio.country != null && objectoEnvio.phone != null) {
-        if (objectoEnvio.country == 'Seleccionar Pais') {
-            cantidaddeelementos = false;
+        if (objectoEnvio.country != 'Seleccionar Pais') {
+            if (objectoEnvio.sendTyoe == 'Envío Premium' || objectoEnvio.sendTyoe == 'Envío Express' || objectoEnvio.sendTyoe == 'Envío Standard') {
+                document.getElementById('verifDEnvio').hidden = true;
+            } else {
+                document.getElementById('verifDEnvio').hidden = false;
+            }
         } else {
-            cantidaddeelementos = true;
+            document.getElementById('verifDEnvio').hidden = false;
         }
     } else {
-        cantidaddeelementos = false;
+        document.getElementById('verifDEnvio').hidden = false;
     }
-
-    if (objectoEnvio.sendTyoe) {
-        alert(objectoEnvio.sendTyoe);
-    } else {
-        alert('no hay envios');
-    }
-
-
 }
 
 //REDIRECCION
@@ -399,6 +395,7 @@ function sendType(id) {
         document.getElementById('envioStandard').className = document.getElementById('envioStandard').className.replace(' active', '');
         objectoEnvio.sendTyoe = 'Envío Premium';
         document.getElementById('impresionSendType').innerHTML = `<p>Tipo de envío:<strong> ` + objectoEnvio.sendTyoe + `</strong></p>`;
+        writeSend();
     } else {
         if (id == 'envioExpress') {
             objectoEnvio.sendTyoe = 'Envío Express';
@@ -407,6 +404,7 @@ function sendType(id) {
             document.getElementById('envioStandard').className = document.getElementById('envioStandard').className.replace(' active', '');
             objectoEnvio.sendTyoe = 'Envío Express';
             document.getElementById('impresionSendType').innerHTML = `<p>Tipo de envío:<strong> ` + objectoEnvio.sendTyoe + `</strong></p>`;
+            writeSend();
         } else {
             if (id == 'envioStandard') {
                 objectoEnvio.sendTyoe = 'Envío Standard';
@@ -415,6 +413,7 @@ function sendType(id) {
                 document.getElementById('envioStandard').className += ' active';
                 objectoEnvio.sendTyoe = 'Envío Standard';
                 document.getElementById('impresionSendType').innerHTML = `<p>Tipo de envío:<strong> ` + objectoEnvio.sendTyoe + `</strong></p>`;
+                writeSend();
             }
         }
     }
