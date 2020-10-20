@@ -431,8 +431,9 @@
                                 </div>
                                 <div id="verifDEnvio" style="color: red" hidden>Datos Incompletos</div>
                             </div>
+
                             <div class="col-6">
-                                <div class="container border" onclick="windowchange('carrito')" style="cursor: pointer;">
+                                <div class="container border" onclick="windowchange('carrito')" style="cursor: pointer; height: 100%;">
                                     <h5 style="text-align: center;">Productos del carrito</h5>
                                     <hr>
                                     <div id="prodCarr"></div>
@@ -441,8 +442,7 @@
                         </div>
                     </div>
                     <hr>
-                    <div class="container"></div>
-                    <button type="button" data-toggle="modal" data-target="#staticBackdrop" class="btn btn-secondary" disabled>Formas de pago</button>
+                    <button type="button" id='formaDePagoBoton' data-toggle="modal" data-target="#staticBackdrop" class="btn btn-secondary" disabled>Formas de pago</button>
 
                     <!-- Modal para forma de pago. -->
                     <div class="modal fade" id="staticBackdrop" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">

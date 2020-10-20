@@ -9,6 +9,78 @@ let subPremium, subExpress, subStandard;
 let total0, total1, codigoArea;
 var objectoEnvio = new Object();
 let cantidaddeelementos;
+let elemento1oculto, elemento2oculto;
+let envioVerificado, carritoVerificado, sendMethod;
+
+function impressCarr(json) {
+    let object = json.articles;
+    let input1, input2;
+    let metodoFinal;
+
+    if (sendMethod == 'Envío Standard') {
+        metodoFinal = `<p style="text-align: center;">Precio envio<strong> USD ` + subStandard + `</strong></p><p style="text-align: center;">Precio total<strong> USD ` + (subStandard + subTotal) + `</strong></p>`;
+    } else {
+        if (sendMethod == 'Envío Premium') {
+            metodoFinal = `<p style="text-align: center;">Precio envio<strong> USD ` + subPremium + `</strong></p><p style="text-align: center;">Precio total<strong> USD ` + (subPremium + subTotal) + `</strong></p>`;
+        } else {
+            if (sendMethod == 'Envío Express') {
+                metodoFinal = `<p style="text-align: center;">Precio envio<strong> USD ` + subExpress + `</strong></p><p style="text-align: center;">Precio total<strong> USD ` + (subExpress + subTotal) + `</strong></p>`;
+            } else {
+                metodoFinal = `<p style="text-align: center;"><strong> Especificar metodo de envio</strong></p>`;
+            }
+        }
+    }
+
+    document.getElementById('prodCarr').innerHTML = '';
+
+    if (elemento1oculto) {} else {
+        input1 = document.getElementById('0').value;
+    }
+
+    if (elemento2oculto) {} else {
+        input2 = document.getElementById('1').value;
+    }
+
+    let precio1 = object[0].unitCost * input1;
+    let precio2 = object[1].unitCost * input2;
+
+    if (elemento1oculto == true) {
+        if (elemento2oculto == true) {
+            document.getElementById('prodCarr').innerHTML = `<p style="color: red">No hay elementos en el carrito.</p>`;
+            carritoVerificado = false;
+        } else {
+            document.getElementById('prodCarr').innerHTML = `<p>` + object[1].name + `<strong style="text-align: center;"> USD ` + precio2 + `</strong></p>`;
+            document.getElementById('prodCarr').innerHTML += `<br><p style="text-align: center;">Precio total<strong style="text-align: center;"> USD ` + subTotal + `</strong></p>`;
+            document.getElementById('prodCarr').innerHTML += metodoFinal;
+            carritoVerificado = true;
+        }
+    } else {
+        if (elemento2oculto == true) {
+            document.getElementById('prodCarr').innerHTML = `<p>` + object[0].name + `<strong style="text-align: center;"> UYU ` + precio1 + `</strong></p>`;
+            document.getElementById('prodCarr').innerHTML += `<br><p style="text-align: center;">Precio total<strong style="text-align: center;"> USD ` + subTotal + `</strong></p>`;
+            document.getElementById('prodCarr').innerHTML += metodoFinal;
+            carritoVerificado = true;
+        } else {
+            document.getElementById('prodCarr').innerHTML += `<p>` + object[0].name + `<strong style="text-align: center;"> UYU ` + precio1 + `</strong></p>`;
+            document.getElementById('prodCarr').innerHTML += `<p>` + object[1].name + `<strong style="text-align: center;"> USD ` + precio2 + `</strong></p>`;
+            document.getElementById('prodCarr').innerHTML += `<br><p style="text-align: center;">Precio subtotal<strong> USD ` + subTotal + `</strong></p>`;
+            document.getElementById('prodCarr').innerHTML += metodoFinal;
+
+            carritoVerificado = true;
+        }
+    }
+    verifyPayment();
+}
+
+function verifyPayment() {
+    if (carritoVerificado && envioVerificado) {
+        if (sendMethod != false) {
+            document.getElementById('formaDePagoBoton').disabled = false;
+        }
+    } else {
+        document.getElementById('formaDePagoBoton').disabled = true;
+    }
+}
 
 //Impresion de elementos en pantalla
 function impress(json) {
@@ -60,23 +132,24 @@ function impress(json) {
 
     subTotal = 0;
     totalGral(jsonG);
+    impressCarr(jsonG);
 }
 
 //Elimina el espacio del producto eliminado.
 function deleteProduct(id) {
     if (id == 'element0Container') {
         document.getElementById('0').value = 0;
+        elemento1oculto = true;
     } else {
         document.getElementById('1').value = 0;
+        elemento2oculto = true;
     }
     document.getElementById(id).hidden = true;
-    let article1 = document.getElementById('element0Container');
-    let article2 = document.getElementById('element1Container');
     let HTMLContentToAppend;
 
-    if (article1.hidden == true) {
+    if (elemento1oculto) {
         totalGral(jsonG);
-        if (article2.hidden == true) {
+        if (elemento2oculto) {
             let input = document.getElementById('currencyChange').checked;
             totalGral(jsonG);
             HTMLContentToAppend = ` <div class="small alert-danger py-3" style="text-align:center">No hay elementos en el carrito, puedes ver nuestros productos haciendo click <a href="categories.html" class="alert-link">aquí</a></div><br>`;
@@ -89,25 +162,25 @@ function deleteProduct(id) {
             }
         }
     }
-    if (article2.hidden == true) {
+    if (elemento2oculto) {
         totalGral(jsonG);
     }
+    impressCarr(jsonG);
+    verifyPayment();
 }
 
 //Funcion que cuenta el total de precio de los productos por la cantidad.
 function totalGral(json) {
     let subTotal1, subTotal2;
     let p1, p2;
-    let article1 = document.getElementById('element0Container');
-    let article2 = document.getElementById('element1Container');
 
-    if (article1.hidden == true) {
+    if (elemento1oculto) {
         p1 = 0;
     } else {
         p1 = document.getElementById('0').value;
     }
 
-    if (article2.hidden == true) {
+    if (elemento2oculto) {
         p2 = 0;
     } else {
         p2 = document.getElementById('1').value;
@@ -122,11 +195,7 @@ function totalGral(json) {
     subPremium = (subTotal * 15) / 100;
     subExpress = (subTotal * 7) / 100;
     subStandard = (subTotal * 5) / 100;
-}
-
-//EN DESARROLLO... METODOS DE PAGO, GUARDARLOS PARA PODER IMPRIMIRLOS EN VERIFICACION.
-function paymentMethod(id) {
-    console.log(id);
+    impressCarr(jsonG);
 }
 
 //Colapse que se ejecuta al seleccionar un metodo de pago. 
@@ -202,50 +271,13 @@ function result(json, id) {
         document.getElementById('total1').innerHTML = `subTotal = USD ` + cTotal2;
         changeMoney(jsonG);
     }
+    impressCarr(jsonG);
+    totalGral(jsonG);
 }
 
 //Funcion para redireccionar.
 function asd(id) {
     result(jsonG, id);
-}
-
-//Funciom para cargar mapa.
-function cargarmap() {
-    navigator.geolocation.getCurrentPosition(showPosition, showError);
-    x.innerHTML = "";
-
-    function showPosition(position) {
-        lat = position.coords.latitude;
-        lng = position.coords.longitude;
-        var times = position.timestamp;
-        var altitud = position.coords.altitude;
-        var exactitud = position.coords.accuracy;
-        document.getElementById('mapO').innerHTML = ` <iframe class="iframe centrado" src="https://maps.google.com/?ll=` + lat + `,` + lng + `&z=14&t=m&output=embed" width="600px" height="300px" frameborder="0" style="border:0" allowfullscreen></iframe><i id="marker" class="fas fa-map-pin centrados"></i>`;
-
-    }
-
-    function showError(error) {
-        switch (error.code) {
-            case error.PERMISSION_DENIED:
-                x.innerHTML = "Denegada la peticion de Geolocalización en el navegador."
-                break;
-            case error.POSITION_UNAVAILABLE:
-                x.innerHTML = "La información de la localización no esta disponible."
-                break;
-            case error.TIMEOUT:
-                x.innerHTML = "El tiempo de petición ha expirado."
-                break;
-            case error.UNKNOWN_ERROR:
-                x.innerHTML = "Ha ocurrido un error desconocido."
-                break;
-        }
-    }
-}
-
-//Funcion para guardar la direccion.
-function saveAddress() {
-    direcc = document.getElementById('street-address').value;
-    country = document.getElementById('country').value;
 }
 
 //Verificar e ingresar datos en el objeto de envío.
@@ -279,10 +311,13 @@ function verifydatos(id) {
         }
     }
     writeSend();
+    impressCarr(jsonG);
+    totalGral(jsonG);
 }
 
 //Impresion del objeto envio en el bloque verificación.
 function writeSend() {
+    envioVerificado = false;
     document.getElementById('impresionDireccion').innerHTML = `<p>Direccion:<strong> ` + objectoEnvio.street + ` ` + objectoEnvio.doorNumber + `</strong></p>`;
     document.getElementById('impresionEsquina').innerHTML = `<p>Esquina:<strong> ` + objectoEnvio.cruce + `</strong></p>`;
     document.getElementById('impresionCodigo').innerHTML = `<p>Codigo postal:<strong> ` + objectoEnvio.postal_code + `</strong></p>`;
@@ -291,8 +326,9 @@ function writeSend() {
 
     if (objectoEnvio.street != null && objectoEnvio.cruce != null && objectoEnvio.doorNumber != null && objectoEnvio.country != null && objectoEnvio.phone != null) {
         if (objectoEnvio.country != 'Seleccionar Pais') {
-            if (objectoEnvio.sendTyoe == 'Envío Premium' || objectoEnvio.sendTyoe == 'Envío Express' || objectoEnvio.sendTyoe == 'Envío Standard') {
+            if (objectoEnvio.street != '' && objectoEnvio.cruce != '' && objectoEnvio.doorNumber != '' && objectoEnvio.country != '' && objectoEnvio.phone != '') {
                 document.getElementById('verifDEnvio').hidden = true;
+                envioVerificado = true;
             } else {
                 document.getElementById('verifDEnvio').hidden = false;
             }
@@ -302,6 +338,9 @@ function writeSend() {
     } else {
         document.getElementById('verifDEnvio').hidden = false;
     }
+    verifyPayment();
+    impressCarr(jsonG);
+    totalGral(jsonG);
 }
 
 //REDIRECCION
@@ -375,6 +414,7 @@ function cambioPais(id) {
     let select = document.getElementById(id);
     let option = select.options[select.selectedIndex].value;
     objectoEnvio.country = option;
+    writeSend();
 
     if (option == "Seleccionar Pais") {
         document.getElementById('selectCountriesT').hidden = false;
@@ -394,6 +434,7 @@ function sendType(id) {
         document.getElementById('envioExpress').className = document.getElementById('envioExpress').className.replace(' active', '');
         document.getElementById('envioStandard').className = document.getElementById('envioStandard').className.replace(' active', '');
         objectoEnvio.sendTyoe = 'Envío Premium';
+        sendMethod = 'Envío Premium';
         document.getElementById('impresionSendType').innerHTML = `<p>Tipo de envío:<strong> ` + objectoEnvio.sendTyoe + `</strong></p>`;
         writeSend();
     } else {
@@ -403,6 +444,7 @@ function sendType(id) {
             document.getElementById('envioExpress').className += ' active';
             document.getElementById('envioStandard').className = document.getElementById('envioStandard').className.replace(' active', '');
             objectoEnvio.sendTyoe = 'Envío Express';
+            sendMethod = 'Envío Express';
             document.getElementById('impresionSendType').innerHTML = `<p>Tipo de envío:<strong> ` + objectoEnvio.sendTyoe + `</strong></p>`;
             writeSend();
         } else {
@@ -412,6 +454,7 @@ function sendType(id) {
                 document.getElementById('envioExpress').className = document.getElementById('envioExpress').className.replace(' active', '');
                 document.getElementById('envioStandard').className += ' active';
                 objectoEnvio.sendTyoe = 'Envío Standard';
+                sendMethod = 'Envío Standard';
                 document.getElementById('impresionSendType').innerHTML = `<p>Tipo de envío:<strong> ` + objectoEnvio.sendTyoe + `</strong></p>`;
                 writeSend();
             }
@@ -431,7 +474,11 @@ document.addEventListener("DOMContentLoaded", function(e) {
                 if (resultCty.status === "ok") {
                     AllCountry = resultCty.data;
                     impressCountry(AllCountry);
-                    conteoElementos = 0;
+                    envioVerificado = false;
+                    carritoVerificado = true;
+                    elemento1oculto = false;
+                    elemento2oculto = false;
+                    sendMethod = false;
                 }
             });
         }
