@@ -13,6 +13,7 @@ let elemento1oculto, elemento2oculto;
 let envioVerificado, carritoVerificado, sendMethod;
 let anterior;
 
+//Impresion del carrito.
 function impressCarr(json) {
     let object = json.articles;
     let input1, input2;
@@ -76,6 +77,7 @@ function impressCarr(json) {
     verifyPayment();
 }
 
+//Habilitacion del boton "Formas de pago".
 function verifyPayment() {
     if (carritoVerificado && envioVerificado) {
         if (sendMethod != false) {
@@ -98,6 +100,7 @@ function pagoSeleccionado(id) {
     document.getElementById('botonConfirmarCompra').disabled = false;
 }
 
+//Alerta de compra completada, oculta la alerta despues de 3 segundos y redirecciona a index.html despues de 4 segundos.
 function confirmarCompra() {
     getJSONData(CART_BUY_URL).then(function(resultCmp) {
         if (resultCmp.status === "ok") {
