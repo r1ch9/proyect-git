@@ -11,6 +11,7 @@ var objectoEnvio = new Object();
 let cantidaddeelementos;
 let elemento1oculto, elemento2oculto;
 let envioVerificado, carritoVerificado, sendMethod;
+let anterior;
 
 function impressCarr(json) {
     let object = json.articles;
@@ -50,20 +51,23 @@ function impressCarr(json) {
             carritoVerificado = false;
         } else {
             document.getElementById('prodCarr').innerHTML = `<p>` + object[1].name + `<strong style="text-align: center;"> USD ` + precio2 + `</strong></p>`;
-            document.getElementById('prodCarr').innerHTML += `<br><p style="text-align: center;">Precio total<strong style="text-align: center;"> USD ` + subTotal + `</strong></p>`;
+            document.getElementById('prodCarr').innerHTML += `<br><br><br>`;
+            document.getElementById('prodCarr').innerHTML += `<p style="text-align: center;">Precio total<strong style="text-align: center;"> USD ` + subTotal + `</strong></p>`;
             document.getElementById('prodCarr').innerHTML += metodoFinal;
             carritoVerificado = true;
         }
     } else {
         if (elemento2oculto == true) {
             document.getElementById('prodCarr').innerHTML = `<p>` + object[0].name + `<strong style="text-align: center;"> UYU ` + precio1 + `</strong></p>`;
-            document.getElementById('prodCarr').innerHTML += `<br><p style="text-align: center;">Precio total<strong style="text-align: center;"> USD ` + subTotal + `</strong></p>`;
+            document.getElementById('prodCarr').innerHTML += `<br><br><br>`;
+            document.getElementById('prodCarr').innerHTML += `<p style="text-align: center;">Precio total<strong style="text-align: center;"> USD ` + subTotal + `</strong></p>`;
             document.getElementById('prodCarr').innerHTML += metodoFinal;
             carritoVerificado = true;
         } else {
             document.getElementById('prodCarr').innerHTML += `<p>` + object[0].name + `<strong style="text-align: center;"> UYU ` + precio1 + `</strong></p>`;
             document.getElementById('prodCarr').innerHTML += `<p>` + object[1].name + `<strong style="text-align: center;"> USD ` + precio2 + `</strong></p>`;
-            document.getElementById('prodCarr').innerHTML += `<br><p style="text-align: center;">Precio subtotal<strong> USD ` + subTotal + `</strong></p>`;
+            document.getElementById('prodCarr').innerHTML += `<br>`;
+            document.getElementById('prodCarr').innerHTML += `<p style="text-align: center;">Precio subtotal<strong> USD ` + subTotal + `</strong></p>`;
             document.getElementById('prodCarr').innerHTML += metodoFinal;
 
             carritoVerificado = true;
@@ -80,6 +84,31 @@ function verifyPayment() {
     } else {
         document.getElementById('formaDePagoBoton').disabled = true;
     }
+}
+
+//seleccionar forma de pago
+function pagoSeleccionado(id) {
+    document.getElementById(id).className += ' border';
+
+    if (anterior != undefined) {
+        document.getElementById(anterior).className = 'col-2';
+    }
+
+    anterior = id;
+    document.getElementById('botonConfirmarCompra').disabled = false;
+}
+
+function confirmarCompra() {
+    getJSONData(CART_BUY_URL).then(function(resultCmp) {
+        if (resultCmp.status === "ok") {
+            console.log(resultCmp.data);
+            document.getElementById('textoCompra').innerHTML = resultCmp.data.msg;
+            document.getElementById('alertSuccess').hidden = false;
+        }
+    });
+    setTimeout(function() { document.getElementById('alertSuccess').hidden = true }, 3000);
+    setTimeout(function() { window.location.href = "index.html" }, 4000);
+
 }
 
 //Impresion de elementos en pantalla

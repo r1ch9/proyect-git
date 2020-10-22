@@ -405,6 +405,7 @@
                     <h5 style="text-align: center; margin-top: 15px;">Verificacion de datos</h5>
                     <hr>
                     <div class="container">
+                        <br>
                         <div class="row">
                             <div class="col-6">
                                 <div class="container border" style="cursor: pointer;" onclick="windowchange('envio')">
@@ -429,7 +430,6 @@
                                         <p>Tipo de envío:<strong> No especificado.</strong></p>
                                     </div>
                                 </div>
-                                <div id="verifDEnvio" style="color: red" hidden>Datos Incompletos</div>
                             </div>
 
                             <div class="col-6">
@@ -441,8 +441,11 @@
                             </div>
                         </div>
                     </div>
+
+                    <br>
+                    <div id="verifDEnvio" style="color: red; text-align: center;" hidden>Datos Incompletos</div>
                     <hr>
-                    <button type="button" id='formaDePagoBoton' data-toggle="modal" data-target="#staticBackdrop" class="btn btn-secondary" disabled>Formas de pago</button>
+                    <button type="button" id='formaDePagoBoton' data-toggle="modal" data-target="#staticBackdrop" class="btn btn-secondary btn-block" disabled>Formas de pago</button>
 
                     <!-- Modal para forma de pago. -->
                     <div class="modal fade" id="staticBackdrop" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
@@ -503,35 +506,64 @@
                                     <br>
                                     <div class="collapse" id="collapseEfectivoD">
                                         <div class="card card-body">
-                                            Pago en efectivo.
+                                            Efectivo en redes de cobranza.
+                                            <div class="row">
+                                                <div class="col-2"></div>
+                                                <div class="col-2"></div>
+                                                <div class="col-2" id="payRedPagos" onclick="pagoSeleccionado(id)"><img src="img/redpagos.png" style="width: 100%;" alt=""></div>
+                                                <div class="col-2" id="payAbitab" onclick="pagoSeleccionado(id)"><img src="img/abitab.jpg" style="width: 100%;" alt=""></div>
+                                                <div class="col-2"></div>
+                                                <div class="col-2"></div>
+                                            </div>
                                         </div>
                                     </div>
                                     <div class="collapse" id="collapseBankTransferD">
                                         <div class="card card-body">
-                                            Transferencia bancaria.
+                                            Transferencia.
+                                            <div class="row">
+                                                <div class="col-2"></div>
+                                                <div class="col-2" id="transferBrou" onclick="pagoSeleccionado(id)"><img src="img/brou.png" style="width: 100%;" alt=""></div>
+                                                <div class="col-2" id="transferScotia" onclick="pagoSeleccionado(id)"><img src="img/scotiabank.png" style="width: 100%; padding-top: 25%;" alt=""></div>
+                                                <div class="col-2" id="transferMercadoPago" onclick="pagoSeleccionado(id)"><img src="img/mercadopago.jpg" style="width: 100%; padding-top: 25%;" alt=""></div>
+                                                <div class="col-2" id="transferMiDinero" onclick="pagoSeleccionado(id)"><img src="img/midinero.jpg" style="width: 100%;" alt=""></div>
+                                                <div class="col-2"></div>
+                                            </div>
                                         </div>
                                     </div>
                                     <div class="collapse" id="collapseCreditCardD">
                                         <div class="card card-body">
                                             Tarjeta de Credito.
+                                            <div class="row">
+                                                <div class="col-2" id="creditBrou" onclick="pagoSeleccionado(id)"><img src="img/brou.png" style="width: 100%;" alt=""></div>
+                                                <div class="col-2" id="creditVisa" onclick="pagoSeleccionado(id)"><img src="img/VISA-FB.jpg" style="width: 100%; padding-top: 25%;" alt=""></div>
+                                                <div class="col-2" id="creditScotia" onclick="pagoSeleccionado(id)"><img src="img/scotiabank.png" style="width: 100%; padding-top: 25%;" alt=""></div>
+                                                <div class="col-2" id="creditOca" onclick="pagoSeleccionado(id)"><img src="img/oca_card.jpg" style="width: 100%;" alt=""></div>
+                                                <div class="col-2" id="creditMaster" onclick="pagoSeleccionado(id)"><img src="img/mastercard.png" style="width: 100%;  padding-top: 10%;" alt=""></div>
+                                                <div class="col-2" id="creditCreditel" onclick="pagoSeleccionado(id)"><img src="img/creditel.png" style="width: 100%;" alt=""></div>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
 
                                 <div class="modal-footer">
                                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
-                                    <button type="button" class="btn btn-secondary" disabled>Confirmar</button>
+                                    <button type="button" id="botonConfirmarCompra" onclick="confirmarCompra()" data-dismiss="modal" class="btn btn-secondary" disabled>Confirmar</button>
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <br>
                     <br>
                 </div>
                 <br>
             </div>
             <br>
         </div>
+    </div>
+
+    <div class="alert alert-success" id="alertSuccess" role="alert" hidden>
+        <h4 class="alert-heading">Todo realizado!</h4>
+        <hr>
+        <p id="textoCompra">Aww yeah, you successfully read this important alert message. This example text is going to run a bit longer so that you can see how spacing within an alert works with this kind of content.</p>
     </div>
 
     <!--Fin de contenido creado-->
