@@ -6,19 +6,12 @@ const PRODUCT_INFO_URL = "https://japdevdep.github.io/ecommerce-api/product/5678
 const PRODUCT_INFO_COMMENTS_URL = "https://japdevdep.github.io/ecommerce-api/product/5678-comments.json";
 const CART_INFO_URL = "https://japdevdep.github.io/ecommerce-api/cart/987.json";
 const CART_BUY_URL = "https://japdevdep.github.io/ecommerce-api/cart/buy.json";
+
 var googleUser;
 var corrPass = false;
 var corrUser = false;
 var imprPass = '';
-var password;
-var user;
-var rememberCheck;
-var elusuariolocal;
-var elusuariosession;
-var password_input;
-var elusuarioinvitado;
-var usuarioIniciado;
-var isUserInvitado;
+var password, user, rememberCheck, elusuariolocal, elusuariosession, password_input, elusuarioinvitado, usuarioIniciado, isUserInvitado;
 
 function cambiarFondo(ids) {
     document.getElementById(ids).style.color = 'grey';
@@ -34,14 +27,17 @@ function setearInvitado() {
     sessionStorage.setItem(elusuarioinvitado, user);
 }
 
+//Mostrar spinner.
 var showSpinner = function() {
     document.getElementById("spinner-wrapper").style.display = "block";
 }
 
+//Ocultar spinner.
 var hideSpinner = function() {
     document.getElementById("spinner-wrapper").style.display = "none";
 }
 
+//Obtener objeto de JSON.
 var getJSONData = function(url) {
     var result = {};
     showSpinner();
@@ -67,8 +63,7 @@ var getJSONData = function(url) {
         });
 }
 
-
-
+//Cerrar sesion por botón de google.
 function signOut(googleUser) {
     var auth2 = gapi.auth2.getAuthInstance();
     auth2.signOut().then(function() {
@@ -79,6 +74,7 @@ function signOut(googleUser) {
     localStorage.removeItem(elusuariolocal);
 }
 
+//Elimina los datos de sesión iniciado y redirecciona a login.html
 function cerrarSesion() {
     sessionStorage.removeItem(elusuarioinvitado);
     sessionStorage.removeItem(elusuariosession);
@@ -86,6 +82,7 @@ function cerrarSesion() {
     window.location.href = "https://r1ch9.github.io/proyect-git/login.html";
 }
 
+//Cambiar tema de la pagina web.
 function cambiarTema() {
     alert("En desarrollo...");
 }
