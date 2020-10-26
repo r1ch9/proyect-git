@@ -105,7 +105,7 @@ function notMouseArriba() {
 document.addEventListener("DOMContentLoaded", function(e) {
 
     //Secuencia de redireccionamiento en caso de que no haya un usuario logeado.
-    if (window.location == "https://r1ch9.github.io/proyect-git/login.html") {} else {
+    /*if (window.location == "https://r1ch9.github.io/proyect-git/login.html") {} else {
         if (sessionStorage.getItem(elusuarioinvitado) == null) {
             if (sessionStorage.getItem(elusuariosession) == null) {
                 if (localStorage.getItem(elusuariolocal) == null) {
@@ -113,7 +113,7 @@ document.addEventListener("DOMContentLoaded", function(e) {
                 }
             }
         }
-    }
+    }*/
 
     //Impresion de nombre de usuario en la navbar en el dropbox usuario.
     if (localStorage.getItem(elusuariolocal) != null) {
