@@ -27,6 +27,15 @@ function changeData() {
         objectUsuario.eMail = emailInput;
         objectUsuario.phone = phoneInput;
 
+        //Muestra los datos cambiados en el inicio de sesion.
+        $('#userName').text("Nombre: " + objectUsuario.name);
+        $('#userAge').text("Edad: " + objectUsuario.age);
+        $('#userEmail').text("Correo: " + objectUsuario.eMail);
+        $('#userPhone').text("Telefono: " + objectUsuario.phone);
+
+        //Almacenamiento del objeto en localStorage.
+        objetoPerfil = JSON.stringify(objectUsuario);
+        localStorage.setItem('objeto', objetoPerfil);
 
     } else {
         if (nameInput == '') {
@@ -66,4 +75,13 @@ document.addEventListener("DOMContentLoaded", function(e) {
     $('#newAge').css({ "border-color": "grey", "border-width": "1px", "border-style": "solid", "border-radius": "5px" });
     $('#newEmail').css({ "border-color": "grey", "border-width": "1px", "border-style": "solid", "border-radius": "5px" });
     $('#newPhone').css({ "border-color": "grey", "border-width": "1px", "border-style": "solid", "border-radius": "5px" });
+
+    //Cargar objecto en caso de que exista y imprimirlo en los campos de usuario.
+    if (JSON.parse(localStorage.getItem('objeto')) != null) {
+        objectUsuario = JSON.parse(localStorage.getItem('objeto'));
+        $('#userName').text("Nombre: " + objectUsuario.name);
+        $('#userAge').text("Edad: " + objectUsuario.age);
+        $('#userEmail').text("Correo: " + objectUsuario.eMail);
+        $('#userPhone').text("Telefono: " + objectUsuario.phone);
+    }
 });

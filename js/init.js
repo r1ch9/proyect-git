@@ -11,7 +11,7 @@ var googleUser;
 var corrPass = false;
 var corrUser = false;
 var imprPass = '';
-var password, user, rememberCheck, elusuariolocal, elusuariosession, password_input, elusuarioinvitado, usuarioIniciado, isUserInvitado;
+var password, user, rememberCheck, elusuariolocal, elusuariosession, password_input, elusuarioinvitado, usuarioIniciado, isUserInvitado, objetoPerfil;
 
 function cambiarFondo(ids) {
     document.getElementById(ids).style.color = 'grey';
@@ -79,6 +79,7 @@ function cerrarSesion() {
     sessionStorage.removeItem(elusuarioinvitado);
     sessionStorage.removeItem(elusuariosession);
     localStorage.removeItem(elusuariolocal);
+    localStorage.removeItem(objeto);
     window.location.href = "https://r1ch9.github.io/proyect-git/login.html";
 }
 
