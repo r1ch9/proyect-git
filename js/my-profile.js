@@ -1,4 +1,4 @@
-var objectUsuario = { "name": "", "age": null, "eMail": "", "phone": "" };
+var objectUsuario = { "name": "", "age": null, "eMail": "", "phone": "", "img": "" };
 
 //Animacion para mostrar campo editar usuario.
 function editObjUser() {
@@ -36,7 +36,7 @@ function changeData() {
 
         //Almacenamiento del objeto en localStorage.
         objetoPerfil = JSON.stringify(objectUsuario);
-        localStorage.setItem('objeto', objetoPerfil);
+        sessionStorage.setItem('objeto', objetoPerfil);
 
     } else {
         if (nameInput == '') {
@@ -67,13 +67,15 @@ function changeData() {
 
 }
 
+//Ponemos unos productos para mostrar en el perfil, incomoda que quede tan vacio
 function showP(jsonP) {
-    HTMLContentToAppend = "";
-    for (let i = 0; i < jsonP.lenght; i++) {
+    let ContentToAppend = ``;
+
+    for (let i = 0; i < jsonP.length - 1; i++) {
         producto = jsonP[i];
-        HTMLContentToAppend += `
-        <div class="col-lg-3">  
-            <div class="container border" style="cursor: pointer; margin: 2px" onclick="redirect()">                   
+        ContentToAppend += `
+        <div class="col-lg-4" style="width: 100%">  
+            <div class="container border" style="cursor: pointer; margin: 2px;" onclick="redirect()">                   
                 <img src="` + producto.imgSrc + `" alt="` + producto.description + `" class="img-thumbnail">
                 <br>
                 <h4 class="mb-1" style="text-align: center">` + producto.name + `</h4><hr>
@@ -82,10 +84,34 @@ function showP(jsonP) {
                 <div> ` + producto.description + `</div>
                 <br>    
             </div>
-            <br>
+           
         </div>`
     }
-    $('#impresionP').html(HTMLContentToAppend);
+    $('#impresionP').html(ContentToAppend);
+}
+
+//Redireccion a product-info.html al clickear en el producto
+function redirect() {
+    window.open('product-info.html');
+}
+
+//Subimos y guardamos el link de la nueva imagen de perfil.
+function actualizarImagen() {
+    let link = $('#inputImgSrc').val()
+    objectUsuario.img = link;
+
+    $('#imgProfile').attr({
+        "src": link
+    });
+
+    objetoPerfil = JSON.stringify(objectUsuario);
+    sessionStorage.setItem('objeto', objetoPerfil);
+}
+
+//Redireccion en nueva ventana para agregar imagen y abrimos el modal para ingresar el neuvo link
+function agregarImagen(url) {
+    window.open(url, "Diseño Web", "width=600, height=600");
+    $('#exampleModalCenter').modal('toggle');
 }
 
 //Función que se ejecuta una vez que se haya lanzado el evento de
@@ -98,6 +124,7 @@ document.addEventListener("DOMContentLoaded", function(e) {
         }
     });
 
+    //Establecemos el estilo inicial de los input.
     $('#editUserData').hide();
     $('#newName').css({ "border-color": "grey", "border-width": "1px", "border-style": "solid", "border-radius": "5px" });
     $('#newAge').css({ "border-color": "grey", "border-width": "1px", "border-style": "solid", "border-radius": "5px" });
@@ -105,11 +132,12 @@ document.addEventListener("DOMContentLoaded", function(e) {
     $('#newPhone').css({ "border-color": "grey", "border-width": "1px", "border-style": "solid", "border-radius": "5px" });
 
     //Cargar objecto en caso de que exista y imprimirlo en los campos de usuario.
-    if (JSON.parse(localStorage.getItem('objeto')) != null) {
+    if (JSON.parse(sessionStorage.getItem('objeto')) != null) {
         objectUsuario = JSON.parse(localStorage.getItem('objeto'));
         $('#userName').text("Nombre: " + objectUsuario.name);
         $('#userAge').text("Edad: " + objectUsuario.age);
         $('#userEmail').text("Correo: " + objectUsuario.eMail);
         $('#userPhone').text("Telefono: " + objectUsuario.phone);
+        $('#imgProfile').attr({ "src": objectUsuario.img });
     }
 });

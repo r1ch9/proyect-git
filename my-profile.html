@@ -62,7 +62,7 @@
                 <div class="col-sm-4">
                     <div class="container border" style="margin-top:10px ;">
                         <h4 style="text-align: center; margin-top: 10px;">Perfil principal</h4>
-                        <img class="img-thumbnail rounded mx-auto d-block" src="img/withoutImage.png" style="cursor: pointer;" alt="Ingresar nueva imagen" width="50%">
+                        <img class="img-thumbnail rounded mx-auto d-block" src="img/withoutImage.png" id="imgProfile" style="cursor: pointer;" alt="Ingresar nueva imagen" width="50%">
                         <hr>
                         <div class="contenido">
                             <div class="container">
@@ -87,8 +87,11 @@
 
                 <!--Espacio para mostrar productos y editar los datos de usuario.-->
                 <div class="col-sm-8" style="text-align: center; margin-top:10px ;">
+
                     <!--Espacio para mostrar productos.-->
-                    <div class="row" id="impresionP">
+                    <div class="container">
+                        <div class="row" id="impresionP">
+                        </div>
                     </div>
 
                     <!--Editar datos del usuario-->
@@ -107,11 +110,13 @@
                         <div class="container">
                             <div class="row">
                                 <div class="col-6">
-                                    <div class="container border" style="width: 100%; height: 90%; cursor: pointer;">
-                                        <div style="padding: 25%;">
-                                            <span style="text-align: bottom" id="newImage">Ingrese imagen aquí</span>
+                                    <a href="javascript:agregarImagen('https://imgbb.com/upload')">
+                                        <div class="container border" style="width: 100%; height: 90%; cursor: pointer;">
+                                            <div style="padding: 25%;">
+                                                <span style="text-align: bottom" id="newImage">Ingrese imagen aquí</span>
+                                            </div>
                                         </div>
-                                    </div>
+                                    </a>
                                 </div>
                                 <div class="col-6">
                                     <form action="">
@@ -127,6 +132,31 @@
                             </div>
                             <input type="submit" onclick="changeData()" style="width: 70%;"><br><br>
                         </div>
+
+                        <!--Modal para actualizar la imagen de perfil-->
+                        <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                            <div class="modal-dialog modal-dialog-centered" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="exampleModalLongTitle">Actualizar imagen de perfil</h5>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <p>Ingrese en la pestaña recien abierta la imagen que desea subir.</p>
+                                        <p>Luego de cargar la imagen seleccione en el campo <b>Insertar</b> la opcion <em>Enlaces directos</em></p>
+                                        <hr>
+                                        <input type="text" placeholder="Ingrese el link que se otorga." style="width:100%" id="inputImgSrc">
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                                        <button type="button" class="btn btn-secondary" onclick="actualizarImagen()" data-dismiss="modal">Actualizar link de imagen</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
                     </div>
                 </div>
             </div>
