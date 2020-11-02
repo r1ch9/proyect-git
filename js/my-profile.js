@@ -3,6 +3,7 @@ var objectUsuario = { "name": "", "age": null, "eMail": "", "phone": "" };
 //Animacion para mostrar campo editar usuario.
 function editObjUser() {
     $('#editUserData').toggle(500);
+    $('#impresionP').toggle(500);
 }
 
 //Sobreescribimos la data del JSON
@@ -66,10 +67,37 @@ function changeData() {
 
 }
 
+function showP(jsonP) {
+    HTMLContentToAppend = "";
+    for (let i = 0; i < jsonP.lenght; i++) {
+        producto = jsonP[i];
+        HTMLContentToAppend += `
+        <div class="col-lg-3">  
+            <div class="container border" style="cursor: pointer; margin: 2px" onclick="redirect()">                   
+                <img src="` + producto.imgSrc + `" alt="` + producto.description + `" class="img-thumbnail">
+                <br>
+                <h4 class="mb-1" style="text-align: center">` + producto.name + `</h4><hr>
+                <small class="text-muted" style="text-align:left">Costo: ` + producto.currency + ` ` + producto.cost + `<br> Vendidos: ` + producto.soldCount + `</small>        
+                <br>
+                <div> ` + producto.description + `</div>
+                <br>    
+            </div>
+            <br>
+        </div>`
+    }
+    $('#impresionP').html(HTMLContentToAppend);
+}
+
 //Función que se ejecuta una vez que se haya lanzado el evento de
 //que el documento se encuentra cargado, es decir, se encuentran todos los
 //elementos HTML presentes.
 document.addEventListener("DOMContentLoaded", function(e) {
+    getJSONData(PRODUCTS_URL).then(function(resultObj) {
+        if (resultObj.status === "ok") {
+            showP(resultObj.data);
+        }
+    });
+
     $('#editUserData').hide();
     $('#newName').css({ "border-color": "grey", "border-width": "1px", "border-style": "solid", "border-radius": "5px" });
     $('#newAge').css({ "border-color": "grey", "border-width": "1px", "border-style": "solid", "border-radius": "5px" });
