@@ -134,6 +134,7 @@ document.addEventListener("DOMContentLoaded", function(e) {
     //Cargar objecto en caso de que exista y imprimirlo en los campos de usuario.
     if (JSON.parse(sessionStorage.getItem('objeto')) != null) {
         objectUsuario = JSON.parse(localStorage.getItem('objeto'));
+        console.log(objectUsuario);
         $('#userName').text("Nombre: " + objectUsuario.name);
         $('#userAge').text("Edad: " + objectUsuario.age);
         $('#userEmail').text("Correo: " + objectUsuario.eMail);
