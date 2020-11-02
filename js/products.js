@@ -10,36 +10,38 @@ var numbersArray = [];
 
 function imprimirListado(array) {
     let HTMLContentToAppend = '';
-    for (let i = 0; i < array.length; i++) {
-        let category = array[i];
 
-        if ((minPrice > 15200) || (maxPrice < 12500)) {
-            HTMLContentToAppend = `<div class="list-group-item alert-danger mw-100" id="alertNotFound" role="alert">¡No hay elementos que coincidan con la busqueda!</div>`;
-        } else {
+    if ((minPrice > 15200) || (maxPrice < 12500)) {
+        HTMLContentToAppend = `<div class="list-group-item alert-danger mw-100" id="alertNotFound" role="alert">¡No hay elementos que coincidan con la busqueda!</div>`;
+    } else {
+        for (let i = 0; i < array.length; i++) {
+            let category = array[i];
             if (((minPrice == undefined) || (minPrice != undefined && parseInt(category.cost) >= minPrice)) &&
                 ((maxPrice == undefined) || (maxPrice != undefined && parseInt(category.cost) <= maxPrice))) {
 
                 HTMLContentToAppend += `
-                <a href="product-info.html" class="list-group-item list-group-item-action">
-                    <div class="row" id="` + category.name + `">
-                        <div class="col-3">
-                            <img src="` + category.imgSrc + `" alt="` + category.description + `" class="img-thumbnail">
-                        </div>
-                        <div class="col">
-                            <div class="d-flex w-100 justify-content-between">
-                                <h4 class="mb-1">` + category.name + `</h4>
-                                <small class="text-muted">Costo: ` + category.currency + ` ` + category.cost + `<br/>Vendidos: ` + category.soldCount + `</small>
-                            </div>
+                <div class="col-lg-4">  
+                    <div class="container border" style="cursor: pointer; margin: 2px" onclick="redirect()">                   
+                        <img src="` + category.imgSrc + `" alt="` + category.description + `" class="img-thumbnail">
+                        <br>
+                            <h4 class="mb-1" style="text-align: center">` + category.name + `</h4><hr>
+                            <small class="text-muted" style="text-align:left">Costo: ` + category.currency + ` ` + category.cost + `<br> Vendidos: ` + category.soldCount + `</small>
+                        
+                        <br>
                         <div> ` + category.description + `</div>
+                        <br>    
                     </div>
+                    <br>
                 </div>
-                </a>
             `
             }
         }
-
-        document.getElementById("impresion").innerHTML = HTMLContentToAppend;
     }
+    document.getElementById("impresion").innerHTML = HTMLContentToAppend;
+}
+
+function redirect() {
+    window.location.href = "product-info.html"
 }
 
 function sortAndShowCategories(sortCriteria, array) {
@@ -91,36 +93,38 @@ function search() {
         let descripcion = producto.description.toLowerCase();
 
         if (name.indexOf(texto) !== -1) {
-            document.getElementById('impresion').innerHTML += `<a href="product-info.html" class="list-group-item list-group-item-action">
-                <div class="row" id="` + producto.name + `">
-                    <div class="col-3">
-                        <img src="` + producto.imgSrc + `" alt="` + producto.description + `" class="img-thumbnail">
-                    </div>
-                    <div class="col">
-                        <div class="d-flex w-100 justify-content-between">
-                            <h4 class="mb-1">` + producto.name + `</h4>
-                            <small class="text-muted">Costo: ` + producto.currency + ` ` + producto.cost + `<br/>Vendidos: ` + producto.soldCount + `</small>
-                        </div>
-                        <div> ` + producto.description + `</div>
-                    </div>
+            document.getElementById('impresion').innerHTML += `
+            <div class="col-lg-4">  
+                <div class="container border" style="cursor: pointer; margin: 2px" onclick="redirect()">                   
+                    <img src="` + producto.imgSrc + `" alt="` + producto.description + `" class="img-thumbnail">
+                    <br>
+                        <h4 class="mb-1" style="text-align: center">` + producto.name + `</h4><hr>
+                        <small class="text-muted" style="text-align:left">Costo: ` + producto.currency + ` ` + producto.cost + `<br> Vendidos: ` + producto.soldCount + `</small>
+                    
+                    <br>
+                    <div> ` + producto.description + `</div>
+                    <br>    
                 </div>
-            </a> `
+                <br>
+            </div>
+        `
         } else {
             if (descripcion.indexOf(texto) !== -1) {
-                document.getElementById('impresion').innerHTML += `<a href="product-info.html" class="list-group-item list-group-item-action">
-                    <div class="row" id="` + producto.name + `">
-                        <div class="col-3">
-                            <img src="` + producto.imgSrc + `" alt="` + producto.description + `" class="img-thumbnail">
-                        </div>
-                        <div class="col">
-                            <div class="d-flex w-100 justify-content-between">
-                                <h4 class="mb-1">` + producto.name + `</h4>
-                                <small class="text-muted">Costo: ` + producto.currency + ` ` + producto.cost + `<br/>Vendidos: ` + producto.soldCount + `</small>
-                            </div>
-                            <div> ` + producto.description + `</div>
-                        </div>
+                document.getElementById('impresion').innerHTML += `
+                <div class="col-lg-4">  
+                    <div class="container border" style="cursor: pointer; margin: 2px" onclick="redirect()">                   
+                        <img src="` + producto.imgSrc + `" alt="` + producto.description + `" class="img-thumbnail">
+                        <br>
+                            <h4 class="mb-1" style="text-align: center">` + producto.name + `</h4><hr>
+                            <small class="text-muted" style="text-align:left">Costo: ` + producto.currency + ` ` + producto.cost + `<br> Vendidos: ` + producto.soldCount + `</small>
+                        
+                        <br>
+                        <div> ` + producto.description + `</div>
+                        <br>    
                     </div>
-                </a> `
+                    <br>
+                </div>
+            `
             }
         }
     }
