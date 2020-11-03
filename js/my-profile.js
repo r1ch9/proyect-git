@@ -1,5 +1,6 @@
 var objectUsuario = { "name": "", "age": null, "eMail": "", "phone": "", "img": "" };
 let link;
+
 //Animacion para mostrar campo editar usuario.
 function editObjUser() {
     $('#editUserData').toggle(500);
@@ -105,6 +106,7 @@ function actualizarImagen() {
     objectUsuario.img = link;
 
     $('#imgProfile').attr({ "src": link });
+    console.log(objectUsuario);
 
     objetoPerfil = JSON.stringify(objectUsuario);
     sessionStorage.setItem('objeto', objetoPerfil);
