@@ -1,4 +1,4 @@
-var objectUsuario = { "name": "", "age": null, "eMail": "", "phone": "", "img": "" };
+var objectUsuario = { "name": "", "age": null, "eMail": "", "phone": "", "img": "img/withoutImage.png" };
 let link;
 
 //Animacion para mostrar campo editar usuario.
@@ -29,10 +29,6 @@ function changeData() {
         objectUsuario.eMail = emailInput;
         objectUsuario.phone = phoneInput;
 
-        //Hacemos lo mismo con la imagen de usuario.
-        link = $('#inputImgSrc').val()
-        objectUsuario.img = link;
-
         //Mostramos el objeto en consola.
         console.log(objectUsuario);
 
@@ -41,6 +37,7 @@ function changeData() {
         $('#userAge').text("Edad: " + objectUsuario.age);
         $('#userEmail').text("Correo: " + objectUsuario.eMail);
         $('#userPhone').text("Telefono: " + objectUsuario.phone);
+        $('#imgProfile').attr({ "src": objectUsuario.img });
 
         //Almacenamiento del objeto en localStorage.
         objetoPerfil = JSON.stringify(objectUsuario);
@@ -108,11 +105,8 @@ function actualizarImagen() {
     link = $('#inputImgSrc').val()
     objectUsuario.img = link;
 
-    $('#imgProfile').attr({ "src": link });
-    console.log(objectUsuario);
-
-    objetoPerfil = JSON.stringify(objectUsuario);
-    sessionStorage.setItem('objeto', objetoPerfil);
+    //Ejecutamos la funcion para cambiar los datos.
+    changeData();
 }
 
 //Redireccion en nueva ventana para agregar imagen y abrimos el modal para ingresar el neuvo link
