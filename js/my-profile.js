@@ -33,6 +33,9 @@ function changeData() {
         link = $('#inputImgSrc').val()
         objectUsuario.img = link;
 
+        //Mostramos el objeto en consola.
+        console.log(objectUsuario);
+
         //Muestra los datos cambiados en el inicio de sesion.
         $('#userName').text("Nombre: " + objectUsuario.name);
         $('#userAge').text("Edad: " + objectUsuario.age);
