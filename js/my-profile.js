@@ -7,6 +7,14 @@ function editObjUser() {
     $('#impresionP').toggle(500);
 }
 
+function redirectCart() {
+    window.location.href = "cart.html";
+}
+
+function redirectSell() {
+    window.location.href = "sell.html";
+}
+
 //Sobreescribimos la data del JSON
 function changeData() {
     var nameInput, ageInput, emailInput, phoneInput;
@@ -72,29 +80,6 @@ function changeData() {
 
 }
 
-//Ponemos unos productos para mostrar en el perfil, incomoda que quede tan vacio
-function showP(jsonP) {
-    let ContentToAppend = ``;
-
-    for (let i = 0; i < jsonP.length - 1; i++) {
-        producto = jsonP[i];
-        ContentToAppend += `
-        <div class="col-lg-4" style="width: 100%">  
-            <div class="container border" style="cursor: pointer; margin: 2px;" onclick="redirect()">                   
-                <img src="` + producto.imgSrc + `" alt="` + producto.description + `" class="img-thumbnail">
-                <br>
-                <h4 class="mb-1" style="text-align: center">` + producto.name + `</h4><hr>
-                <small class="text-muted" style="text-align:left">Costo: ` + producto.currency + ` ` + producto.cost + `<br> Vendidos: ` + producto.soldCount + `</small>        
-                <br>
-                <div> ` + producto.description + `</div>
-                <br>    
-            </div>
-           
-        </div>`
-    }
-    $('#impresionP').html(ContentToAppend);
-}
-
 //Redireccion a product-info.html al clickear en el producto
 function redirect() {
     window.open('product-info.html');
@@ -119,11 +104,6 @@ function agregarImagen(url) {
 //que el documento se encuentra cargado, es decir, se encuentran todos los
 //elementos HTML presentes.
 document.addEventListener("DOMContentLoaded", function(e) {
-    getJSONData(PRODUCTS_URL).then(function(resultObj) {
-        if (resultObj.status === "ok") {
-            showP(resultObj.data);
-        }
-    });
 
     //Establecemos el estilo inicial de los input.
     $('#editUserData').hide();

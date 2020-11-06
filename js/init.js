@@ -79,7 +79,6 @@ function cerrarSesion() {
     sessionStorage.removeItem(elusuarioinvitado);
     sessionStorage.removeItem(elusuariosession);
     localStorage.removeItem(elusuariolocal);
-    localStorage.removeItem(objeto);
     window.location.href = "https://r1ch9.github.io/proyect-git/login.html";
 }
 
