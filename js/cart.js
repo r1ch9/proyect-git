@@ -12,6 +12,9 @@ let cantidaddeelementos;
 let elemento1oculto, elemento2oculto;
 let envioVerificado, carritoVerificado, sendMethod;
 let anterior;
+let pagoYtarjeta = false;
+let pago = false;
+let tarjetaNumero = false;
 
 //Impresion del carrito.
 function impressCarr(json) {
@@ -97,7 +100,39 @@ function pagoSeleccionado(id) {
     }
 
     anterior = id;
-    document.getElementById('botonConfirmarCompra').disabled = false;
+    pago = true;
+
+    if (id == 'creditBrou' || id == 'creditVisa' || id == 'creditScotia' || id == 'creditOca' || id == 'creditMaster' || id == 'creditCreditel') {
+        creditCardData();
+    } else {
+        document.getElementById('botonConfirmarCompra').disabled = false;
+        document.getElementById('alertCardNumber').hidden = true;
+        s
+    }
+
+}
+
+//Obtenemos los datos de la tarjeta de credito.
+function creditCardData() {
+    let largo = document.getElementById('inputCardNumber').value;
+
+    //Si seleccionamos una tarjeta de credito pedimos el input tarjeta para obtener los datos de la tarjeta.
+    if (largo.length != 16) {
+        document.getElementById('alertCardNumber').hidden = false;
+        tarjetaNumero = false;
+    } else {
+        tarjetaNumero = true;
+        document.getElementById('alertCardNumber').hidden = true;
+    }
+    verifyTarjetaYPago();
+}
+
+function verifyTarjetaYPago() {
+    if (tarjetaNumero && pago) {
+        document.getElementById('botonConfirmarCompra').disabled = false;
+    } else {
+        document.getElementById('botonConfirmarCompra').disabled = true;
+    }
 }
 
 //Alerta de compra completada, oculta la alerta despues de 3 segundos y redirecciona a index.html despues de 4 segundos.
@@ -514,5 +549,9 @@ document.addEventListener("DOMContentLoaded", function(e) {
                 }
             });
         }
+    });
+
+    document.getElementById('inputCardNumber').addEventListener("keydown", function() {
+        creditCardData();
     });
 });
