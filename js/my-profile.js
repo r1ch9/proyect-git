@@ -49,7 +49,7 @@ function changeData() {
 
         //Almacenamiento del objeto en localStorage.
         objetoPerfil = JSON.stringify(objectUsuario);
-        sessionStorage.setItem('objeto', objetoPerfil);
+        localStorage.setItem('objeto', objetoPerfil);
 
     } else {
         if (nameInput == '') {
@@ -113,8 +113,8 @@ document.addEventListener("DOMContentLoaded", function(e) {
     $('#newPhone').css({ "border-color": "grey", "border-width": "1px", "border-style": "solid", "border-radius": "5px" });
 
     //Cargar objecto en caso de que exista y imprimirlo en los campos de usuario.
-    if (JSON.parse(sessionStorage.getItem('objeto')) != null) {
-        objectUsuario = JSON.parse(sessionStorage.getItem('objeto'));
+    if (JSON.parse(localStorage.getItem('objeto')) != null) {
+        objectUsuario = JSON.parse(localStorage.getItem('objeto'));
         console.log(objectUsuario);
         $('#userName').text("Nombre: " + objectUsuario.name);
         $('#userAge').text("Edad: " + objectUsuario.age);
